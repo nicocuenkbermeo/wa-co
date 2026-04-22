@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>wa.co · Agentes de IA que trabajan por vos</title>
+<meta name="description" content="Estudio de IA en Neiva, Huila. Construimos chatbots de WhatsApp, agentes y flujos n8n que operan 24/7 mientras tu equipo duerme." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ========== TOKENS ========== */
+:root{
+  --bg: #0a0a0f;
+  --bg-2: #11111a;
+  --bg-3: #16161f;
+  --fg: #f4f1e8;
+  --fg-muted: #a8a49b;
+  --fg-dim: #6b6860;
+  --accent: #e2c728;     /* Paez mustard */
+  --accent-2: #93a64a;   /* olive */
+  --accent-3: #a78bfa;   /* violet pro */
+  --accent-4: #f97066;   /* terracotta */
+  --border: rgba(244,241,232,.08);
+  --border-strong: rgba(244,241,232,.14);
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --max: 1280px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--fg);font-family:var(--font-body);line-height:1.55;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;background:none;border:none;cursor:pointer;color:inherit}
+
+.container{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+/* ========== NOISE + GRADIENTS ========== */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity:.6;mix-blend-mode:overlay;
+}
+
+/* ========== NAV ========== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  backdrop-filter:blur(18px) saturate(160%);
+  background:linear-gradient(to bottom,rgba(10,10,15,.85),rgba(10,10,15,.6));
+  border-bottom:1px solid var(--border);
+}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:var(--max);margin:0 auto}
+.nav__brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:24px;letter-spacing:-.02em}
+.nav__brand b{font-weight:400}
+.nav__brand i{font-style:italic;color:var(--accent)}
+.nav__links{display:flex;gap:36px;font-size:14px;color:var(--fg-muted)}
+.nav__links a{transition:color .2s}
+.nav__links a:hover{color:var(--fg)}
+.nav__cta{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 18px;
+  background:var(--accent);color:#0a0a0f;border-radius:999px;
+  font-weight:500;font-size:14px;transition:transform .2s;
+}
+.nav__cta:hover{transform:translateY(-1px)}
+@media(max-width:860px){.nav__links{display:none}}
+
+/* ========== HERO ========== */
+.hero{position:relative;padding:200px 0 120px;overflow:hidden}
+.hero__orb{
+  position:absolute;top:-10%;right:-10%;width:900px;height:900px;
+  background:radial-gradient(circle at 30% 30%,rgba(167,139,250,.45),rgba(226,199,40,.15) 40%,transparent 70%);
+  filter:blur(80px);pointer-events:none;z-index:0;
+  animation:float 12s ease-in-out infinite;
+}
+.hero__orb--2{
+  top:auto;right:auto;bottom:-20%;left:-10%;width:700px;height:700px;
+  background:radial-gradient(circle at 50% 50%,rgba(147,166,74,.35),rgba(249,112,102,.1) 40%,transparent 70%);
+  animation-delay:-6s;
+}
+@keyframes float{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-30px,20px) scale(1.05)}
+}
+.hero__content{position:relative;z-index:2;max-width:1100px}
+.hero__eyebrow{
+  display:inline-flex;align-items:center;gap:10px;padding:8px 16px;
+  border:1px solid var(--border-strong);border-radius:999px;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--fg-muted);margin-bottom:40px;
+}
+.hero__eyebrow::before{content:"";width:8px;height:8px;border-radius:999px;background:var(--accent-2);box-shadow:0 0 0 4px rgba(147,166,74,.2)}
+.hero__h{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(56px,9vw,148px);line-height:.95;letter-spacing:-.03em;
+  margin-bottom:36px;
+}
+.hero__h em{font-style:italic;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-3) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero__sub{font-size:20px;color:var(--fg-muted);max-width:640px;line-height:1.6;margin-bottom:48px}
+.hero__ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:80px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:999px;
+  font-size:15px;font-weight:500;transition:all .25s;
+}
+.btn--primary{background:var(--accent);color:#0a0a0f}
+.btn--primary:hover{transform:translateY(-2px);box-shadow:0 20px 40px -20px rgba(226,199,40,.5)}
+.btn--ghost{border:1px solid var(--border-strong);color:var(--fg)}
+.btn--ghost:hover{background:rgba(255,255,255,.04);border-color:var(--fg-muted)}
+
+.hero__stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:48px;
+  padding-top:48px;border-top:1px solid var(--border);
+}
+.stat__num{font-family:var(--font-display);font-size:56px;line-height:1;letter-spacing:-.02em;margin-bottom:6px}
+.stat__label{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--fg-dim)}
+@media(max-width:860px){.hero__stats{grid-template-columns:repeat(2,1fr);gap:32px}}
+
+/* ========== LOGOS ========== */
+.logos{padding:40px 0;border-block:1px solid var(--border);background:var(--bg-2)}
+.logos__inner{display:flex;align-items:center;gap:48px;justify-content:space-between;flex-wrap:wrap;opacity:.6}
+.logos__label{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--fg-dim)}
+.logos__row{display:flex;gap:48px;align-items:center;flex-wrap:wrap}
+.logo-tag{font-family:var(--font-display);font-style:italic;font-size:22px;color:var(--fg-muted)}
+
+/* ========== CAPACIDADES ========== */
+.section{padding:140px 0;position:relative}
+.section__head{max-width:720px;margin-bottom:80px}
+.section__eyebrow{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--accent);margin-bottom:20px}
+.section__h{font-family:var(--font-display);font-size:clamp(40px,5vw,76px);line-height:1.02;letter-spacing:-.025em;margin-bottom:24px}
+.section__h em{font-style:italic;color:var(--accent-3)}
+.section__lede{font-size:18px;color:var(--fg-muted);line-height:1.65}
+
+.caps{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.cap{
+  position:relative;border:1px solid var(--border);border-radius:24px;overflow:hidden;
+  background:var(--bg-2);transition:transform .4s,border-color .4s;
+  min-height:480px;display:flex;flex-direction:column;
+}
+.cap:hover{transform:translateY(-4px);border-color:var(--border-strong)}
+.cap__media{flex:1;position:relative;overflow:hidden;background:var(--bg-3)}
+.cap__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;filter:saturate(.85) contrast(1.05)}
+.cap__media::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg-2) 0%,transparent 60%)}
+.cap__body{padding:32px;position:relative;z-index:2}
+.cap__num{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;color:var(--accent);margin-bottom:12px}
+.cap__h{font-family:var(--font-display);font-size:32px;line-height:1.1;margin-bottom:12px}
+.cap__p{font-size:15px;color:var(--fg-muted);line-height:1.55}
+.cap--1{grid-column:span 6}
+.cap--2{grid-column:span 6}
+.cap--3{grid-column:span 4}
+.cap--4{grid-column:span 4}
+.cap--5{grid-column:span 4}
+@media(max-width:960px){
+  .cap--1,.cap--2,.cap--3,.cap--4,.cap--5{grid-column:span 12}
+}
+
+/* ========== PROCESO ========== */
+.proceso{background:var(--bg-2);border-block:1px solid var(--border)}
+.proceso__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:40px}
+.paso{border-top:1px solid var(--border-strong);padding-top:32px;position:relative}
+.paso__num{font-family:var(--font-display);font-size:96px;line-height:1;color:var(--accent);opacity:.9;margin-bottom:16px;letter-spacing:-.03em}
+.paso__h{font-family:var(--font-display);font-size:28px;line-height:1.1;margin-bottom:14px}
+.paso__p{font-size:15px;color:var(--fg-muted)}
+@media(max-width:860px){.proceso__grid{grid-template-columns:1fr}}
+
+/* ========== PRECIOS ========== */
+.precios__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.plan{
+  border:1px solid var(--border);border-radius:24px;padding:40px 32px;
+  background:var(--bg-2);display:flex;flex-direction:column;gap:24px;
+  transition:border-color .3s,transform .3s;
+}
+.plan:hover{transform:translateY(-4px)}
+.plan--pro{border-color:var(--accent);background:linear-gradient(160deg,rgba(226,199,40,.06),var(--bg-2))}
+.plan__tag{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--fg-muted)}
+.plan--pro .plan__tag{color:var(--accent)}
+.plan__h{font-family:var(--font-display);font-size:40px;line-height:1}
+.plan__price{font-family:var(--font-display);font-size:56px;line-height:1;letter-spacing:-.02em}
+.plan__price small{font-size:16px;color:var(--fg-muted);font-family:var(--font-body)}
+.plan__desc{color:var(--fg-muted);font-size:14px;min-height:40px}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:12px;padding:20px 0;border-top:1px solid var(--border);font-size:14px}
+.plan li{display:flex;gap:10px;align-items:flex-start}
+.plan li::before{content:"→";color:var(--accent-2);font-weight:700}
+.plan--pro li::before{color:var(--accent)}
+.plan__cta{
+  display:block;text-align:center;padding:14px 24px;border-radius:999px;
+  border:1px solid var(--border-strong);color:var(--fg);font-size:14px;font-weight:500;
+  transition:all .2s;
+}
+.plan__cta:hover{background:rgba(255,255,255,.05)}
+.plan--pro .plan__cta{background:var(--accent);color:#0a0a0f;border-color:var(--accent)}
+.plan--pro .plan__cta:hover{transform:translateY(-1px)}
+@media(max-width:960px){.precios__grid{grid-template-columns:1fr}}
+
+/* ========== CASOS ========== */
+.casos{background:var(--bg-2);border-block:1px solid var(--border)}
+.casos__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.caso{
+  position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:28px;
+  transition:transform .4s;
+}
+.caso:hover{transform:translateY(-4px)}
+.caso img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:saturate(.85) brightness(.55)}
+.caso::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,15,.95) 0%,transparent 60%);z-index:1}
+.caso__body{position:relative;z-index:2}
+.caso__sector{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.caso__h{font-family:var(--font-display);font-size:26px;line-height:1.15;margin-bottom:8px}
+.caso__metric{font-size:14px;color:var(--fg-muted)}
+@media(max-width:860px){.casos__grid{grid-template-columns:1fr}}
+
+/* ========== CTA FINAL ========== */
+.cta-final{position:relative;padding:160px 0;overflow:hidden;text-align:center}
+.cta-final__orb{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:1100px;height:1100px;
+  background:radial-gradient(circle,rgba(226,199,40,.25) 0%,rgba(167,139,250,.12) 35%,transparent 65%);
+  filter:blur(90px);pointer-events:none;z-index:0;
+}
+.cta-final__content{position:relative;z-index:2}
+.cta-final h2{
+  font-family:var(--font-display);font-size:clamp(48px,7vw,112px);line-height:.95;
+  letter-spacing:-.03em;margin-bottom:36px;max-width:900px;margin-inline:auto;
+}
+.cta-final h2 em{font-style:italic;color:var(--accent)}
+.cta-final__sub{color:var(--fg-muted);font-size:18px;margin-bottom:48px;max-width:520px;margin-inline:auto}
+
+/* ========== FOOTER ========== */
+footer{background:var(--bg-2);border-top:1px solid var(--border);padding:80px 0 40px}
+.footer__grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+.footer__brand{font-family:var(--font-display);font-size:32px;margin-bottom:12px}
+.footer__desc{color:var(--fg-muted);font-size:14px;max-width:300px}
+.footer__col h4{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--fg-muted);margin-bottom:18px;font-weight:500}
+.footer__col ul{list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14px;color:var(--fg-muted)}
+.footer__col a{transition:color .2s}
+.footer__col a:hover{color:var(--fg)}
+.footer__bottom{padding-top:32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:11px;color:var(--fg-dim);letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:860px){.footer__grid{grid-template-columns:1fr 1fr;gap:32px}}
+
+/* ========== FLOATING WA ========== */
+.wa-float{
+  position:fixed;bottom:24px;right:24px;z-index:40;
+  display:flex;align-items:center;gap:10px;padding:14px 22px;
+  background:#25d366;color:#001b0d;border-radius:999px;font-weight:600;
+  box-shadow:0 20px 40px -10px rgba(37,211,102,.45);
+  transition:transform .2s;
+}
+.wa-float:hover{transform:translateY(-2px) scale(1.03)}
+
+/* ========== REVEAL ========== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- =========== NAV =========== -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__brand"><b>wa</b><i>.co</i></a>
+    <div class="nav__links">
+      <a href="#capacidades">Capacidades</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#precios">Precios</a>
+      <a href="#casos">Casos</a>
+    </div>
+    <a class="nav__cta" href="https://wa.me/573001234567" target="_blank">Agendar →</a>
+  </div>
+</nav>
+
+<!-- =========== HERO =========== -->
+<header class="hero">
+  <div class="hero__orb"></div>
+  <div class="hero__orb hero__orb--2"></div>
+  <div class="container hero__content">
+    <span class="hero__eyebrow">Estudio de IA · Neiva · Huila · Operando v2026</span>
+    <h1 class="hero__h">Agentes que<br><em>trabajan solos</em><br>mientras duermes.</h1>
+    <p class="hero__sub">
+      Chatbots de WhatsApp, asistentes IA y flujos n8n entrenados con tu operación. Contestan, cotizan, agendan y venden — en tu tono, 24/7, sin que levantes un dedo.
+    </p>
+    <div class="hero__ctas">
+      <a class="btn btn--primary" href="https://wa.me/573001234567" target="_blank">Escríbenos por WhatsApp</a>
+      <a class="btn btn--ghost" href="#capacidades">Ver capacidades →</a>
+    </div>
+    <div class="hero__stats">
+      <div><div class="stat__num">24/7</div><div class="stat__label">Sin humanos</div></div>
+      <div><div class="stat__num">+400h</div><div class="stat__label">Liberadas/año</div></div>
+      <div><div class="stat__num">$0</div><div class="stat__label">Leads perdidos 2am</div></div>
+      <div><div class="stat__num">10d</div><div class="stat__label">De brief a live</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- =========== LOGOS =========== -->
+<section class="logos">
+  <div class="container logos__inner">
+    <span class="logos__label">Construido sobre</span>
+    <div class="logos__row">
+      <span class="logo-tag">Claude</span>
+      <span class="logo-tag">GPT-4</span>
+      <span class="logo-tag">n8n</span>
+      <span class="logo-tag">Meta Cloud API</span>
+      <span class="logo-tag">Vercel</span>
+      <span class="logo-tag">Stripe</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========== CAPACIDADES =========== -->
+<section class="section" id="capacidades">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__eyebrow">01 — Capacidades</span>
+      <h2 class="section__h">Cinco capas. Un solo <em>organismo</em> que responde por ti.</h2>
+      <p class="section__lede">No vendemos "un bot". Construimos el tejido operativo donde tu WhatsApp, tu calendario, tu CRM y tu inventario conversan entre sí — sin copiar datos a mano, sin perder el hilo.</p>
+    </div>
+
+    <div class="caps">
+      <article class="cap cap--1 reveal">
+        <div class="cap__media"><img src="img/pin-05.jpg" alt="" /></div>
+        <div class="cap__body">
+          <div class="cap__num">01 — Chatbot WhatsApp</div>
+          <h3 class="cap__h">Atiende mientras duermes.</h3>
+          <p class="cap__p">Bot en tu WhatsApp Business con IA que cotiza, agenda y escala a humano cuando debe. Conectado a n8n, tu CRM y tu calendario.</p>
+        </div>
+      </article>
+
+      <article class="cap cap--2 reveal">
+        <div class="cap__media"><img src="img/pin-08.jpg" alt="" /></div>
+        <div class="cap__body">
+          <div class="cap__num">02 — Agentes IA</div>
+          <h3 class="cap__h">Tu copiloto de ventas.</h3>
+          <p class="cap__p">Claude y GPT entrenados con tus datos. Responden emails, resumen llamadas, escriben propuestas y cierran con CRM.</p>
+        </div>
+      </article>
+
+      <article class="cap cap--3 reveal">
+        <div class="cap__media"><img src="img/pin-03.jpg" alt="" /></div>
+        <div class="cap__body">
+          <div class="cap__num">03 — Flujos n8n</div>
+          <h3 class="cap__h">El tejido invisible.</h3>
+          <p class="cap__p">Workflows que conectan todas tus apps. Cero tareas repetidas, cero datos copiados a mano.</p>
+        </div>
+      </article>
+
+      <article class="cap cap--4 reveal">
+        <div class="cap__media"><img src="img/pin-07.jpg" alt="" /></div>
+        <div class="cap__body">
+          <div class="cap__num">04 — Voice AI</div>
+          <h3 class="cap__h">Llama. Cotiza. Agenda.</h3>
+          <p class="cap__p">Voz natural en español — contesta 24/7, en tu tono, con tu catálogo. El que responde a las 2am.</p>
+        </div>
+      </article>
+
+      <article class="cap cap--5 reveal">
+        <div class="cap__media"><img src="img/pin-10.jpg" alt="" /></div>
+        <div class="cap__body">
+          <div class="cap__num">05 — Dashboards IA</div>
+          <h3 class="cap__h">Reportes que piensan.</h3>
+          <p class="cap__p">Claude lee tu operación cada semana y te dice qué mover. Sin abrir una hoja de cálculo.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========== PROCESO =========== -->
+<section class="section proceso" id="proceso">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__eyebrow">02 — Proceso</span>
+      <h2 class="section__h">De brief a <em>producción</em> en diez días.</h2>
+      <p class="section__lede">Sin cotizaciones eternas ni slides. Hablamos 30 min, te mandamos propuesta en 24h, empezamos el lunes.</p>
+    </div>
+    <div class="proceso__grid">
+      <div class="paso reveal">
+        <div class="paso__num">01</div>
+        <h3 class="paso__h">Diagnóstico · 30 min</h3>
+        <p class="paso__p">Llamada gratis por WhatsApp. Te mostramos dónde hay fuga de tiempo y si podemos ayudarte. Si no, te lo decimos.</p>
+      </div>
+      <div class="paso reveal">
+        <div class="paso__num">02</div>
+        <h3 class="paso__h">Construcción · 7–14 días</h3>
+        <p class="paso__p">Entrenamos el agente con tus datos, conectamos APIs, probamos contra 50 mensajes reales tuyos antes de salir al aire.</p>
+      </div>
+      <div class="paso reveal">
+        <div class="paso__num">03</div>
+        <h3 class="paso__h">Operación · indefinido</h3>
+        <p class="paso__p">Monitoreamos, ajustamos el prompt, mejoramos el flujo. Reporte mensual con qué respondió, qué escaló, qué cerró.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== PRECIOS =========== -->
+<section class="section" id="precios">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__eyebrow">03 — Precios</span>
+      <h2 class="section__h">Setup una vez. <em>Mensualidad</em> predecible.</h2>
+      <p class="section__lede">Sin contratos anuales. Sin letras chicas. Facturamos en COP o USD. Pagos por Wompi, Stripe o transferencia.</p>
+    </div>
+
+    <div class="precios__grid">
+      <div class="plan reveal">
+        <div class="plan__tag">Starter</div>
+        <div>
+          <div class="plan__h">Bot WA Básico</div>
+          <div class="plan__desc">Para atender FAQ, capturar leads y agendar citas. El piso.</div>
+        </div>
+        <div class="plan__price">$800<small> · setup</small></div>
+        <ul>
+          <li>Bot WhatsApp Cloud API</li>
+          <li>Hasta 20 flujos de conversación</li>
+          <li>Integración Sheets / Calendly</li>
+          <li>Handoff a humano</li>
+          <li>Mensualidad $150 USD</li>
+        </ul>
+        <a class="plan__cta" href="https://wa.me/573001234567">Empezar</a>
+      </div>
+
+      <div class="plan plan--pro reveal">
+        <div class="plan__tag">★ Pro — Recomendado</div>
+        <div>
+          <div class="plan__h">Agente IA Vendedor</div>
+          <div class="plan__desc">Cotiza, escribe propuestas, conecta CRM. Tu operador nocturno.</div>
+        </div>
+        <div class="plan__price">$1,500<small> · setup</small></div>
+        <ul>
+          <li>Todo de Starter +</li>
+          <li>Claude/GPT entrenado con tus datos</li>
+          <li>CRM (HubSpot/Pipedrive) + Stripe</li>
+          <li>Voice AI opcional</li>
+          <li>Mensualidad $300 USD</li>
+        </ul>
+        <a class="plan__cta" href="https://wa.me/573001234567">Agendar diagnóstico</a>
+      </div>
+
+      <div class="plan reveal">
+        <div class="plan__tag">Custom</div>
+        <div>
+          <div class="plan__h">Stack completo</div>
+          <div class="plan__desc">Multiagente, múltiples canales, dashboards IA. A medida.</div>
+        </div>
+        <div class="plan__price">Cotizar</div>
+        <ul>
+          <li>Todo de Pro +</li>
+          <li>Multi-canal (WA, IG, email, voz)</li>
+          <li>Dashboards Claude semanales</li>
+          <li>Integraciones custom</li>
+          <li>SLA y soporte dedicado</li>
+        </ul>
+        <a class="plan__cta" href="https://wa.me/573001234567">Hablar con humano</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== CASOS =========== -->
+<section class="section casos" id="casos">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__eyebrow">04 — Casos</span>
+      <h2 class="section__h">Silencioso. <em>Ruidoso</em> en resultados.</h2>
+      <p class="section__lede">Operaciones reales del Huila y LATAM donde el bot atiende lo que antes tomaba turnos completos. Logos ocultos por NDA — resultados, no.</p>
+    </div>
+
+    <div class="casos__grid">
+      <article class="caso reveal">
+        <img src="img/pin-02.jpg" alt="" />
+        <div class="caso__body">
+          <div class="caso__sector">Retail · Neiva</div>
+          <h3 class="caso__h">+500 mensajes/mes automatizados</h3>
+          <p class="caso__metric">87% resueltos sin humano · −4h/día</p>
+        </div>
+      </article>
+      <article class="caso reveal">
+        <img src="img/pin-06.jpg" alt="" />
+        <div class="caso__body">
+          <div class="caso__sector">Salud · Opita</div>
+          <h3 class="caso__h">120 citas/mes sin recepcionista nocturna</h3>
+          <p class="caso__metric">Ahorra $1.8M COP/mes</p>
+        </div>
+      </article>
+      <article class="caso reveal">
+        <img src="img/pin-11.jpg" alt="" />
+        <div class="caso__body">
+          <div class="caso__sector">Restaurante · Pitalito</div>
+          <h3 class="caso__h">40% de pedidos por WhatsApp</h3>
+          <p class="caso__metric">Respuesta: 12min → 8 seg</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========== CTA FINAL =========== -->
+<section class="cta-final">
+  <div class="cta-final__orb"></div>
+  <div class="container cta-final__content">
+    <h2>¿Listo para que tu negocio<br><em>trabaje dormido?</em></h2>
+    <p class="cta-final__sub">Diagnóstico de 30 minutos por WhatsApp. Si no te sirve, te lo decimos. Si te sirve, el lunes empezamos.</p>
+    <a class="btn btn--primary" href="https://wa.me/573001234567" target="_blank">Hablar ahora por WhatsApp →</a>
+  </div>
+</section>
+
+<!-- =========== FOOTER =========== -->
+<footer>
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">wa<i style="color:var(--accent)">.co</i></div>
+        <p class="footer__desc">Estudio de IA unipersonal — Neiva, Huila, Colombia. Atendemos toda LATAM.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Capacidades</h4>
+        <ul>
+          <li><a href="#capacidades">Chatbots WA</a></li>
+          <li><a href="#capacidades">Agentes IA</a></li>
+          <li><a href="#capacidades">Flujos n8n</a></li>
+          <li><a href="#capacidades">Voice AI</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Compañía</h4>
+        <ul>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#casos">Casos</a></li>
+          <li><a href="https://wa.me/573001234567">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/573001234567">WhatsApp</a></li>
+          <li><a href="mailto:hola@agency-wa.co">hola@agency-wa.co</a></li>
+          <li>Neiva · Huila</li>
+          <li>Lun–Vie 8am–6pm COT</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 wa.co · Agencia IA · Huila</span>
+      <span>v2026.04 · Operando 24/7</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/573001234567" target="_blank">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A10.5 10.5 0 0 0 3.6 16.2L2 22l5.9-1.6A10.5 10.5 0 1 0 20.5 3.5zM12 20.1c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.2.9.9-3.2-.2-.3a8.5 8.5 0 1 1 7.2 4z"/></svg>
+  WhatsApp
+</a>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
