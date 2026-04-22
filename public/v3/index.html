@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>wa.co · Automatizamos tu WhatsApp con IA</title>
+<meta name="description" content="Estudio de IA en Neiva, Huila. Chatbots de WhatsApp, automatizaciones n8n y laboratorios. En 10 días tu negocio responde, agenda y vende solo." />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" type="image/png" href="./assets/favicon-paez.png" />
+</head>
+<body>
+
+<svg style="position:absolute;width:0;height:0" aria-hidden="true"><defs>
+  <linearGradient id="grad-paez" x1="0%" y1="50%" x2="100%" y2="50%">
+    <stop offset="0%" stop-color="#e2c728"/>
+    <stop offset="35%" stop-color="#c8bd36"/>
+    <stop offset="65%" stop-color="#93a64a"/>
+    <stop offset="100%" stop-color="#5f8a52"/>
+  </linearGradient>
+  <symbol id="wa-lettermark" viewBox="0 0 320 140">
+    <path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116 M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116"
+          fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</defs></svg>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <a href="index.html" class="nav__brand" data-cursor>
+    <svg viewBox="0 0 320 140" style="color: var(--fg)"><use href="#wa-lettermark"/></svg>
+    <b>wa.co</b>
+  </a>
+  <div class="nav__links">
+    <a href="servicios.html">Servicios</a>
+    <a href="casos.html">Casos</a>
+    <a href="#labs">Labs</a>
+    <a href="https://wa.me/573001234567" target="_blank" rel="noopener">Contacto</a>
+  </div>
+  <a class="nav__cta" href="https://wa.me/573001234567" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.8-.9-3-1.6-4.2-3.6-.3-.6.3-.5.9-1.7.1-.2.1-.4 0-.5-.1-.1-.6-1.5-.9-2.1-.2-.5-.5-.5-.6-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.9 4.3 1.8.8 2.5.8 3.4.7.5-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.2-.2-.4-.3z"/><path d="M20.5 3.5A10.5 10.5 0 0 0 3.6 16.2L2 22l5.9-1.6A10.5 10.5 0 1 0 20.5 3.5zM12 20.1c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.2.9.9-3.2-.2-.3a8.5 8.5 0 1 1 7.2 4z"/></svg>
+    WhatsApp
+  </a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <svg class="hero__river" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+    <path d="M -100 700 C 200 600, 400 800, 700 650 S 1200 500, 1540 620"
+          fill="none" stroke="url(#grad-paez)" stroke-width="140" stroke-linecap="round" opacity="0.15"/>
+    <path d="M -100 750 C 300 680, 500 850, 800 720 S 1300 580, 1540 680"
+          fill="none" stroke="url(#grad-paez)" stroke-width="80" stroke-linecap="round" opacity="0.1"/>
+  </svg>
+
+  <div class="hero__content">
+    <span class="hero__eyebrow">Estudio de IA · Neiva, Huila</span>
+    <h1 class="hero__h">Automatizamos lo que te <em>come</em> el día.</h1>
+    <p class="hero__sub">En 10 días tu negocio responde, agenda y vende solo por WhatsApp. Chatbots con IA, workflows n8n y laboratorios para PyMEs de Colombia.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--wa" href="https://wa.me/573001234567" target="_blank" data-cursor>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A10.5 10.5 0 0 0 3.6 16.2L2 22l5.9-1.6A10.5 10.5 0 1 0 20.5 3.5zM12 20.1c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.2.9.9-3.2-.2-.3a8.5 8.5 0 1 1 7.2 4zm5.5-5.7c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.8-.9-3-1.6-4.2-3.6-.3-.6.3-.5.9-1.7.1-.2.1-.4 0-.5-.1-.1-.6-1.5-.9-2.1-.2-.5-.5-.5-.6-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.9 4.3 1.8.8 2.5.8 3.4.7.5-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.2-.2-.4-.3z"/></svg>
+        Escríbenos por WhatsApp
+      </a>
+      <a class="btn btn--ghost" href="#servicios" data-cursor>Ver qué hacemos <span class="arr">→</span></a>
+    </div>
+    <div class="hero__meta">
+      <div><b>10 días</b>Entrega promedio</div>
+      <div><b>87%</b>Consultas sin humano</div>
+      <div><b>24/7</b>Atención con IA</div>
+    </div>
+  </div>
+
+  <div class="hero__visual">
+    <div class="chat">
+      <div class="chat__header">
+        <div class="chat__avatar">w</div>
+        <div>
+          <div class="chat__name">Pastelería Gaitán</div>
+          <div class="chat__status">bot activo</div>
+        </div>
+      </div>
+      <div class="chat__body" id="chat-body"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee">
+  <div class="marquee__track">
+    <span>WhatsApp Cloud API</span><span>n8n workflows</span><span>Claude</span><span>Google Sheets</span><span>Nequi · PSE</span><span>Calendly</span><span>Notion</span><span>HubSpot</span>
+    <span>WhatsApp Cloud API</span><span>n8n workflows</span><span>Claude</span><span>Google Sheets</span><span>Nequi · PSE</span><span>Calendly</span><span>Notion</span><span>HubSpot</span>
+  </div>
+</div>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="sec" id="servicios">
+  <div class="sec__inner">
+    <div class="sec__eyebrow fade-up">Servicios</div>
+    <h2 class="sec__title fade-up">Tres líneas. Una misma <em>mesa</em>.</h2>
+    <p class="sec__lede fade-up">Diseño, ingeniería y automatización en la misma célula. Sin vendedores, sin intermediarios. El mismo equipo que te cotiza te entrega el producto.</p>
+
+    <div class="services">
+      <article class="service fade-up">
+        <div class="service__num">01 / CHATBOTS</div>
+        <div class="service__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><circle cx="8.5" cy="11.5" r="0.5" fill="currentColor"/><circle cx="12" cy="11.5" r="0.5" fill="currentColor"/><circle cx="15.5" cy="11.5" r="0.5" fill="currentColor"/></svg>
+        </div>
+        <h3 class="service__h">WhatsApp con <em>IA</em></h3>
+        <p class="service__desc">Bot conectado a Meta Cloud API que responde FAQs, toma pedidos, agenda citas y captura leads 24/7.</p>
+        <ul class="service__list">
+          <li>Integración con Google Sheets o tu CRM</li>
+          <li>Entrenado con tu catálogo y voz</li>
+          <li>Handoff a humano cuando hace falta</li>
+          <li>Entrega en 7–14 días</li>
+        </ul>
+        <div class="service__price">
+          <span>Setup</span>
+          <b>desde COP $3.2M</b>
+        </div>
+      </article>
+
+      <article class="service fade-up">
+        <div class="service__num">02 / AUTOMATIZACIÓN</div>
+        <div class="service__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><path d="M6 9v3a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V9"/><path d="M12 15v0"/></svg>
+        </div>
+        <h3 class="service__h">Workflows <em>n8n</em></h3>
+        <p class="service__desc">Conectamos WhatsApp, Gmail, Sheets, Notion y tu CRM para que el back-office corra solo.</p>
+        <ul class="service__list">
+          <li>Lead → CRM → email → WhatsApp</li>
+          <li>Reportes diarios automáticos</li>
+          <li>Hosting en tu infra o la nuestra</li>
+          <li>Mantenimiento mensual incluido</li>
+        </ul>
+        <div class="service__price">
+          <span>Por workflow</span>
+          <b>desde COP $2M</b>
+        </div>
+      </article>
+
+      <article class="service fade-up">
+        <div class="service__num">03 / LABS</div>
+        <div class="service__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6l-5 9a2 2 0 0 0 1.7 3h12.6A2 2 0 0 0 20 18l-5-9V3"/><path d="M9 3h6"/><path d="M7 14h10"/></svg>
+        </div>
+        <h3 class="service__h">Laboratorios <em>IA</em></h3>
+        <p class="service__desc">Micro-productos IA que construimos como vitrina. Vertical-específicos, probados en cliente real.</p>
+        <ul class="service__list">
+          <li>Generadores de contenido</li>
+          <li>Dashboards con IA</li>
+          <li>Asistentes por industria</li>
+          <li>Se muestran como casos vivos</li>
+        </ul>
+        <div class="service__price">
+          <span>Acceso</span>
+          <b>gratis como demo</b>
+        </div>
+      </article>
+    </div>
+
+    <div class="fade-up" style="margin-top: 40px; text-align: center;">
+      <a href="servicios.html" class="btn btn--outline" data-cursor>Ver detalle completo de servicios →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROI ============ -->
+<section class="sec" style="padding-top: 0;">
+  <div class="sec__inner">
+    <div class="sec__eyebrow fade-up">Calculadora</div>
+    <h2 class="sec__title fade-up">Cuánto te <em>cuesta</em> no automatizar.</h2>
+
+    <div class="roi fade-up">
+      <div>
+        <h3 class="roi__h">Cada hora de atención manual es <em>plata</em> que no entra.</h3>
+        <p class="roi__desc">Ajusta las horas que tu equipo dedica a responder WhatsApp al día y el costo por hora local.</p>
+
+        <div class="roi__slider">
+          <div class="roi__slider-label"><span>Horas al día en WhatsApp</span><b id="roi-hours-val">4h</b></div>
+          <input type="range" min="1" max="12" value="4" step="1" class="roi__range" id="roi-hours">
+        </div>
+
+        <div class="roi__slider">
+          <div class="roi__slider-label"><span>Costo hora (COP)</span><b id="roi-rate-val">$12,000</b></div>
+          <input type="range" min="6000" max="40000" value="12000" step="1000" class="roi__range" id="roi-rate">
+        </div>
+      </div>
+
+      <div class="roi__result">
+        <div class="roi__result-label">Costo mensual estimado</div>
+        <div class="roi__result-value" id="roi-result">$1,056k</div>
+        <div class="roi__result-unit">COP / mes</div>
+        <p class="roi__result-note">Con un bot desde $600k/mes recuperas la inversión en menos de un mes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASOS ============ -->
+<section class="sec" style="padding-top: 0;" id="casos">
+  <div class="sec__inner">
+    <div class="sec__eyebrow fade-up">Casos en vivo</div>
+    <h2 class="sec__title fade-up">Negocios del Huila que ya <em>fluyen</em> solos.</h2>
+
+    <div class="cases">
+      <article class="case case--dark fade-up">
+        <div class="case__badge case__badge--live">Producción</div>
+        <div class="case__sector">Comercio · Neiva</div>
+        <h3 class="case__h">TodoCamisas reduce <em>4h/día</em> de atención manual.</h3>
+        <div class="case__metric">
+          <div><b>+500</b><span>MENSAJES / MES</span></div>
+          <div><b>87%</b><span>RESUELTAS SIN HUMANO</span></div>
+        </div>
+      </article>
+
+      <article class="case fade-up">
+        <div class="case__badge">Salud</div>
+        <div class="case__sector">Clínica dental · Neiva</div>
+        <h3 class="case__h">120 citas agendadas <em>sin recepcionista</em>.</h3>
+        <div class="case__metric">
+          <div><b>$1.8M</b><span>AHORRO MES</span></div>
+          <div><b>24/7</b><span>DISPONIBILIDAD</span></div>
+        </div>
+      </article>
+
+      <article class="case fade-up">
+        <div class="case__badge">Restaurante</div>
+        <div class="case__sector">Asadero · Pitalito</div>
+        <h3 class="case__h">De 12 min a <em>8 segundos</em> de respuesta.</h3>
+        <div class="case__metric">
+          <div><b>40%</b><span>PEDIDOS POR WA</span></div>
+          <div><b>8s</b><span>TIEMPO RESPUESTA</span></div>
+        </div>
+      </article>
+
+      <article class="case fade-up">
+        <div class="case__badge">Inmobiliaria</div>
+        <div class="case__sector">Huila</div>
+        <h3 class="case__h">+60 leads <em>calificados</em> cada mes.</h3>
+        <div class="case__metric">
+          <div><b>+60</b><span>LEADS / MES</span></div>
+          <div><b>3x</b><span>VELOCIDAD</span></div>
+        </div>
+      </article>
+
+      <article class="case fade-up">
+        <div class="case__badge">Educación</div>
+        <div class="case__sector">Academia · Neiva</div>
+        <h3 class="case__h">Conversión lead → matrícula: 12% → <em>31%</em>.</h3>
+        <div class="case__metric">
+          <div><b>31%</b><span>CONVERSIÓN</span></div>
+          <div><b>2.5x</b><span>vs ANTES</span></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="fade-up" style="margin-top: 40px;">
+      <a href="casos.html" class="btn btn--ghost" data-cursor>Ver todos los casos <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STUDIO / ABOUT ============ -->
+<section class="sec sec--dark" id="labs">
+  <div class="sec__inner">
+    <div class="studio">
+      <div class="studio__text">
+        <div class="sec__eyebrow">Somos</div>
+        <h2>Una célula pequeña, <em>rápida</em> y local.</h2>
+        <p>Estudio de IA basado en Neiva, Huila. Trabajamos como una mesa donde diseño, ingeniería y automatización conversan al mismo tiempo.</p>
+        <p><strong>Creemos que la IA tiene que aterrizar en el negocio real del Huila</strong> — no en slides, no en pilotos eternos, no en demos que nunca llegan al cliente final.</p>
+
+        <div class="studio__facts">
+          <div class="studio__fact"><b>Neiva</b><span>Huila · Colombia</span></div>
+          <div class="studio__fact"><b>2024</b><span>Fundado</span></div>
+          <div class="studio__fact"><b>10 días</b><span>Entrega promedio</span></div>
+          <div class="studio__fact"><b>COP</b><span>Precios locales</span></div>
+        </div>
+      </div>
+
+      <div class="studio__letter">
+        <svg id="morph-path" viewBox="0 0 320 140" style="transition: transform .1s linear;">
+          <use href="#wa-lettermark" style="stroke: url(#grad-paez)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="final-cta">
+  <h2>Tu WhatsApp, <em>respondiendo</em> solo. En diez días.</h2>
+  <p>Agenda un diagnóstico de 15 minutos. Revisamos tu flujo actual y te decimos qué se puede automatizar hoy.</p>
+  <a class="btn btn--wa" href="https://wa.me/573001234567" target="_blank" data-cursor style="font-size: 17px; padding: 20px 32px;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A10.5 10.5 0 0 0 3.6 16.2L2 22l5.9-1.6A10.5 10.5 0 1 0 20.5 3.5zM12 20.1c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.2.9.9-3.2-.2-.3a8.5 8.5 0 1 1 7.2 4z"/></svg>
+    Empezar por WhatsApp
+  </a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <svg viewBox="0 0 320 140" style="color: var(--paez-200); height: 40px;"><use href="#wa-lettermark"/></svg>
+        <p>Estudio de IA en Neiva, Huila. Automatizamos WhatsApp y back-office para PyMEs de Colombia y LATAM.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="servicios.html#chatbots">Chatbots WhatsApp</a></li>
+          <li><a href="servicios.html#n8n">Workflows n8n</a></li>
+          <li><a href="servicios.html#labs">Laboratorios</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Compañía</h4>
+        <ul>
+          <li><a href="casos.html">Casos</a></li>
+          <li><a href="https://wa.me/573001234567" target="_blank" rel="noopener">Contacto</a></li>
+          <li><a href="https://cal.com/agency-wa-co/diagnostico-15min" target="_blank">Agenda diagnóstico</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Canales</h4>
+        <ul>
+          <li><a href="https://wa.me/573001234567" target="_blank">WhatsApp</a></li>
+          <li><a href="mailto:hola@agency-wa.co">hola@agency-wa.co</a></li>
+          <li><a href="#" target="_blank">Instagram</a></li>
+          <li><a href="#" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>© 2025 wa.co · Neiva, Huila, Colombia</div>
+      <div>agency-wa.co · hecho con río</div>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
