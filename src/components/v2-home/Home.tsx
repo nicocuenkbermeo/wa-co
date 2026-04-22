@@ -16,6 +16,7 @@ import RiverDivider from "./sections/RiverDivider";
 import SmoothScroll from "./lib/SmoothScroll";
 import ScrollProgress from "./lib/ScrollProgress";
 import CustomCursor from "./lib/CustomCursor";
+import GrainOverlay from "./lib/GrainOverlay";
 import WhatsAppFab from "./WhatsAppFab";
 import Preloader from "./Preloader";
 import { T } from "./tokens";
@@ -33,6 +34,7 @@ export default function Home() {
       <SmoothScroll />
       <ScrollProgress />
       <CustomCursor />
+      <GrainOverlay opacity={0.09} blendMode="multiply" />
       <Navbar />
 
       <main>
