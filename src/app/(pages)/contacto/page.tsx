@@ -60,14 +60,14 @@ export default function ContactoPage() {
                   </div>
                 </a>
 
-                <a href="mailto:hola@wa.co" className="flex items-center gap-4 group">
+                <a href="mailto:hola@agency-wa.co" className="flex items-center gap-4 group">
                   <div className="w-12 h-12 rounded-xl bg-[#4A9D6E]/10 flex items-center justify-center">
                     <Mail className="w-5 h-5 text-[#4A9D6E]" />
                   </div>
                   <div>
                     <p className="text-sm text-[#6B6B6B]">Email</p>
                     <p className="text-[#FAFAFA] group-hover:text-[#4A9D6E] transition-colors">
-                      hola@wa.co
+                      hola@agency-wa.co
                     </p>
                   </div>
                 </a>

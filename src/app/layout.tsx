@@ -22,6 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://agency-wa.co"),
   title: "wa.co — Agencia de IA enraizada en el Huila",
   description:
     "Automatización con alma. Chatbots de WhatsApp, agentes IA, flujos n8n para PyMEs colombianas. Raíces locales, tecnología global.",
@@ -40,8 +41,13 @@ export const metadata: Metadata = {
     title: "wa.co — Un sistema que fluye como el río",
     description:
       "Agencia de IA enraizada en el Huila. Automatización con alma.",
+    url: "https://agency-wa.co",
+    siteName: "wa.co agency",
     type: "website",
     locale: "es_CO",
+  },
+  alternates: {
+    canonical: "https://agency-wa.co",
   },
 };
 

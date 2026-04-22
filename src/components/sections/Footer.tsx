@@ -110,10 +110,10 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-[var(--text-secondary)]">
               <li>
                 <a
-                  href="mailto:hola@wa.co"
+                  href="mailto:hola@agency-wa.co"
                   className="font-display italic text-lg text-[var(--paez-300)] hover:text-[var(--paez-200)] transition-colors"
                 >
-                  hola@wa.co
+                  hola@agency-wa.co
                 </a>
               </li>
               <li>

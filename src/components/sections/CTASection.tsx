@@ -111,10 +111,10 @@ export default function CTASection() {
           </a>
 
           <a
-            href="mailto:hola@wa.co"
+            href="mailto:hola@agency-wa.co"
             className="inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] px-8 py-4 text-base font-medium text-[var(--text-primary)] transition-colors hover:border-[var(--paez-400)] hover:text-[var(--paez-300)]"
           >
-            hola@wa.co
+            hola@agency-wa.co
           </a>
         </motion.div>
 
