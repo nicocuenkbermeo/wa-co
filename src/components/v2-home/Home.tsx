@@ -1,5 +1,6 @@
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
+import FuturistServices from "./sections/FuturistServices";
 import MarqueeTicker from "./sections/MarqueeTicker";
 import Cifras from "./sections/Cifras";
 import Capacidades from "./sections/Capacidades";
@@ -26,8 +27,8 @@ export default function Home() {
   return (
     <div
       style={{
-        background: T.cream,
-        color: T.ink,
+        background: T.obsidian,
+        color: T.cream,
         fontFamily: "var(--font-unbounded), system-ui, sans-serif",
       }}
     >
@@ -35,13 +36,14 @@ export default function Home() {
       <SmoothScroll />
       <ScrollProgress />
       <CustomCursor />
-      <GrainOverlay opacity={0.09} blendMode="multiply" />
+      <GrainOverlay opacity={0.07} blendMode="overlay" />
       <Navbar />
 
       <main>
         <Hero />
+        <FuturistServices />
         <MarqueeTicker />
-        <RiverDivider from={T.cream} to={T.selva} />
+        <RiverDivider from={T.obsidian} to={T.cream} />
         <Cifras />
         <Capacidades />
         <WordmarkMonumental />
@@ -52,6 +54,7 @@ export default function Home() {
         <Testimonios />
         <Pricing />
         <Manifiesto />
+        <RiverDivider from={T.cream} to={T.obsidian} />
         <CtaFinal />
       </main>
 

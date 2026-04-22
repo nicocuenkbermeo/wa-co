@@ -32,15 +32,22 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       style={{
-        background: scrolled ? `${T.cream}f2` : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? `1px solid ${T.ink}14` : "1px solid transparent",
+        background: scrolled ? "rgba(5,6,10,0.72)" : "transparent",
+        backdropFilter: scrolled ? "blur(18px) saturate(140%)" : "none",
+        borderBottom: scrolled ? `1px solid ${T.ghost}1f` : "1px solid transparent",
         transition: "background 300ms ease, border-color 300ms ease, backdrop-filter 300ms ease",
       }}
     >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 md:px-10" style={{ paddingTop: scrolled ? 14 : 20, paddingBottom: scrolled ? 14 : 20, transition: "padding 300ms ease" }}>
+      <div
+        className="mx-auto flex max-w-[1400px] items-center justify-between px-5 md:px-10"
+        style={{
+          paddingTop: scrolled ? 14 : 20,
+          paddingBottom: scrolled ? 14 : 20,
+          transition: "padding 300ms ease",
+        }}
+      >
         <Link href="/" className="flex items-center" aria-label="Inicio wa.co">
-          <AnimatedLettermark height={scrolled ? 30 : 38} label={true} drawOnMount={false} breathe={true} />
+          <AnimatedLettermark height={scrolled ? 30 : 38} label={true} drawOnMount={false} breathe={true} tone="light" />
         </Link>
 
         <div className="hidden items-center gap-10 md:flex">
@@ -49,20 +56,24 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               className="relative text-[12px] font-medium uppercase tracking-[0.18em]"
-              style={{ color: T.ink }}
+              style={{ color: T.cream }}
             >
               <span className="nav-link-underline">{l.label}</span>
             </a>
           ))}
-          <div className="flex items-center gap-4 border-l pl-6" style={{ borderColor: `${T.ink}22` }}>
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em]" style={{ color: `${T.ink}88` }}>
+          <div className="flex items-center gap-4 border-l pl-6" style={{ borderColor: `${T.ghost}33` }}>
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em]" style={{ color: T.ghost }}>
               ES · CO
             </span>
             <MagneticButton
               as="a"
               href="#contacto"
               className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.2em]"
-              style={{ background: T.ink, color: T.cream }}
+              style={{
+                background: T.cream,
+                color: T.obsidian,
+                boxShadow: `0 0 0 1px ${T.cream}, 0 10px 40px -12px ${T.aqua}99`,
+              }}
             >
               Agendar
               <span aria-hidden>→</span>
@@ -75,7 +86,7 @@ export default function Navbar() {
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          style={{ color: T.ink }}
+          style={{ color: T.cream }}
         >
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             {open ? (
@@ -99,7 +110,11 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
             className="overflow-hidden md:hidden"
-            style={{ background: T.cream, borderTop: `1px solid ${T.ink}14` }}
+            style={{
+              background: "rgba(5,6,10,0.96)",
+              backdropFilter: "blur(18px)",
+              borderTop: `1px solid ${T.ghost}1f`,
+            }}
           >
             <div className="flex flex-col gap-2 px-6 py-6">
               {LINKS.map((l) => (
@@ -108,7 +123,12 @@ export default function Navbar() {
                   href={l.href}
                   onClick={() => setOpen(false)}
                   className="rounded-xl px-4 py-4 text-[18px] font-medium"
-                  style={{ color: T.ink, background: `${T.ink}06`, fontFamily: "var(--font-unbounded)", fontWeight: 300 }}
+                  style={{
+                    color: T.cream,
+                    background: "rgba(255,255,255,0.04)",
+                    fontFamily: "var(--font-unbounded)",
+                    fontWeight: 300,
+                  }}
                 >
                   {l.label}
                 </a>
@@ -116,7 +136,7 @@ export default function Navbar() {
               <a
                 href={WHATSAPP_LINK}
                 className="mt-2 inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-[11px] font-medium uppercase tracking-[0.22em]"
-                style={{ background: T.ink, color: T.cream }}
+                style={{ background: T.cream, color: T.obsidian }}
               >
                 WhatsApp →
               </a>
@@ -134,7 +154,7 @@ export default function Navbar() {
           bottom: -6px;
           height: 1.5px;
           width: 100%;
-          background: ${T.ink};
+          background: ${T.cream};
           transform: scaleX(0);
           transform-origin: right center;
           transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
