@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>24 habilidades de diseño web premium — wa.co</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;400;500&family=Fraunces:ital,wght@1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#FFEFBF;--cream-soft:#F5EFE2;--selva:#0A330A;--ink:#0a0a08;--yellow:#FFE800;--orange:#E19100;--fire:#FF4000;--cyan:#72E8FF;--pitaya:#E24B7A;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:'Unbounded',sans-serif;font-weight:300;line-height:1.5;position:relative;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;mix-blend-mode:multiply;opacity:.1;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+  .container{max-width:1280px;margin:0 auto;padding:0 40px}
+  header{padding:80px 0 40px}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--selva);margin-bottom:24px;display:flex;align-items:center;gap:14px}
+  .eyebrow span{display:inline-block;height:1px;width:40px;background:var(--ink);opacity:.4}
+  h1{font-weight:200;font-size:clamp(48px,8vw,120px);line-height:.9;letter-spacing:-.035em;margin-bottom:32px;text-wrap:balance}
+  h1 em{font-family:'Fraunces',serif;font-style:italic;font-weight:300;color:var(--selva)}
+  .lead{font-family:'Fraunces',serif;font-style:italic;font-size:22px;max-width:720px;color:#0a0a08cc;margin-bottom:24px}
+  .meta{display:flex;gap:32px;margin-top:40px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#0a0a0899;padding:20px 0;border-top:1px solid #0a0a0822;border-bottom:1px solid #0a0a0822}
+  .tier{padding:60px 0;border-top:1px solid #0a0a0814}
+  .tier-header{display:flex;align-items:baseline;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+  .tier-num{font-weight:200;font-size:clamp(56px,9vw,140px);line-height:.85;color:var(--selva);letter-spacing:-.04em}
+  .tier-num em{font-family:'Fraunces',serif;font-style:italic;color:var(--fire)}
+  .tier-title{font-weight:300;font-size:clamp(20px,2.4vw,32px);color:var(--ink);max-width:28ch}
+  .tier-title em{font-family:'Fraunces',serif;font-style:italic;color:var(--selva)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));gap:20px}
+  .card{background:#FFFDF4;border:1.5px solid #0a0a0822;border-radius:4px;padding:28px 28px 24px;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.22,1,.36,1),border-color .3s}
+  .card:hover{transform:translateY(-4px);border-color:#0a0a0855}
+  .card::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .5s;pointer-events:none;background:radial-gradient(circle at 70% 30%,var(--accent)22,transparent 55%)}
+  .card:hover::before{opacity:1}
+  .card .code{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;color:var(--accent,var(--fire));font-weight:500}
+  .card h3{font-weight:300;font-size:24px;line-height:1.05;letter-spacing:-.02em;margin:14px 0 12px;color:var(--ink)}
+  .card .what{font-family:'Fraunces',serif;font-size:14px;line-height:1.5;color:#0a0a08cc;margin-bottom:14px}
+  .card .row{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.04em;color:#0a0a0899;margin-bottom:6px;display:flex;gap:8px;align-items:baseline}
+  .card .row b{color:var(--selva);font-weight:500;min-width:56px;text-transform:uppercase;letter-spacing:.22em;font-size:9.5px}
+  .card .scale{margin-top:16px;padding-top:14px;border-top:1px dashed #0a0a0822;font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:var(--selva);line-height:1.45}
+  .card .scale::before{content:"→ escalar x10 "}
+  .matrix{background:var(--selva);color:var(--cream);padding:60px 0;margin:80px 0 0}
+  .matrix h2{font-weight:200;font-size:clamp(32px,5vw,64px);color:var(--yellow);letter-spacing:-.03em;margin-bottom:40px;text-wrap:balance}
+  .matrix h2 em{font-family:'Fraunces',serif;font-style:italic;color:var(--cream)}
+  .matrix table{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:13px}
+  .matrix th{text-align:left;padding:14px 18px;border-bottom:1px solid #FFEFBF33;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow)}
+  .matrix td{padding:14px 18px;border-bottom:1px solid #FFEFBF14;color:var(--cream)}
+  .matrix tr:hover td{background:#FFEFBF0a}
+  .matrix td:first-child{font-weight:500;color:var(--yellow)}
+  .rules{background:var(--yellow);color:var(--ink);padding:80px 0;margin-top:0}
+  .rules h2{font-weight:200;font-size:clamp(36px,6vw,72px);letter-spacing:-.035em;margin-bottom:40px;text-wrap:balance}
+  .rules h2 em{font-family:'Fraunces',serif;font-style:italic;color:var(--selva)}
+  .rules ol{list-style:none;counter-reset:rule;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:28px}
+  .rules li{counter-increment:rule;padding-left:0;position:relative;padding-top:24px;border-top:1.5px solid var(--ink)}
+  .rules li::before{content:counter(rule,decimal-leading-zero);position:absolute;top:10px;right:0;font-family:'Unbounded',sans-serif;font-size:14px;font-weight:400;opacity:.5}
+  .rules li .rule-text{font-family:'Fraunces',serif;font-size:19px;line-height:1.35;color:var(--ink)}
+  .rules li .rule-text em{font-style:italic;color:var(--selva);font-weight:500}
+  footer{background:var(--ink);color:var(--cream);padding:60px 0 40px;text-align:center}
+  footer p{font-family:'Fraunces',serif;font-style:italic;font-size:18px;margin-bottom:8px;color:var(--yellow)}
+  footer small{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.55}
+  @media(max-width:640px){
+    .container{padding:0 20px}
+    header{padding:60px 0 30px}
+    .meta{flex-wrap:wrap;gap:12px 24px}
+  }
+</style>
+</head>
+<body>
+<header class="container">
+  <div class="eyebrow"><span></span>· catálogo 2026 — wa.co + ecosistema nico</div>
+  <h1>24 habilidades de<br><em>diseño web</em><br>nivel awwwards.</h1>
+  <p class="lead">Destiladas tras deep research en Olivier Larose, Hyperplexed, Codrops y Awwwards SOTD. Cada una probada, con snippet listo para pegar, con ruta clara de cómo escalarla a A Lo Profundo, Almería, Padel y clientes futuros.</p>
+  <div class="meta">
+    <span>· 2026-04-22</span>
+    <span>· next.js 16 + motion + lenis</span>
+    <span>· skill <b>web-design-pro</b></span>
+    <span>· 3 aplicadas a wa.co</span>
+  </div>
+</header>
+
+<section class="tier container">
+  <div class="tier-header">
+    <div class="tier-num">01<em>/</em></div>
+    <div class="tier-title"><em>Tier S</em> — foundation no-negociable. Las 8 que todo sitio premium trae antes que contenido.</div>
+  </div>
+  <div class="grid">
+    <div class="card" style="--accent:#FF4000"><span class="code">(01)</span><h3>Lenis smooth scroll</h3><p class="what">Scroll suavizado tipo Apple, reemplaza el abrupto del browser.</p><div class="row"><b>qué</b>lib 5kb zero deps</div><div class="row"><b>stack</b>lenis@1.x</div><div class="row"><b>dónde</b>body del layout</div><p class="scale">pegado 1 vez corre en todo el sitio</p></div>
+    <div class="card" style="--accent:#0A330A"><span class="code">(02)</span><h3>Custom cursor</h3><p class="what">Circulito sigue el mouse, se agranda en links, invierte color vs fondo.</p><div class="row"><b>qué</b>mix-blend difference</div><div class="row"><b>stack</b>vanilla DOM</div><div class="row"><b>dónde</b>layout global</div><p class="scale">off en mobile + reduced-motion. Universal.</p></div>
+    <div class="card" style="--accent:#E19100"><span class="code">(03)</span><h3>Magnetic buttons</h3><p class="what">CTAs se atraen al cursor cerca, spring vuelve al origen.</p><div class="row"><b>qué</b>useMotionValue+useSpring</div><div class="row"><b>stack</b>Motion 12</div><div class="row"><b>dónde</b>cada CTA crítico</div><p class="scale">strength 0.35 default, 0.5+ para hero monumentales.</p></div>
+    <div class="card" style="--accent:#FFE800"><span class="code">(04)</span><h3>Split text reveal</h3><p class="what">Headings aparecen palabra a palabra con blur→focus stagger.</p><div class="row"><b>qué</b>y:100%→0+blur</div><div class="row"><b>stack</b>Motion useInView</div><div class="row"><b>dónde</b>H1/H2 monumentales</div><p class="scale">stagger 0.04 largos, 0.08 cortos.</p></div>
+    <div class="card" style="--accent:#72E8FF"><span class="code">(05)</span><h3>Infinite marquee</h3><p class="what">Tira de texto/imágenes corre infinita, pause on hover.</p><div class="row"><b>qué</b>CSS translateX loop</div><div class="row"><b>stack</b>vanilla CSS</div><div class="row"><b>dónde</b>break visual</div><p class="scale">mínimo 1 por página, ideal 2.</p></div>
+    <div class="card" style="--accent:#E24B7A"><span class="code">(06)</span><h3>Number counters</h3><p class="what">Números cuentan 0 al valor real al entrar viewport.</p><div class="row"><b>qué</b>animate() easing</div><div class="row"><b>stack</b>Motion</div><div class="row"><b>dónde</b>sección métricas</div><p class="scale">soporta "1.2M", "24/7", "∞".</p></div>
+    <div class="card" style="--accent:#0A330A"><span class="code">(07)</span><h3>Scroll progress bar</h3><p class="what">Barra fina arriba crece con scroll. Indicador de profundidad.</p><div class="row"><b>qué</b>useScroll+useSpring</div><div class="row"><b>stack</b>Motion</div><div class="row"><b>dónde</b>layout top</div><p class="scale">1 línea de código. Universal.</p></div>
+    <div class="card" style="--accent:#FF4000"><span class="code">(08)</span><h3>3D tilt cards</h3><p class="what">Cards rotan 3D al cursor con spring easing max 7°.</p><div class="row"><b>qué</b>perspective 1000</div><div class="row"><b>stack</b>Motion useTransform</div><div class="row"><b>dónde</b>bento grids</div><p class="scale">wrap cualquier .card. Bento grids cobran vida.</p></div>
+  </div>
+</section>
+
+<section class="tier container">
+  <div class="tier-header">
+    <div class="tier-num">02<em>/</em></div>
+    <div class="tier-title"><em>Tier A</em> — high impact. Las 10 que destacan el sitio y lo vuelven memorable.</div>
+  </div>
+  <div class="grid">
+    <div class="card" style="--accent:#0A330A"><span class="code">(09)</span><h3>Grain overlay SVG</h3><p class="what">Película de grano sutil en toda la página. Look editorial impreso.</p><div class="row"><b>qué</b>feTurbulence filter</div><div class="row"><b>stack</b>SVG inline, cero JS</div><div class="row"><b>dónde</b>fixed inset-0 global</div><p class="scale">1 componente. Reemplaza "backgrounds planos". YA en wa.co.</p></div>
+    <div class="card" style="--accent:#E19100"><span class="code">(10)</span><h3>SVG mask scroll reveal</h3><p class="what">Un agujero crece revelando contenido detrás al scrollear.</p><div class="row"><b>qué</b>clipPath scroll-linked</div><div class="row"><b>stack</b>Motion useScroll</div><div class="row"><b>dónde</b>section dividers épicos</div><p class="scale">para wa.co: gota o río que se expande.</p></div>
+    <div class="card" style="--accent:#FF4000"><span class="code">(11)</span><h3>Text mask animation</h3><p class="what">Texto gigante como ventana a una imagen/video adentro.</p><div class="row"><b>qué</b>background-clip:text</div><div class="row"><b>stack</b>CSS puro</div><div class="row"><b>dónde</b>hero words críticos</div><p class="scale">"wa.co" con el río Magdalena fluyendo adentro.</p></div>
+    <div class="card" style="--accent:#FFE800"><span class="code">(12)</span><h3>Variable font scroll axis</h3><p class="what">Peso/ancho del font cambia al scrollear. Kinetic typography.</p><div class="row"><b>qué</b>fontVariationSettings</div><div class="row"><b>stack</b>variable font+JS listener</div><div class="row"><b>dónde</b>H1 hero</div><p class="scale">Unbounded, Inter, Fraunces tienen axes. Juego infinito.</p></div>
+    <div class="card" style="--accent:#72E8FF"><span class="code">(13)</span><h3>Zoom parallax</h3><p class="what">Imagen/video hace zoom-in mientras bajas. Sentir que "entras".</p><div class="row"><b>qué</b>useScroll+scale transform</div><div class="row"><b>stack</b>Motion</div><div class="row"><b>dónde</b>hero + section dividers</div><p class="scale">portfolios, product galleries, siempre premium.</p></div>
+    <div class="card" style="--accent:#E24B7A"><span class="code">(14)</span><h3>Horizontal sticky (GSAP)</h3><p class="what">Paneles avanzan horizontal mientras scrolleas vertical. Apple/Stripe.</p><div class="row"><b>qué</b>ScrollTrigger pin</div><div class="row"><b>stack</b>GSAP+Lenis</div><div class="row"><b>dónde</b>Proceso, case studies</div><p class="scale">wa.co ya usa Framer Motion. Upgrade a GSAP mejor.</p></div>
+    <div class="card" style="--accent:#0A330A"><span class="code">(15)</span><h3>View Transitions API</h3><p class="what">Cambio entre rutas con fade/slide/zoom nativo del browser.</p><div class="row"><b>qué</b>browser native</div><div class="row"><b>stack</b>Next.js 16</div><div class="row"><b>dónde</b>next.config.ts</div><p class="scale">1 flag activa para TODAS las rutas. YA activa en wa.co.</p></div>
+    <div class="card" style="--accent:#FF4000"><span class="code">(16)</span><h3>Perspective section transition</h3><p class="what">Sección anterior se inclina 3D atrás mientras la nueva avanza.</p><div class="row"><b>qué</b>rotateX+perspective</div><div class="row"><b>stack</b>Motion useScroll</div><div class="row"><b>dónde</b>entre secciones fuertes</div><p class="scale">sitios editoriales estilo revista, no scroll plano.</p></div>
+    <div class="card" style="--accent:#E19100"><span class="code">(17)</span><h3>Text along SVG path</h3><p class="what">Texto curvea siguiendo un path (río, arco, espiral).</p><div class="row"><b>qué</b>&lt;textPath&gt; SVG</div><div class="row"><b>stack</b>SVG puro</div><div class="row"><b>dónde</b>detalles brand</div><p class="scale">"wa.co fluye como el río" siguiendo el Magdalena.</p></div>
+    <div class="card" style="--accent:#FFE800"><span class="code">(18)</span><h3>Preloader con % real</h3><p class="what">Pantalla inicial con carga real de assets (no fake timer).</p><div class="row"><b>qué</b>Image.prefetch</div><div class="row"><b>stack</b>Motion fade out</div><div class="row"><b>dónde</b>sitios con assets pesados</div><p class="scale">upgrade del actual wa.co preloader.</p></div>
+  </div>
+</section>
+
+<section class="tier container">
+  <div class="tier-header">
+    <div class="tier-num">03<em>/</em></div>
+    <div class="tier-title"><em>Tier B</em> — specialty. Las 6 que vuelven el sitio <em>inolvidable</em>.</div>
+  </div>
+  <div class="grid">
+    <div class="card" style="--accent:#72E8FF"><span class="code">(19)</span><h3>Mouse image distortion</h3><p class="what">Imágenes se deforman tipo aceite al pasar el mouse.</p><div class="row"><b>qué</b>shader displacement</div><div class="row"><b>stack</b>R3F+GLSL</div><div class="row"><b>dónde</b>portfolio galleries</div><p class="scale">case study galleries, product showcases.</p></div>
+    <div class="card" style="--accent:#E24B7A"><span class="code">(20)</span><h3>Pixel dissolution</h3><p class="what">Página se pixeliza y disuelve revelando la siguiente.</p><div class="row"><b>qué</b>canvas grid animate</div><div class="row"><b>stack</b>Canvas 2D+RAF</div><div class="row"><b>dónde</b>intro brand, logo reveal</div><p class="scale">retro-futurista. Signature de agency sites.</p></div>
+    <div class="card" style="--accent:#0A330A"><span class="code">(21)</span><h3>Gooey SVG filter</h3><p class="what">Elementos cerca se funden como gotas líquidas.</p><div class="row"><b>qué</b>feGaussianBlur+colorMatrix</div><div class="row"><b>stack</b>SVG filter</div><div class="row"><b>dónde</b>menús orgánicos, loaders</div><p class="scale">loaders botánicos para wa.co.</p></div>
+    <div class="card" style="--accent:#FF4000"><span class="code">(22)</span><h3>Infinite canvas draggable</h3><p class="what">Área infinita donde arrastras para explorar.</p><div class="row"><b>qué</b>pointer events+transform</div><div class="row"><b>stack</b>R3F o vanilla</div><div class="row"><b>dónde</b>portfolios exploratorios</div><p class="scale">moodboards interactivos, archivos visuales.</p></div>
+    <div class="card" style="--accent:#E19100"><span class="code">(23)</span><h3>Custom 404 botánico</h3><p class="what">Error page con ilustración animada + micro-interacción.</p><div class="row"><b>qué</b>SVG morph+mouse parallax</div><div class="row"><b>stack</b>Motion</div><div class="row"><b>dónde</b>app/not-found.tsx</div><p class="scale">YA en wa.co: río reacciona al cursor. Brand en fricción.</p></div>
+    <div class="card" style="--accent:#FFE800"><span class="code">(24)</span><h3>WebGL ripple shader</h3><p class="what">Hero background con onda de agua que reacciona al mouse.</p><div class="row"><b>qué</b>custom GLSL shader</div><div class="row"><b>stack</b>R3F+three</div><div class="row"><b>dónde</b>hero temático "water/flow"</div><p class="scale">perfect para wa.co Huila river thematic.</p></div>
+  </div>
+</section>
+
+<section class="matrix">
+  <div class="container">
+    <h2>Stack matrix —<br><em>qué skill va con qué tipo</em> de sitio.</h2>
+    <table>
+      <thead><tr><th>Tipo sitio</th><th>Tier S</th><th>Tier A</th><th>Tier B</th></tr></thead>
+      <tbody>
+        <tr><td>Agencia servicio (wa.co)</td><td>01-08</td><td>09,10,11,14,15,18</td><td>23</td></tr>
+        <tr><td>E-commerce</td><td>01,03,05,07,08</td><td>09,13</td><td>24</td></tr>
+        <tr><td>Portfolio creativo</td><td>01-08</td><td>10,11,13,16,17</td><td>19,21,22</td></tr>
+        <tr><td>SaaS landing</td><td>01,03,04,06,07,08</td><td>09,12,14,15</td><td>23</td></tr>
+        <tr><td>Blog editorial</td><td>01,04,05,07</td><td>09,11,12,16,17</td><td>22</td></tr>
+        <tr><td>Evento / conferencia</td><td>01-08</td><td>09,10,13,16</td><td>20,21</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="rules">
+  <div class="container">
+    <h2>7 reglas de oro <em>no-violables</em>.</h2>
+    <ol>
+      <li><div class="rule-text"><em>prefers-reduced-motion</em> primero. Cada animación tiene su escape a estático.</div></li>
+      <li><div class="rule-text"><em>SSR-safe</em>. Si JS no carga, el contenido se ve. Ningún initial:opacity:0 sin fallback.</div></li>
+      <li><div class="rule-text"><em>Performance antes que wow</em>. LCP ≤ 2.5s, CLS 0. Lighthouse 90+ mobile siempre.</div></li>
+      <li><div class="rule-text"><em>Mobile igual de importante</em>. No "desktop-only magic". Responsive real.</div></li>
+      <li><div class="rule-text"><em>Un efecto por sección</em>. Ratio 1:1. No saturar — cada animación sirve al contenido, no al reel.</div></li>
+      <li><div class="rule-text"><em>Accent color matching</em>. Cada primitivo acepta prop color, respeta el brand del proyecto.</div></li>
+      <li><div class="rule-text">Cero <em>glass-morphism</em> genérico. Es 2022 design. Cream + selva + italic es 2026.</div></li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <p>un sistema que fluye como el río.</p>
+  <small>wa.co · skill web-design-pro · ~/.claude/skills/web-design-pro/CATALOG.md · agency-wa.co</small>
+</footer>
+</body>
+</html>
