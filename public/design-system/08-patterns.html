@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Patterns · wa.co Design System</title>
+<link rel="stylesheet" href="styles/base.css"/>
+<link rel="icon" type="image/png" href="assets/favicon-paez.png"/>
+<script src="styles/ds.js"></script>
+<style>
+  .pat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  .pat {
+    border-radius: var(--radius-lg); overflow: hidden;
+    border: 1px solid var(--border);
+    aspect-ratio: 4 / 3;
+    position: relative;
+    display: flex; align-items: flex-end;
+  }
+  .pat__label {
+    position: relative; z-index: 2;
+    padding: var(--space-5);
+    background: color-mix(in oklab, var(--surface) 85%, transparent);
+    backdrop-filter: blur(8px);
+    width: 100%;
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    color: var(--fg); letter-spacing: var(--tracking-mono);
+    border-top: 1px solid var(--border-subtle);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .pat__label b { font-family: var(--font-display); font-size: var(--text-base); font-style: italic; font-weight: 400; letter-spacing: -0.005em; }
+
+  /* Patrón 1 — Río (líneas curvas horizontales) */
+  .pat--rio {
+    background:
+      radial-gradient(ellipse at 20% 40%, color-mix(in oklab, var(--paez-300) 40%, transparent) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, color-mix(in oklab, var(--paez-700) 40%, transparent) 0%, transparent 50%),
+      var(--paez-50);
+    overflow: hidden;
+  }
+  [data-theme="dark"] .pat--rio { background:
+      radial-gradient(ellipse at 20% 40%, color-mix(in oklab, var(--paez-400) 25%, transparent), transparent 50%),
+      radial-gradient(ellipse at 80% 70%, color-mix(in oklab, var(--paez-800) 40%, transparent), transparent 50%),
+      #1a2818; }
+  .pat--rio svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Patrón 2 — Gradiente Páez diagonal */
+  .pat--gradient { background: linear-gradient(135deg, #e2c728 0%, #c8bd36 30%, #93a64a 60%, #3f6b40 100%); }
+
+  /* Patrón 3 — Grid monospace */
+  .pat--grid {
+    background-color: var(--surface-alt);
+    background-image:
+      linear-gradient(var(--border-subtle) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .pat--grid::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 40%, transparent 0%, color-mix(in oklab, var(--surface-alt) 80%, transparent) 80%);
+  }
+  .pat--grid .glyph { position: absolute; font-family: var(--font-mono); color: var(--paez-700); font-size: 14px; letter-spacing: var(--tracking-mono); }
+  .pat--grid .g1 { top: 24px; left: 24px; }
+  .pat--grid .g2 { top: 50%; left: 30%; color: var(--fg); font-size: 36px; font-family: var(--font-display); font-style: italic; letter-spacing: -0.02em; }
+  .pat--grid .g3 { bottom: 96px; right: 48px; color: var(--fg-muted); }
+  [data-theme="dark"] .pat--grid .glyph.g1, [data-theme="dark"] .pat--grid .glyph.g3 { color: var(--paez-300); }
+
+  /* Patrón 4 — Topografía curvas de nivel */
+  .pat--topo { background: var(--surface); }
+  .pat--topo svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Patrón 5 — Mola / trama tribal abstracta (líneas concéntricas) */
+  .pat--mola { background: var(--tierra-100); overflow: hidden; }
+  [data-theme="dark"] .pat--mola { background: #2a1f12; }
+  .pat--mola svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Patrón 6 — Hero type con wa.co grande */
+  .pat--type { background: var(--ink-900); color: var(--paez-100); display: flex; align-items: center; justify-content: center; }
+  .pat--type .big {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 96px; letter-spacing: -0.04em; font-weight: 400;
+    line-height: 1;
+  }
+  .pat--type .big em { color: var(--paez-300); font-style: normal; }
+
+  /* voice panel */
+  .voice {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--space-8);
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-1);
+  }
+  .voice__col { padding: var(--space-5); }
+  .voice__col + .voice__col { border-left: 1px solid var(--border-subtle); }
+  .voice__col h4 {
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    color: var(--fg-subtle); letter-spacing: var(--tracking-mono);
+    text-transform: uppercase; margin: 0 0 var(--space-4);
+  }
+  .voice__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+  .voice__col li { font-size: var(--text-sm); line-height: var(--lh-relaxed); color: var(--fg-muted); padding-left: 18px; position: relative; }
+  .voice__col li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 10px; height: 1px; background: var(--paez-600); }
+  .voice__col--no li::before { background: var(--guayaba-400); }
+  .voice__col strong { color: var(--fg); font-weight: 500; }
+
+  .cw { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+  .cw__card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: var(--space-5);
+    font-size: var(--text-sm); line-height: var(--lh-relaxed);
+  }
+  .cw__label {
+    font-family: var(--font-mono); font-size: 10px; color: var(--fg-subtle);
+    letter-spacing: var(--tracking-mono); text-transform: uppercase; margin-bottom: var(--space-2);
+  }
+  .cw__card--yes { border-color: color-mix(in oklab, var(--paez-700) 40%, var(--border)); }
+  .cw__card--no { border-color: color-mix(in oklab, var(--guayaba-400) 40%, var(--border)); opacity: 0.85; }
+  .cw__card--yes .cw__label { color: var(--paez-700); }
+  .cw__card--no .cw__label { color: var(--guayaba-500); }
+  [data-theme="dark"] .cw__card--yes .cw__label { color: var(--paez-300); }
+
+  @media (max-width: 900px) { .pat-grid, .cw { grid-template-columns: 1fr; } .voice { grid-template-columns: 1fr; } .voice__col + .voice__col { border-left: none; border-top: 1px solid var(--border-subtle); } }
+</style>
+</head>
+<body>
+
+<svg style="position:absolute;width:0;height:0"><defs>
+  <symbol id="wa-lettermark" viewBox="0 0 320 140"><path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116 M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<nav class="ds-nav">
+  <a class="ds-nav__brand" href="index.html"><svg viewBox="0 0 320 140" style="color:var(--fg)"><use href="#wa-lettermark"/></svg><b>wa.co</b><span>/ design system</span></a>
+  <div class="ds-nav__links">
+    <a href="01-brand.html">Brand</a><a href="02-logo.html">Logo</a><a href="03-color.html">Color</a>
+    <a href="04-typography.html">Type</a><a href="05-spacing.html">Space</a><a href="06-components.html">Components</a>
+    <a href="07-iconography.html">Icons</a><a href="08-patterns.html">Patterns</a><a href="09-applications.html">Apps</a>
+  </div>
+  <div class="ds-nav__right">
+    <button class="theme-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span class="theme-toggle__label">Dark</span></button>
+  </div>
+</nav>
+
+<main class="ds-main"><div class="ds-container">
+
+  <div class="ds-pageheader">
+    <div class="ds-pageheader__eyebrow">08 / Patterns & Voice</div>
+    <h1>Texturas del <em>territorio</em>, palabras del <em>valle</em>.</h1>
+    <p class="ds-pageheader__lede">Patrones gráficos y tono editorial que vinculan wa.co con el Huila sin caer en el folklore. Abstracción geométrica, referencias al río y a las curvas de nivel andinas.</p>
+  </div>
+
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Patrones gráficos</h2><span class="ds-section__num">08.1</span></div>
+    <p class="ds-section__desc">Seis texturas que se pueden usar como fondos de sección, headers de caso de estudio, OG images, diapositivas, etc.</p>
+    <div class="pat-grid">
+      <div class="pat pat--rio">
+        <svg viewBox="0 0 800 600" preserveAspectRatio="none">
+          <g fill="none" stroke="#2b4a2e" stroke-width="1.2" opacity="0.4">
+            <path d="M -20 120 C 200 80, 400 160, 620 120 S 820 140, 820 140"/>
+            <path d="M -20 200 C 200 160, 400 240, 620 200 S 820 220, 820 220"/>
+            <path d="M -20 280 C 200 240, 400 320, 620 280 S 820 300, 820 300"/>
+            <path d="M -20 360 C 200 320, 400 400, 620 360 S 820 380, 820 380"/>
+            <path d="M -20 440 C 200 400, 400 480, 620 440 S 820 460, 820 460"/>
+            <path d="M -20 520 C 200 480, 400 560, 620 520 S 820 540, 820 540"/>
+          </g>
+        </svg>
+        <div class="pat__label"><b>Río</b><span>pat-rio · curvas del Páez</span></div>
+      </div>
+
+      <div class="pat pat--gradient">
+        <div class="pat__label" style="background: color-mix(in oklab, black 60%, transparent); color: white; border-color: rgba(255,255,255,0.1);"><b style="color: white;">Gradiente Páez</b><span>pat-gradient · sol → selva</span></div>
+      </div>
+
+      <div class="pat pat--grid">
+        <span class="glyph g1">[ wa.co/patrones ]</span>
+        <span class="glyph g2">fluir</span>
+        <span class="glyph g3">// grid 24px</span>
+        <div class="pat__label"><b>Grid mono</b><span>pat-grid · infra técnica</span></div>
+      </div>
+
+      <div class="pat pat--topo">
+        <svg viewBox="0 0 800 600" preserveAspectRatio="none">
+          <g fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.22" style="color: var(--paez-700)">
+            <path d="M 200 600 Q 200 500, 300 450 T 500 350 T 700 300"/>
+            <path d="M 100 600 Q 150 450, 280 400 T 500 280 T 800 220"/>
+            <path d="M 50 550 Q 120 400, 260 340 T 500 200 T 800 150"/>
+            <path d="M 20 500 Q 100 350, 240 280 T 500 140 T 820 90"/>
+            <path d="M 0 450 Q 80 300, 220 220 T 500 80 T 820 40"/>
+            <path d="M 300 600 Q 320 520, 400 480 T 600 400 T 800 360"/>
+            <path d="M 400 600 Q 420 540, 500 500 T 680 440 T 820 410"/>
+          </g>
+        </svg>
+        <div class="pat__label"><b>Topografía</b><span>pat-topo · curvas de nivel</span></div>
+      </div>
+
+      <div class="pat pat--mola">
+        <svg viewBox="0 0 800 600" preserveAspectRatio="none">
+          <g fill="none" stroke="#a87a42" stroke-width="1.6" opacity="0.45">
+            <g transform="translate(200 300)">
+              <circle r="40"/><circle r="70"/><circle r="100"/><circle r="130"/><circle r="160"/><circle r="190"/>
+            </g>
+            <g transform="translate(600 300)">
+              <circle r="30"/><circle r="55"/><circle r="85"/><circle r="115"/><circle r="145"/><circle r="175"/>
+            </g>
+          </g>
+        </svg>
+        <div class="pat__label"><b>Mola</b><span>pat-mola · geometría tribal</span></div>
+      </div>
+
+      <div class="pat pat--type">
+        <div class="big">wa<em>.</em>co</div>
+        <div class="pat__label" style="background: color-mix(in oklab, #000 70%, transparent); color: var(--paez-100); border-color: rgba(255,255,255,0.1)"><b style="color: var(--paez-200)">Tipografía monumental</b><span>pat-type · OG images</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Voz y tono</h2><span class="ds-section__num">08.2</span></div>
+    <p class="ds-section__desc">Hablamos como un aliado técnico con raíces en el valle. Español neutro-colombiano. Directo, honesto, nunca vendedor de humo.</p>
+    <div class="voice">
+      <div class="voice__col">
+        <h4>Personalidad</h4>
+        <ul>
+          <li><strong>Cercano</strong> — nos tuteamos, hablamos como socios, no como proveedores.</li>
+          <li><strong>Directo</strong> — respuestas cortas, sin preámbulos corporativos.</li>
+          <li><strong>Técnico-humano</strong> — sabemos la parte dura, pero la explicamos simple.</li>
+          <li><strong>Orgulloso del territorio</strong> — referencias al valle sin hacer postal turística.</li>
+        </ul>
+      </div>
+      <div class="voice__col">
+        <h4>Sí decimos</h4>
+        <ul>
+          <li>"Tu bot ya responde a medianoche. Tú descansas."</li>
+          <li>"Empezamos con un proceso. Si funciona, seguimos."</li>
+          <li>"Automatización con alma — no reemplazamos personas, multiplicamos su tiempo."</li>
+          <li>"Hecho en Neiva. Entregado al mundo."</li>
+        </ul>
+      </div>
+      <div class="voice__col voice__col--no">
+        <h4>No decimos</h4>
+        <ul>
+          <li>"Transformamos digitalmente tu empresa con soluciones disruptivas de IA."</li>
+          <li>"Revolucionamos el paradigma de la atención al cliente."</li>
+          <li>"Nuestro ecosistema de inteligencia artificial…"</li>
+          <li>Emojis, signos de admiración dobles, "¡LANZAMIENTO!"</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Copywriting · antes y después</h2><span class="ds-section__num">08.3</span></div>
+    <div class="cw">
+      <div class="cw__card cw__card--no"><div class="cw__label">✕ Genérico</div>Potenciamos tu negocio con soluciones de inteligencia artificial de última generación que revolucionan la experiencia del cliente.</div>
+      <div class="cw__card cw__card--yes"><div class="cw__label">✓ wa.co</div>Un bot en WhatsApp que cotiza, responde y captura leads mientras tú duermes. Listo en 10 días.</div>
+
+      <div class="cw__card cw__card--no"><div class="cw__label">✕ Hype</div>¡Descubre el futuro de la automatización! 🚀 Nuestro innovador ecosistema te llevará al siguiente nivel.</div>
+      <div class="cw__card cw__card--yes"><div class="cw__label">✓ wa.co</div>Automatizamos un proceso a la vez. Si después de 30 días no ahorras tiempo, no nos pagas.</div>
+
+      <div class="cw__card cw__card--no"><div class="cw__label">✕ Abstracto</div>Transformamos la comunicación omnicanal con IA generativa de última milla.</div>
+      <div class="cw__card cw__card--yes"><div class="cw__label">✓ wa.co</div>Tus clientes ya están en WhatsApp. Tu empresa también debería estarlo — pero respondiendo sola.</div>
+    </div>
+  </section>
+
+</div></main>
+
+<footer class="ds-footer">
+  <span><a href="07-iconography.html">← Icons</a></span>
+  <span>08 · Patterns</span>
+  <span><a href="09-applications.html">Applications →</a></span>
+</footer>
+</body></html>

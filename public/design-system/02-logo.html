@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Logo · wa.co Design System</title>
+<link rel="stylesheet" href="styles/base.css" />
+<link rel="icon" type="image/png" href="assets/favicon-paez.png" />
+<script src="styles/ds.js"></script>
+<style>
+  .logo-showcase {
+    padding: var(--space-16) var(--space-12);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background:
+      radial-gradient(ellipse 600px 400px at 50% 50%, color-mix(in oklab, var(--paez-300) 14%, transparent), transparent 70%),
+      var(--surface);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 360px;
+  }
+  .logo-showcase svg { width: min(560px, 80%); height: auto; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+
+  .variant {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .variant__stage {
+    aspect-ratio: 16/10;
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--space-6);
+    background: var(--surface);
+  }
+  .variant__stage--dark { background: var(--ink-900); }
+  .variant__stage--brand { background: var(--paez-800); }
+  .variant__stage--sand { background: var(--tierra-100); }
+  .variant__stage svg { height: 60%; max-width: 80%; }
+  .variant__meta {
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--border-subtle);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-mono);
+  }
+  .variant__meta b { font-weight: 500; color: var(--fg); }
+  .variant__meta span { color: var(--fg-subtle); }
+
+  /* Clear space grid */
+  .clearspace-wrap {
+    background: var(--surface-alt);
+    border-radius: var(--radius-lg);
+    padding: var(--space-12);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .clearspace-inner {
+    position: relative;
+    padding: 60px 60px;
+    background:
+      linear-gradient(90deg, color-mix(in oklab, var(--paez-700) 25%, transparent) 0 1px, transparent 1px 100%) 0 0 / 60px 60px,
+      linear-gradient(0deg, color-mix(in oklab, var(--paez-700) 25%, transparent) 0 1px, transparent 1px 100%) 0 0 / 60px 60px;
+  }
+  .clearspace-inner::before, .clearspace-inner::after {
+    content: ""; position: absolute; background: color-mix(in oklab, var(--paez-700) 12%, transparent);
+  }
+  .clearspace-inner svg { height: 100px; width: auto; }
+  .clearspace-label {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    letter-spacing: var(--tracking-mono);
+  }
+
+  /* Size scale */
+  .sizes {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-8);
+    flex-wrap: wrap;
+  }
+  .size-item { text-align: center; }
+  .size-item svg { display: block; margin: 0 auto; }
+  .size-item__label {
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    letter-spacing: var(--tracking-mono);
+  }
+
+  /* Usage Do/Dont */
+  .usage-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .usage-card__stage {
+    aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--surface-alt);
+    position: relative;
+  }
+  .usage-card__stage svg { width: 60%; height: auto; }
+  .usage-card__foot {
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--border-subtle);
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: var(--text-sm);
+    line-height: var(--lh-snug);
+  }
+  .usage-card__tag {
+    width: 22px; height: 22px; border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .usage-card--do .usage-card__tag { background: var(--paez-300); color: var(--paez-900); }
+  .usage-card--dont .usage-card__tag { background: var(--guayaba-200); color: var(--guayaba-600); }
+
+  /* Animation sequence */
+  .anim-seq {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1px;
+    background: var(--ink-900);
+    border-radius: var(--radius-lg);
+    padding: 1px;
+    overflow: hidden;
+  }
+  .anim-seq__frame {
+    background: var(--ink-900);
+    aspect-ratio: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: var(--space-3);
+    position: relative;
+  }
+  .anim-seq__frame svg { width: 70%; height: auto; color: var(--paez-300); }
+  .anim-seq__n {
+    position: absolute; top: 8px; left: 10px;
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--ink-500);
+  }
+  .anim-seq__t {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--paez-200); opacity: 0.7;
+    letter-spacing: var(--tracking-mono);
+    margin-top: 8px;
+  }
+
+  .anim-player {
+    background: var(--ink-950);
+    border-radius: var(--radius-xl);
+    padding: var(--space-16);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .anim-player svg { width: min(400px, 80%); height: auto; }
+  .anim-player .replay {
+    position: absolute;
+    bottom: 20px; right: 20px;
+    height: 34px; padding: 0 16px;
+    background: var(--ink-800); color: var(--paez-200);
+    border: 1px solid var(--ink-700);
+    border-radius: 999px;
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    letter-spacing: var(--tracking-mono);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .anim-player .replay:hover { background: var(--ink-700); }
+
+  /* Concept annotated */
+  .concept {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-10);
+    align-items: center;
+    background: var(--surface-alt);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--space-10);
+  }
+  .concept__img {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .concept__img svg { width: 100%; max-width: 460px; height: auto; }
+  .concept__note {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    letter-spacing: var(--tracking-mono);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .concept__note::before { content: ""; width: 24px; height: 1px; background: currentColor; }
+  .concept__note--w { top: 24px; left: 10%; }
+  .concept__note--a { bottom: 24px; right: 10%; }
+  .concept__note--a::before { order: 2; }
+
+  .concept__body h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    margin: 0 0 var(--space-4);
+  }
+  .concept__body p {
+    color: var(--fg-muted);
+    line-height: var(--lh-relaxed);
+    margin: 0 0 var(--space-4);
+  }
+  .concept__rivers {
+    display: flex; flex-wrap: wrap; gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+  .river-chip {
+    padding: 6px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    letter-spacing: var(--tracking-mono);
+    color: var(--fg-muted);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .river-chip::before {
+    content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--paez-600);
+  }
+
+  @media (max-width: 900px) {
+    .grid-2, .grid-3, .grid-4, .concept { grid-template-columns: 1fr; }
+    .anim-seq { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0" aria-hidden="true">
+  <defs>
+    <linearGradient id="grad-paez" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%"  stop-color="#e2c728"/>
+      <stop offset="35%" stop-color="#c8bd36"/>
+      <stop offset="65%" stop-color="#93a64a"/>
+      <stop offset="100%" stop-color="#5f8a52"/>
+    </linearGradient>
+    <linearGradient id="grad-tierra" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#d4b47a"/>
+      <stop offset="100%" stop-color="#6b4a2c"/>
+    </linearGradient>
+    <symbol id="wa-lettermark" viewBox="0 0 320 140">
+      <path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116"
+            fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116"
+            fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="wa-outline" viewBox="0 0 320 140">
+      <path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116"
+            fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116"
+            fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav class="ds-nav">
+  <a class="ds-nav__brand" href="index.html">
+    <svg viewBox="0 0 320 140" style="color: var(--fg);"><use href="#wa-lettermark"/></svg>
+    <b>wa.co</b><span>/ design system</span>
+  </a>
+  <div class="ds-nav__links">
+    <a href="01-brand.html">Brand</a>
+    <a href="02-logo.html">Logo</a>
+    <a href="03-color.html">Color</a>
+    <a href="04-typography.html">Type</a>
+    <a href="05-spacing.html">Space</a>
+    <a href="06-components.html">Components</a>
+    <a href="07-iconography.html">Icons</a>
+    <a href="08-patterns.html">Patterns</a>
+    <a href="09-applications.html">Apps</a>
+  </div>
+  <div class="ds-nav__right">
+    <button class="theme-toggle" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <span class="theme-toggle__label">Dark</span>
+    </button>
+  </div>
+</nav>
+
+<main class="ds-main">
+  <div class="ds-container">
+
+    <!-- HEADER -->
+    <div class="ds-pageheader">
+      <div class="ds-pageheader__eyebrow">02 / Logo</div>
+      <h1>El lettermark es un <em>río</em>.</h1>
+      <p class="ds-pageheader__lede">
+        "wa" nace del guaco — ave emblemática del Huila — y dibuja los cuatro ríos del departamento
+        (Magdalena, Páez, Suaza, La Plata) en una sola trayectoria continua. La w fluye; la a es el destino.
+      </p>
+    </div>
+
+    <!-- SHOWCASE PRINCIPAL -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Firma principal</h2>
+        <span class="ds-section__num">02.1</span>
+      </div>
+      <div class="logo-showcase">
+        <svg viewBox="0 0 320 140">
+          <path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116"
+                fill="none" stroke="url(#grad-paez)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116"
+                fill="none" stroke="url(#grad-paez)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- CONCEPTO -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Concepto</h2>
+        <span class="ds-section__num">02.2</span>
+      </div>
+      <div class="concept">
+        <div class="concept__img">
+          <span class="concept__note concept__note--w">La w = sistema fluvial</span>
+          <span class="concept__note concept__note--a">La a = destino · IA</span>
+          <svg viewBox="0 0 320 140">
+            <path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116"
+                  fill="none" stroke="url(#grad-paez)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116"
+                  fill="none" stroke="url(#grad-paez)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="concept__body">
+          <h3>Cartografía que se vuelve marca.</h3>
+          <p>
+            La trayectoria de la <b style="color:var(--fg)">w</b> recorre los cuatro valles principales del Huila
+            — sus ondas son los ríos que fluyen del macizo hacia el Magdalena. La <b style="color:var(--fg)">a</b> cierra
+            el recorrido: es el lago, la desembocadura, el lugar donde el trabajo llega.
+          </p>
+          <p>
+            El gradiente Páez lleva la mirada del amarillo del sol al verde de la selva: del dato al insight,
+            del proceso al resultado.
+          </p>
+          <div class="concept__rivers">
+            <span class="river-chip">Magdalena</span>
+            <span class="river-chip">Páez</span>
+            <span class="river-chip">Suaza</span>
+            <span class="river-chip">La Plata</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VARIANTES -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Variantes cartográficas</h2>
+        <span class="ds-section__num">02.3</span>
+      </div>
+      <p class="ds-section__desc">
+        Cada variante refleja un tramo distinto del territorio. Úsalas según contexto y contraste — la principal es "Páez gradiente".
+      </p>
+      <div class="grid-4">
+        <div class="variant">
+          <div class="variant__stage">
+            <svg viewBox="0 0 320 140">
+              <path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116 M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116"
+                    fill="none" stroke="url(#grad-paez)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="variant__meta"><b>Páez</b><span>gradient · principal</span></div>
+        </div>
+
+        <div class="variant">
+          <div class="variant__stage">
+            <svg viewBox="0 0 320 140" style="color: var(--paez-800)"><use href="#wa-lettermark"/></svg>
+          </div>
+          <div class="variant__meta"><b>Selva</b><span>sólido · verde</span></div>
+        </div>
+
+        <div class="variant">
+          <div class="variant__stage">
+            <svg viewBox="0 0 320 140" style="color: var(--paez-400)"><use href="#wa-lettermark"/></svg>
+          </div>
+          <div class="variant__meta"><b>Sol</b><span>sólido · amarillo</span></div>
+        </div>
+
+        <div class="variant">
+          <div class="variant__stage">
+            <svg viewBox="0 0 320 140" style="color: var(--paez-800)"><use href="#wa-outline"/></svg>
+          </div>
+          <div class="variant__meta"><b>Sistema fluvial</b><span>outline</span></div>
+        </div>
+
+        <div class="variant">
+          <div class="variant__stage">
+            <svg viewBox="0 0 320 140"><use href="#wa-lettermark" style="stroke: url(#grad-tierra)"/></svg>
+          </div>
+          <div class="variant__meta"><b>Tierra</b><span>gradient · secundaria</span></div>
+        </div>
+
+        <div class="variant">
+          <div class="variant__stage">
+            <svg viewBox="0 0 320 140" style="color: var(--tierra-500)"><use href="#wa-lettermark"/></svg>
+          </div>
+          <div class="variant__meta"><b>Ocre</b><span>sólido · tierra</span></div>
+        </div>
+
+        <div class="variant">
+          <div class="variant__stage variant__stage--dark">
+            <svg viewBox="0 0 320 140"><use href="#wa-lettermark" style="stroke: url(#grad-paez)"/></svg>
+          </div>
+          <div class="variant__meta"><b>Nocturno</b><span>gradient on dark</span></div>
+        </div>
+
+        <div class="variant">
+          <div class="variant__stage variant__stage--brand">
+            <svg viewBox="0 0 320 140" style="color: var(--paez-100)"><use href="#wa-lettermark"/></svg>
+          </div>
+          <div class="variant__meta"><b>Reverso</b><span>sobre verde</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCALE & SIZES -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Escala y tamaños mínimos</h2>
+        <span class="ds-section__num">02.4</span>
+      </div>
+      <p class="ds-section__desc">
+        En formato digital, el lettermark nunca debe aparecer por debajo de 32px de alto. Para favicon e iconografía
+        de app se utiliza la versión simplificada optimizada por tamaño.
+      </p>
+      <div class="sizes">
+        <div class="size-item">
+          <svg width="240" height="105" viewBox="0 0 320 140" style="color: var(--fg)"><use href="#wa-lettermark"/></svg>
+          <div class="size-item__label">240 × 105 · web hero</div>
+        </div>
+        <div class="size-item">
+          <svg width="120" height="52" viewBox="0 0 320 140" style="color: var(--fg)"><use href="#wa-lettermark"/></svg>
+          <div class="size-item__label">120 × 52 · header</div>
+        </div>
+        <div class="size-item">
+          <svg width="64" height="28" viewBox="0 0 320 140" style="color: var(--fg)"><use href="#wa-lettermark"/></svg>
+          <div class="size-item__label">64 × 28 · compact</div>
+        </div>
+        <div class="size-item">
+          <svg width="32" height="14" viewBox="0 0 320 140" style="color: var(--fg)"><use href="#wa-lettermark"/></svg>
+          <div class="size-item__label">32 · mínimo</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLEAR SPACE -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Zona de protección</h2>
+        <span class="ds-section__num">02.5</span>
+      </div>
+      <p class="ds-section__desc">
+        La altura de la "a" (x) define el margen mínimo alrededor del lettermark. Ningún elemento debe invadir esta zona.
+      </p>
+      <div class="clearspace-wrap">
+        <div style="position: relative; padding: 70px;">
+          <!-- Clear space guides -->
+          <div style="position:absolute; inset:0; border: 1px dashed color-mix(in oklab, var(--paez-700) 40%, transparent); border-radius: 4px;"></div>
+          <!-- x labels -->
+          <span style="position:absolute; top: 30px; left: -28px; font-family:var(--font-mono); font-size: 11px; color: var(--fg-subtle); letter-spacing: var(--tracking-mono);">x</span>
+          <span style="position:absolute; bottom: 30px; right: -28px; font-family:var(--font-mono); font-size: 11px; color: var(--fg-subtle); letter-spacing: var(--tracking-mono);">x</span>
+          <span style="position:absolute; top: -28px; left: 50%; transform: translateX(-50%); font-family:var(--font-mono); font-size: 11px; color: var(--fg-subtle); letter-spacing: var(--tracking-mono);">x</span>
+          <span style="position:absolute; bottom: -28px; left: 50%; transform: translateX(-50%); font-family:var(--font-mono); font-size: 11px; color: var(--fg-subtle); letter-spacing: var(--tracking-mono);">x</span>
+          <svg viewBox="0 0 320 140" width="380" height="166">
+            <path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116"
+                  fill="none" stroke="url(#grad-paez)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116"
+                  fill="none" stroke="url(#grad-paez)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- x indicator -->
+            <g stroke="var(--paez-700)" stroke-width="1" stroke-dasharray="3 3" opacity="0.5">
+              <line x1="220" y1="32" x2="220" y2="100"/>
+              <line x1="216" y1="32" x2="224" y2="32"/>
+              <line x1="216" y1="100" x2="224" y2="100"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- DO / DONT -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Usos permitidos y prohibidos</h2>
+        <span class="ds-section__num">02.6</span>
+      </div>
+      <div class="grid-3">
+        <div class="usage-card usage-card--do">
+          <div class="usage-card__stage">
+            <svg viewBox="0 0 320 140"><path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116 M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116" fill="none" stroke="url(#grad-paez)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="usage-card__foot">
+            <span class="usage-card__tag">✓</span>
+            <div><b>Sí.</b> Gradiente Páez sobre fondo claro o neutral.</div>
+          </div>
+        </div>
+
+        <div class="usage-card usage-card--do">
+          <div class="usage-card__stage" style="background: var(--ink-900)">
+            <svg viewBox="0 0 320 140"><use href="#wa-lettermark" style="stroke: url(#grad-paez)"/></svg>
+          </div>
+          <div class="usage-card__foot">
+            <span class="usage-card__tag">✓</span>
+            <div><b>Sí.</b> Gradiente sobre fondo oscuro profundo.</div>
+          </div>
+        </div>
+
+        <div class="usage-card usage-card--do">
+          <div class="usage-card__stage" style="background: var(--paez-800)">
+            <svg viewBox="0 0 320 140" style="color: var(--paez-100)"><use href="#wa-lettermark"/></svg>
+          </div>
+          <div class="usage-card__foot">
+            <span class="usage-card__tag">✓</span>
+            <div><b>Sí.</b> Reverso en claro sobre verde de marca.</div>
+          </div>
+        </div>
+
+        <div class="usage-card usage-card--dont">
+          <div class="usage-card__stage" style="background: #ff00a8">
+            <svg viewBox="0 0 320 140"><use href="#wa-lettermark" style="stroke: url(#grad-paez)"/></svg>
+          </div>
+          <div class="usage-card__foot">
+            <span class="usage-card__tag">✕</span>
+            <div><b>No.</b> Sobre colores saturados ajenos a la paleta.</div>
+          </div>
+        </div>
+
+        <div class="usage-card usage-card--dont">
+          <div class="usage-card__stage">
+            <svg viewBox="0 0 320 140" style="transform: scaleY(0.5)"><use href="#wa-lettermark" style="stroke: url(#grad-paez)"/></svg>
+          </div>
+          <div class="usage-card__foot">
+            <span class="usage-card__tag">✕</span>
+            <div><b>No.</b> Estirar, deformar o rotar arbitrariamente.</div>
+          </div>
+        </div>
+
+        <div class="usage-card usage-card--dont">
+          <div class="usage-card__stage">
+            <svg viewBox="0 0 320 140" style="filter: drop-shadow(4px 4px 0 #e66a2e)"><use href="#wa-lettermark" style="stroke: url(#grad-paez)"/></svg>
+          </div>
+          <div class="usage-card__foot">
+            <span class="usage-card__tag">✕</span>
+            <div><b>No.</b> Añadir sombras duras, outlines u otros efectos.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANIMATION SEQUENCE -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Animación — "el río se dibuja"</h2>
+        <span class="ds-section__num">02.7</span>
+      </div>
+      <p class="ds-section__desc">
+        2 segundos · ease-in-out · la marca emerge de una gota y fluye hasta completar el lettermark.
+        Uso: splash screen, intro de video, hover en navegación.
+      </p>
+
+      <div class="anim-player" style="margin-bottom: var(--space-6)">
+        <svg id="animWa" viewBox="0 0 320 140">
+          <path id="animW" d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116"
+                fill="none" stroke="url(#grad-paez)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+          <path id="animA" d="M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116"
+                fill="none" stroke="url(#grad-paez)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <button class="replay" onclick="playWaAnim()">↻ Replay</button>
+      </div>
+
+      <div class="anim-seq">
+        <div class="anim-seq__frame"><span class="anim-seq__n">1</span><svg viewBox="0 0 24 32"><path d="M12 2 C 6 12, 2 20, 2 24 A 10 10 0 0 0 22 24 C 22 20, 18 12, 12 2 Z" fill="currentColor"/></svg><span class="anim-seq__t">0.0s</span></div>
+        <div class="anim-seq__frame"><span class="anim-seq__n">2</span><svg viewBox="0 0 320 140"><path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round"/></svg><span class="anim-seq__t">0.3s</span></div>
+        <div class="anim-seq__frame"><span class="anim-seq__n">3</span><svg viewBox="0 0 320 140"><path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round"/></svg><span class="anim-seq__t">0.6s</span></div>
+        <div class="anim-seq__frame"><span class="anim-seq__n">4</span><svg viewBox="0 0 320 140"><path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round"/></svg><span class="anim-seq__t">0.9s</span></div>
+        <div class="anim-seq__frame"><span class="anim-seq__n">5</span><svg viewBox="0 0 320 140"><path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round"/></svg><span class="anim-seq__t">1.2s</span></div>
+        <div class="anim-seq__frame"><span class="anim-seq__n">6</span><svg viewBox="0 0 320 140"><use href="#wa-lettermark"/><path d="M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round"/></svg><span class="anim-seq__t">1.5s</span></div>
+        <div class="anim-seq__frame"><span class="anim-seq__n">7</span><svg viewBox="0 0 320 140"><use href="#wa-lettermark"/><path d="M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round"/></svg><span class="anim-seq__t">1.8s</span></div>
+        <div class="anim-seq__frame"><span class="anim-seq__n">8</span><svg viewBox="0 0 320 140"><use href="#wa-lettermark"/></svg><span class="anim-seq__t">2.0s ✓</span></div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="ds-footer">
+  <span><a href="01-brand.html">← Brand</a></span>
+  <span>02 · Logo</span>
+  <span><a href="03-color.html">Color →</a></span>
+</footer>
+
+<script>
+  function playWaAnim() {
+    const w = document.getElementById("animW");
+    const a = document.getElementById("animA");
+    [w, a].forEach((p, i) => {
+      const len = p.getTotalLength();
+      p.style.transition = "none";
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+      p.getBoundingClientRect(); // reflow
+      p.style.transition = `stroke-dashoffset 1.2s cubic-bezier(0.65,0,0.35,1) ${i * 0.8}s`;
+      p.style.strokeDashoffset = 0;
+    });
+  }
+  window.addEventListener("load", () => setTimeout(playWaAnim, 500));
+</script>
+
+</body>
+</html>

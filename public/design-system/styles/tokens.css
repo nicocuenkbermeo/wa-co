@@ -1,0 +1,208 @@
+/* ============================================================
+   WA.CO AGENCY — DESIGN TOKENS
+   Cartografía fluvial del Huila aplicada a IA
+   ============================================================ */
+
+:root {
+  /* ---------- COLOR · PÁEZ (Primary) ---------- */
+  /* Río Páez: amarillo sol → verde selva */
+  --paez-50:  #fbf8e8;
+  --paez-100: #f5efc4;
+  --paez-200: #ecde86;
+  --paez-300: #e0c94a;
+  --paez-400: #d4b628;  /* Sol / Amarillo río */
+  --paez-500: #b8a02a;
+  --paez-600: #8a8a36;
+  --paez-700: #5f7a3c;  /* Verde oliva transición */
+  --paez-800: #3f6b40;  /* Verde selva */
+  --paez-900: #2b4a2e;
+  --paez-950: #172a1a;
+
+  /* Lettermark signature gradient */
+  --paez-gradient: linear-gradient(95deg, #e2c728 0%, #c8bd36 35%, #93a64a 65%, #5f8a52 100%);
+  --paez-gradient-soft: linear-gradient(95deg, #ecde86 0%, #c8cf7a 50%, #8fb082 100%);
+
+  /* ---------- COLOR · TIERRA (Secondary) ---------- */
+  /* Magdalena + Suaza: ocres del valle */
+  --tierra-50:  #faf6ef;
+  --tierra-100: #f2e8d4;
+  --tierra-200: #e5d1a8;
+  --tierra-300: #d4b47a;
+  --tierra-400: #c29659;  /* Ocre principal */
+  --tierra-500: #a87a42;
+  --tierra-600: #8a6035;
+  --tierra-700: #6b4a2c;
+  --tierra-800: #4a3521;
+  --tierra-900: #2e2218;
+
+  /* ---------- COLOR · GUAYABA (Accent) ---------- */
+  /* Acento guayaba/naranja del guaco */
+  --guayaba-50:  #fef1ea;
+  --guayaba-100: #fcd9c5;
+  --guayaba-200: #f8b287;
+  --guayaba-300: #f08a52;
+  --guayaba-400: #e66a2e;  /* Guayaba principal */
+  --guayaba-500: #c4511f;
+  --guayaba-600: #9a3d18;
+
+  /* ---------- COLOR · AGUA (Support) ---------- */
+  /* Azules del Magdalena para estados info */
+  --agua-50:  #edf5f4;
+  --agua-100: #cde3e1;
+  --agua-200: #9cc4c1;
+  --agua-300: #6ba099;
+  --agua-400: #4a837c;
+  --agua-500: #346863;
+
+  /* ---------- NEUTROS · warm grey con temperatura verdosa ---------- */
+  --ink-0:    #fdfcf7;   /* papel */
+  --ink-50:   #f7f5ed;
+  --ink-100:  #ecebe1;
+  --ink-200:  #d9d7c9;
+  --ink-300:  #b8b6a6;
+  --ink-400:  #8f8d7e;
+  --ink-500:  #6c6a5d;
+  --ink-600:  #4d4c42;
+  --ink-700:  #36352e;
+  --ink-800:  #23221d;
+  --ink-900:  #14130f;
+  --ink-950:  #0a0a08;
+
+  /* ---------- SEMANTIC · LIGHT MODE ---------- */
+  --bg:            var(--ink-0);
+  --bg-elev:       #ffffff;
+  --bg-sunk:       var(--ink-50);
+  --bg-muted:      var(--ink-100);
+  --surface:       #ffffff;
+  --surface-alt:   var(--ink-50);
+
+  --fg:            var(--ink-900);
+  --fg-muted:      var(--ink-600);
+  --fg-subtle:     var(--ink-500);
+  --fg-faint:      var(--ink-400);
+  --fg-inverse:    var(--ink-0);
+
+  --border:        var(--ink-200);
+  --border-strong: var(--ink-300);
+  --border-subtle: var(--ink-100);
+
+  --brand:         var(--paez-800);       /* verde selva */
+  --brand-alt:     var(--paez-400);       /* amarillo sol */
+  --accent:        var(--guayaba-400);
+
+  --success:       var(--paez-700);
+  --warning:       var(--paez-400);
+  --danger:        var(--guayaba-500);
+  --info:          var(--agua-400);
+
+  /* ---------- TYPE ---------- */
+  /* Humanista sans — cálida, técnica, versátil */
+  --font-sans: "Instrument Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Instrument Serif", "GT Sectra", Georgia, serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale (fluid) */
+  --text-2xs:  11px;
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-md:   18px;
+  --text-lg:   22px;
+  --text-xl:   28px;
+  --text-2xl:  36px;
+  --text-3xl:  48px;
+  --text-4xl:  64px;
+  --text-5xl:  88px;
+  --text-6xl:  120px;
+
+  --lh-tight:   1.05;
+  --lh-snug:    1.2;
+  --lh-normal:  1.45;
+  --lh-relaxed: 1.6;
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0;
+  --tracking-wide:   0.04em;
+  --tracking-mono:   0.02em;
+
+  /* ---------- SPACING (4px base) ---------- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --space-40: 160px;
+
+  /* ---------- RADII (curvas del río) ---------- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-pill: 999px;
+  --radius-blob: 62% 38% 55% 45% / 55% 45% 55% 45%;
+
+  /* ---------- SHADOWS (suaves, como niebla andina) ---------- */
+  --shadow-xs:  0 1px 2px rgba(20, 19, 15, 0.04);
+  --shadow-sm:  0 2px 6px rgba(20, 19, 15, 0.06), 0 1px 2px rgba(20, 19, 15, 0.04);
+  --shadow-md:  0 6px 16px rgba(20, 19, 15, 0.08), 0 2px 4px rgba(20, 19, 15, 0.04);
+  --shadow-lg:  0 16px 40px rgba(20, 19, 15, 0.10), 0 4px 8px rgba(20, 19, 15, 0.05);
+  --shadow-xl:  0 32px 80px rgba(20, 19, 15, 0.14), 0 8px 16px rgba(20, 19, 15, 0.06);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --shadow-glow: 0 0 0 4px rgba(226, 199, 40, 0.18);
+
+  /* ---------- MOTION ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-flow: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --dur-fast: 140ms;
+  --dur-base: 240ms;
+  --dur-slow: 420ms;
+  --dur-river: 2000ms;
+
+  /* ---------- LAYOUT ---------- */
+  --container: 1240px;
+  --container-narrow: 880px;
+  --nav-h: 64px;
+}
+
+/* ---------- DARK MODE ---------- */
+[data-theme="dark"] {
+  --bg:            var(--ink-950);
+  --bg-elev:       var(--ink-900);
+  --bg-sunk:       #05050340;
+  --bg-muted:      var(--ink-800);
+  --surface:       var(--ink-900);
+  --surface-alt:   var(--ink-800);
+
+  --fg:            var(--ink-50);
+  --fg-muted:      var(--ink-300);
+  --fg-subtle:     var(--ink-400);
+  --fg-faint:      var(--ink-500);
+  --fg-inverse:    var(--ink-900);
+
+  --border:        #2a2923;
+  --border-strong: #3c3b32;
+  --border-subtle: #1e1d18;
+
+  --brand:         var(--paez-300);
+  --brand-alt:     var(--paez-200);
+  --accent:        var(--guayaba-300);
+
+  --shadow-xs:  0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm:  0 2px 6px rgba(0, 0, 0, 0.4);
+  --shadow-md:  0 8px 20px rgba(0, 0, 0, 0.5);
+  --shadow-lg:  0 20px 48px rgba(0, 0, 0, 0.6);
+  --shadow-xl:  0 40px 100px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 40px rgba(226, 199, 40, 0.25);
+}

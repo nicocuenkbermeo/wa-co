@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Applications · wa.co Design System</title>
+<link rel="stylesheet" href="styles/base.css"/>
+<link rel="icon" type="image/png" href="assets/favicon-paez.png"/>
+<script src="styles/ds.js"></script>
+<style>
+  .app-frame {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    margin-bottom: var(--space-10);
+  }
+  .app-frame__caption {
+    padding: var(--space-4) var(--space-5);
+    background: var(--surface-alt);
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    color: var(--fg-subtle); letter-spacing: var(--tracking-mono);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .app-frame__caption b { color: var(--fg); font-weight: 500; }
+
+  /* ===== Landing hero ===== */
+  .landing {
+    padding: 80px 64px 64px;
+    background: linear-gradient(180deg, #fdfcf7 0%, #f5efc4 100%);
+    position: relative; overflow: hidden;
+  }
+  [data-theme="dark"] .landing { background: linear-gradient(180deg, #14130f 0%, #2b4a2e 120%); }
+  .landing__nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 80px; }
+  .landing__nav svg { height: 24px; color: var(--fg); }
+  .landing__nav ul { display: flex; gap: 32px; list-style: none; padding: 0; margin: 0; font-size: 14px; color: var(--fg-muted); }
+  .landing__btn { display: inline-flex; align-items: center; padding: 10px 20px; border-radius: 999px; background: var(--paez-800); color: var(--paez-50); font-weight: 500; font-size: 14px; }
+  [data-theme="dark"] .landing__btn { background: var(--paez-400); color: var(--ink-900); }
+  .landing__eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: var(--tracking-mono); color: var(--paez-700); margin-bottom: 20px; }
+  [data-theme="dark"] .landing__eyebrow { color: var(--paez-300); }
+  .landing__h {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(56px, 7.5vw, 96px); line-height: 0.98; letter-spacing: -0.025em;
+    max-width: 16ch; margin: 0 0 28px;
+  }
+  .landing__h em { font-style: italic; color: var(--paez-700); }
+  [data-theme="dark"] .landing__h em { color: var(--paez-300); }
+  .landing__sub { font-size: 20px; line-height: 1.5; color: var(--fg-muted); max-width: 52ch; margin: 0 0 36px; }
+  .landing__ctas { display: flex; gap: 12px; align-items: center; }
+  .landing__cta-primary { padding: 14px 24px; background: var(--paez-800); color: var(--paez-50); border-radius: 999px; font-weight: 500; font-size: 15px; }
+  [data-theme="dark"] .landing__cta-primary { background: var(--paez-400); color: var(--ink-900); }
+  .landing__cta-ghost { padding: 14px 20px; color: var(--fg); font-size: 15px; }
+  .landing__river {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 60%; pointer-events: none;
+  }
+
+  /* ===== Social posts ===== */
+  .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+  .post { aspect-ratio: 1; border-radius: var(--radius-md); overflow: hidden; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+  .post__logo { height: 16px; }
+  .post__logo svg { height: 100%; }
+  .post__handle { font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--tracking-mono); opacity: 0.7; }
+  .post__h { font-family: var(--font-display); font-size: 36px; font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; margin: 0; }
+  .post__h em { font-style: italic; }
+  .post--01 { background: var(--paez-800); color: var(--paez-50); }
+  .post--01 .post__h em { color: var(--paez-300); }
+  .post--02 { background: var(--paez-gradient); color: var(--ink-900); }
+  .post--03 { background: var(--ink-900); color: var(--paez-100); }
+  .post--03 .post__h em { color: var(--guayaba-300); }
+
+  /* ===== WhatsApp chat demo ===== */
+  .wa {
+    background: #e5ddd5;
+    padding: 20px;
+    min-height: 520px;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.4) 0%, transparent 2%),
+      radial-gradient(circle at 80% 60%, rgba(255,255,255,0.4) 0%, transparent 2%);
+  }
+  .wa__header { background: #005e54; color: white; padding: 12px 16px; border-radius: 12px 12px 0 0; display: flex; align-items: center; gap: 12px; margin: -20px -20px 16px; }
+  .wa__avatar { width: 36px; height: 36px; border-radius: 999px; background: var(--paez-gradient); color: #14130f; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; font-family: var(--font-display); }
+  .wa__name { font-weight: 600; font-size: 14px; }
+  .wa__status { font-size: 11px; opacity: 0.8; }
+  .wa__msgs { display: flex; flex-direction: column; gap: 8px; }
+  .wa__msg { max-width: 78%; padding: 8px 12px; border-radius: 8px; font-size: 14px; line-height: 1.4; color: #14130f; position: relative; }
+  .wa__msg--in { background: white; align-self: flex-start; border-top-left-radius: 2px; }
+  .wa__msg--out { background: #dcf8c6; align-self: flex-end; border-top-right-radius: 2px; }
+  .wa__msg .time { font-size: 10px; color: #667781; margin-left: 8px; }
+  .wa__bot-label { font-size: 10px; color: #0084ff; font-weight: 600; margin-bottom: 2px; font-family: var(--font-mono); letter-spacing: 0.04em; }
+
+  /* ===== Email ===== */
+  .email { background: var(--surface); padding: 40px 48px; min-height: 420px; }
+  .email__h { font-family: var(--font-display); font-weight: 400; font-size: 32px; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 16px; }
+  .email__h em { font-style: italic; color: var(--paez-700); }
+  [data-theme="dark"] .email__h em { color: var(--paez-300); }
+  .email p { color: var(--fg-muted); line-height: 1.6; font-size: 15px; margin: 0 0 14px; }
+  .email__divider { height: 1px; background: var(--border-subtle); margin: 24px 0; }
+  .email__cta { display: inline-flex; padding: 12px 22px; background: var(--paez-800); color: var(--paez-50); border-radius: 999px; font-weight: 500; font-size: 14px; }
+  [data-theme="dark"] .email__cta { background: var(--paez-400); color: var(--ink-900); }
+  .email__sig { font-family: var(--font-mono); font-size: 11px; color: var(--fg-subtle); letter-spacing: var(--tracking-mono); margin-top: 20px; }
+
+  /* ===== Business card ===== */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+  .bcard { aspect-ratio: 1.6/1; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+  .bcard--front { background: var(--paez-50); color: var(--ink-900); }
+  [data-theme="dark"] .bcard--front { background: var(--ink-800); color: var(--paez-100); }
+  .bcard--back { background: var(--paez-gradient); color: var(--ink-900); }
+  .bcard--back svg { height: 48px; color: var(--ink-900); }
+  .bcard__name { font-family: var(--font-display); font-size: 24px; font-weight: 400; letter-spacing: -0.01em; line-height: 1; }
+  .bcard__role { font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--tracking-mono); opacity: 0.7; margin-top: 4px; }
+  .bcard__meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--tracking-mono); line-height: 1.8; }
+  .bcard__logo svg { height: 18px; color: var(--paez-800); }
+  [data-theme="dark"] .bcard__logo svg { color: var(--paez-300); }
+
+  /* ===== Proposal cover ===== */
+  .proposal { aspect-ratio: 1.414/1; padding: 56px 64px; background: var(--ink-900); color: var(--paez-100); position: relative; overflow: hidden; }
+  .proposal::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 100%, color-mix(in oklab, var(--paez-600) 50%, transparent), transparent 60%); pointer-events: none; }
+  .proposal__head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 120px; position: relative; z-index: 1; }
+  .proposal__logo svg { height: 24px; color: var(--paez-100); }
+  .proposal__meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--tracking-mono); text-align: right; color: var(--paez-200); opacity: 0.8; line-height: 1.8; }
+  .proposal__eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: var(--tracking-mono); color: var(--paez-300); margin-bottom: 24px; position: relative; z-index: 1; }
+  .proposal__h { font-family: var(--font-display); font-weight: 400; font-size: 72px; line-height: 1; letter-spacing: -0.025em; margin: 0 0 24px; max-width: 16ch; position: relative; z-index: 1; }
+  .proposal__h em { font-style: italic; color: var(--paez-300); }
+  .proposal__sub { font-size: 17px; color: var(--paez-100); opacity: 0.75; max-width: 50ch; margin: 0; position: relative; z-index: 1; }
+
+  @media (max-width: 900px) {
+    .posts-grid { grid-template-columns: 1fr 1fr; } .cards { grid-template-columns: 1fr; }
+    .landing { padding: 48px 28px; } .landing__nav { margin-bottom: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<svg style="position:absolute;width:0;height:0"><defs>
+  <linearGradient id="grad-paez" x1="0%" y1="50%" x2="100%" y2="50%"><stop offset="0%" stop-color="#e2c728"/><stop offset="35%" stop-color="#c8bd36"/><stop offset="65%" stop-color="#93a64a"/><stop offset="100%" stop-color="#5f8a52"/></linearGradient>
+  <symbol id="wa-lettermark" viewBox="0 0 320 140"><path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116 M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<nav class="ds-nav">
+  <a class="ds-nav__brand" href="index.html"><svg viewBox="0 0 320 140" style="color:var(--fg)"><use href="#wa-lettermark"/></svg><b>wa.co</b><span>/ design system</span></a>
+  <div class="ds-nav__links">
+    <a href="01-brand.html">Brand</a><a href="02-logo.html">Logo</a><a href="03-color.html">Color</a>
+    <a href="04-typography.html">Type</a><a href="05-spacing.html">Space</a><a href="06-components.html">Components</a>
+    <a href="07-iconography.html">Icons</a><a href="08-patterns.html">Patterns</a><a href="09-applications.html">Apps</a>
+  </div>
+  <div class="ds-nav__right">
+    <button class="theme-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span class="theme-toggle__label">Dark</span></button>
+  </div>
+</nav>
+
+<main class="ds-main"><div class="ds-container">
+
+  <div class="ds-pageheader">
+    <div class="ds-pageheader__eyebrow">09 / Applications</div>
+    <h1>El sistema, <em>en el mundo</em>.</h1>
+    <p class="ds-pageheader__lede">Cómo se ve wa.co aplicado: landing, chat de WhatsApp, email, redes sociales, tarjetas y la portada de una propuesta comercial.</p>
+  </div>
+
+  <!-- LANDING -->
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Landing — hero</h2><span class="ds-section__num">09.1</span></div>
+    <div class="app-frame">
+      <div class="app-frame__caption"><b>wa.co</b><span>home · above the fold · desktop 1440</span></div>
+      <div class="landing">
+        <svg class="landing__river" viewBox="0 0 1440 500" preserveAspectRatio="none">
+          <g fill="none" stroke="#2b4a2e" stroke-width="1.2" opacity="0.18">
+            <path d="M -40 200 C 300 150, 700 250, 1040 200 S 1480 220, 1480 220"/>
+            <path d="M -40 280 C 300 230, 700 330, 1040 280 S 1480 300, 1480 300"/>
+            <path d="M -40 360 C 300 310, 700 410, 1040 360 S 1480 380, 1480 380"/>
+            <path d="M -40 440 C 300 390, 700 490, 1040 440 S 1480 460, 1480 460"/>
+          </g>
+        </svg>
+        <div class="landing__nav">
+          <svg viewBox="0 0 320 140"><use href="#wa-lettermark"/></svg>
+          <ul><li>Servicios</li><li>Casos</li><li>Sobre</li><li>Blog</li></ul>
+          <a class="landing__btn">Cotizar →</a>
+        </div>
+        <div class="landing__eyebrow">[ wa · automatización con alma · Neiva, Huila ]</div>
+        <h1 class="landing__h">Tu negocio <em>fluye solo</em>, tú descansas.</h1>
+        <p class="landing__sub">Chatbots en WhatsApp, agentes IA entrenados con tu catálogo, automatización de procesos. Atendiendo mientras duermes, cotizando mientras almuerzas.</p>
+        <div class="landing__ctas">
+          <a class="landing__cta-primary">Empezar con un proceso →</a>
+          <a class="landing__cta-ghost">Ver casos · 7 min</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHATSAPP + EMAIL -->
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">WhatsApp + Email</h2><span class="ds-section__num">09.2</span></div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);">
+      <div class="app-frame" style="margin-bottom: 0;">
+        <div class="app-frame__caption"><b>Bot wa.co</b><span>chat · producto</span></div>
+        <div class="wa">
+          <div class="wa__header">
+            <div class="wa__avatar">w</div>
+            <div>
+              <div class="wa__name">TodoCamisas · Asistente</div>
+              <div class="wa__status">en línea · responde al instante</div>
+            </div>
+          </div>
+          <div class="wa__msgs">
+            <div class="wa__msg wa__msg--in">Hola, ¿tienes la camisa blanca talla L en stock? <span class="time">10:42</span></div>
+            <div class="wa__msg wa__msg--out">
+              <div class="wa__bot-label">BOT · wa.co</div>
+              Claro que sí 👔. Tenemos 12 unidades. ¿Te envío el link directo al carrito? <span class="time">10:42</span>
+            </div>
+            <div class="wa__msg wa__msg--in">Sí, y ¿cuánto cuesta el envío a Neiva? <span class="time">10:43</span></div>
+            <div class="wa__msg wa__msg--out">
+              <div class="wa__bot-label">BOT · wa.co</div>
+              A Neiva: $8.000, llega mañana antes de las 6pm. Si tu pedido pasa de $150.000, el envío es gratis. <span class="time">10:43</span>
+            </div>
+            <div class="wa__msg wa__msg--out">
+              <div class="wa__bot-label">BOT · wa.co</div>
+              Aquí el link: todocamisas.co/c/4820 <span class="time">10:43</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-frame" style="margin-bottom: 0;">
+        <div class="app-frame__caption"><b>Email · onboarding</b><span>D+1 después de firmar</span></div>
+        <div class="email">
+          <svg viewBox="0 0 320 140" style="height: 20px; color: var(--fg); margin-bottom: 28px;"><use href="#wa-lettermark"/></svg>
+          <h2 class="email__h">María, tu bot ya está <em>aprendiendo</em>.</h2>
+          <p>Ya recibimos tu catálogo de 240 productos. En los próximos 7 días entrenamos al asistente y lo probamos con 50 consultas reales.</p>
+          <p>Mientras tanto, tienes acceso al panel para ver cómo va el proceso:</p>
+          <a class="email__cta">Ver mi panel →</a>
+          <div class="email__divider"></div>
+          <p style="font-size: 14px;">¿Dudas? Responde este correo o escríbeme al +57 300 1234567.</p>
+          <div class="email__sig">— Daniel · wa.co · Neiva</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTS -->
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Redes sociales</h2><span class="ds-section__num">09.3</span></div>
+    <div class="app-frame" style="padding: var(--space-6);">
+      <div class="posts-grid">
+        <div class="post post--01">
+          <div class="post__logo"><svg viewBox="0 0 320 140" style="color: var(--paez-100)"><use href="#wa-lettermark"/></svg></div>
+          <h3 class="post__h">El río <em>no se detiene</em>. Tu WhatsApp tampoco.</h3>
+          <div class="post__handle">@wa.co · automatizamos</div>
+        </div>
+        <div class="post post--02">
+          <div class="post__logo"><svg viewBox="0 0 320 140" style="color: var(--ink-900)"><use href="#wa-lettermark"/></svg></div>
+          <h3 class="post__h">10 días.<br/>Un proceso.<br/>Cero excusas.</h3>
+          <div class="post__handle">caso · TodoCamisas · Neiva</div>
+        </div>
+        <div class="post post--03">
+          <div class="post__logo"><svg viewBox="0 0 320 140" style="color: var(--paez-200)"><use href="#wa-lettermark"/></svg></div>
+          <h3 class="post__h">"Dejamos de responder <em>a medianoche</em>."</h3>
+          <div class="post__handle">María F. · cliente · sept 2025</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Tarjeta de presentación</h2><span class="ds-section__num">09.4</span></div>
+    <div class="app-frame" style="padding: var(--space-10); background: var(--surface-alt);">
+      <div class="cards">
+        <div class="bcard bcard--front">
+          <div class="bcard__logo"><svg viewBox="0 0 320 140"><use href="#wa-lettermark"/></svg></div>
+          <div>
+            <div class="bcard__name">Daniel Molano</div>
+            <div class="bcard__role">founder · automatización</div>
+          </div>
+          <div class="bcard__meta">
+            wa.co · Neiva, Huila<br/>
+            daniel@wa.co · +57 300 1234567
+          </div>
+        </div>
+        <div class="bcard bcard--back">
+          <svg viewBox="0 0 320 140"><use href="#wa-lettermark"/></svg>
+          <div class="bcard__meta" style="font-style: italic; font-family: var(--font-display); font-size: 18px; letter-spacing: -0.005em;">
+            "Automatización con alma."
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPOSAL -->
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Portada de propuesta</h2><span class="ds-section__num">09.5</span></div>
+    <div class="app-frame">
+      <div class="app-frame__caption"><b>Propuesta comercial</b><span>PDF · A4 landscape · cover</span></div>
+      <div class="proposal">
+        <div class="proposal__head">
+          <div class="proposal__logo"><svg viewBox="0 0 320 140"><use href="#wa-lettermark"/></svg></div>
+          <div class="proposal__meta">Propuesta PC-2025-047<br/>Para: TodoCamisas SAS<br/>Noviembre 2025</div>
+        </div>
+        <div class="proposal__eyebrow">[ automatización de atención + cotización ]</div>
+        <h1 class="proposal__h">Un bot que cotiza <em>mientras duermes</em>.</h1>
+        <p class="proposal__sub">Chatbot en WhatsApp entrenado con tu catálogo, conectado a inventario y CRM. Setup en 10 días hábiles.</p>
+      </div>
+    </div>
+  </section>
+
+</div></main>
+
+<footer class="ds-footer">
+  <span><a href="08-patterns.html">← Patterns</a></span>
+  <span>09 · Applications</span>
+  <span><a href="index.html">Inicio →</a></span>
+</footer>
+</body></html>

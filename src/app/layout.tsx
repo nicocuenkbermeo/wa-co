@@ -1,30 +1,45 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const dmSans = DM_Sans({
+const instrumentSans = Instrument_Sans({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
-  title: "WA.CO — Agencia de Diseño Web & Automatización con IA",
+  title: "wa.co — Agencia de IA enraizada en el Huila",
   description:
-    "Sitios web premium y automatización inteligente para tu negocio. Diseño web, chatbots WhatsApp, flujos n8n. Hechos en Colombia.",
+    "Automatización con alma. Chatbots de WhatsApp, agentes IA, flujos n8n para PyMEs colombianas. Raíces locales, tecnología global.",
   keywords: [
-    "diseño web",
-    "agencia digital",
+    "agencia IA",
     "automatización",
     "chatbot WhatsApp",
-    "IA",
-    "Colombia",
     "n8n",
+    "agentes IA",
+    "Colombia",
+    "Huila",
+    "Neiva",
+    "PyMEs",
   ],
   openGraph: {
-    title: "WA.CO — Agencia de Diseño Web & Automatización con IA",
+    title: "wa.co — Un sistema que fluye como el río",
     description:
-      "Sitios web premium y automatización inteligente para tu negocio.",
+      "Agencia de IA enraizada en el Huila. Automatización con alma.",
     type: "website",
     locale: "es_CO",
   },
@@ -36,19 +51,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${dmSans.variable} antialiased`}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="es"
+      className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} antialiased`}
+    >
       <body className="min-h-screen bg-background text-foreground">
         {children}
       </body>

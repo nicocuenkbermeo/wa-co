@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Space · wa.co Design System</title>
+<link rel="stylesheet" href="styles/base.css" />
+<link rel="icon" type="image/png" href="assets/favicon-paez.png" />
+<script src="styles/ds.js"></script>
+<style>
+  .spacing-scale { display: flex; flex-direction: column; gap: var(--space-2); }
+  .spacing-row {
+    display: grid; grid-template-columns: 80px 1fr 80px; gap: var(--space-4); align-items: center;
+    padding: var(--space-3); background: var(--surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
+    font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-mono);
+  }
+  .spacing-row__bar { height: 16px; background: var(--paez-500); opacity: 0.8; border-radius: 2px; }
+  .spacing-row__val { color: var(--fg-subtle); text-align: right; }
+
+  .radii { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-4); }
+  .radii__item {
+    aspect-ratio: 1;
+    background: var(--surface); border: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: var(--space-4);
+    font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-mono);
+  }
+  .radii__item b { font-weight: 500; }
+  .radii__item span { color: var(--fg-subtle); }
+
+  .shadows { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-4); padding: var(--space-10); background: var(--surface-alt); border-radius: var(--radius-xl); }
+  .shadow-card {
+    aspect-ratio: 1; background: var(--surface); border-radius: var(--radius-md);
+    display: flex; flex-direction: column; justify-content: space-between; padding: var(--space-4);
+    font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-mono);
+  }
+  .shadow-card b { font-weight: 500; }
+  .shadow-card span { color: var(--fg-subtle); }
+  .sh-xs { box-shadow: var(--shadow-xs); }
+  .sh-sm { box-shadow: var(--shadow-sm); }
+  .sh-md { box-shadow: var(--shadow-md); }
+  .sh-lg { box-shadow: var(--shadow-lg); }
+  .sh-xl { box-shadow: var(--shadow-xl); }
+
+  .grid-demo {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px;
+  }
+  .grid-demo span {
+    height: 60px; background: color-mix(in oklab, var(--paez-400) 30%, transparent);
+    border: 1px dashed color-mix(in oklab, var(--paez-700) 50%, transparent);
+    border-radius: 4px;
+  }
+
+  .container-sizes { display: flex; flex-direction: column; gap: var(--space-3); }
+  .container-row {
+    display: flex; align-items: center; gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--surface-alt); border-radius: var(--radius-md);
+    font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-mono);
+  }
+  .container-row__bar { height: 20px; background: var(--paez-600); opacity: 0.8; border-radius: 2px; }
+
+  @media (max-width: 900px) { .radii, .shadows { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<svg style="position:absolute;width:0;height:0"><defs>
+  <symbol id="wa-lettermark" viewBox="0 0 320 140">
+    <path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116 M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</defs></svg>
+
+<nav class="ds-nav">
+  <a class="ds-nav__brand" href="index.html"><svg viewBox="0 0 320 140" style="color:var(--fg)"><use href="#wa-lettermark"/></svg><b>wa.co</b><span>/ design system</span></a>
+  <div class="ds-nav__links">
+    <a href="01-brand.html">Brand</a><a href="02-logo.html">Logo</a><a href="03-color.html">Color</a>
+    <a href="04-typography.html">Type</a><a href="05-spacing.html">Space</a><a href="06-components.html">Components</a>
+    <a href="07-iconography.html">Icons</a><a href="08-patterns.html">Patterns</a><a href="09-applications.html">Apps</a>
+  </div>
+  <div class="ds-nav__right">
+    <button class="theme-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span class="theme-toggle__label">Dark</span></button>
+  </div>
+</nav>
+
+<main class="ds-main"><div class="ds-container">
+
+  <div class="ds-pageheader">
+    <div class="ds-pageheader__eyebrow">05 / Space & Form</div>
+    <h1>Ritmo en base <em>4</em>.</h1>
+    <p class="ds-pageheader__lede">Todo el sistema respira sobre una grilla de 4px. Los radios son suaves como las curvas del río; las sombras son nieblas andinas — nunca duras.</p>
+  </div>
+
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Escala de espaciado</h2><span class="ds-section__num">05.1</span></div>
+    <p class="ds-section__desc">Base 4px. Nunca uses valores fuera de la escala.</p>
+    <div class="spacing-scale">
+      <div class="spacing-row"><b>space-1</b><div class="spacing-row__bar" style="width:4px"></div><span class="spacing-row__val">4px</span></div>
+      <div class="spacing-row"><b>space-2</b><div class="spacing-row__bar" style="width:8px"></div><span class="spacing-row__val">8px</span></div>
+      <div class="spacing-row"><b>space-3</b><div class="spacing-row__bar" style="width:12px"></div><span class="spacing-row__val">12px</span></div>
+      <div class="spacing-row"><b>space-4</b><div class="spacing-row__bar" style="width:16px"></div><span class="spacing-row__val">16px</span></div>
+      <div class="spacing-row"><b>space-5</b><div class="spacing-row__bar" style="width:20px"></div><span class="spacing-row__val">20px</span></div>
+      <div class="spacing-row"><b>space-6</b><div class="spacing-row__bar" style="width:24px"></div><span class="spacing-row__val">24px</span></div>
+      <div class="spacing-row"><b>space-8</b><div class="spacing-row__bar" style="width:32px"></div><span class="spacing-row__val">32px</span></div>
+      <div class="spacing-row"><b>space-10</b><div class="spacing-row__bar" style="width:40px"></div><span class="spacing-row__val">40px</span></div>
+      <div class="spacing-row"><b>space-12</b><div class="spacing-row__bar" style="width:48px"></div><span class="spacing-row__val">48px</span></div>
+      <div class="spacing-row"><b>space-16</b><div class="spacing-row__bar" style="width:64px"></div><span class="spacing-row__val">64px</span></div>
+      <div class="spacing-row"><b>space-20</b><div class="spacing-row__bar" style="width:80px"></div><span class="spacing-row__val">80px</span></div>
+      <div class="spacing-row"><b>space-24</b><div class="spacing-row__bar" style="width:96px"></div><span class="spacing-row__val">96px</span></div>
+      <div class="spacing-row"><b>space-32</b><div class="spacing-row__bar" style="width:128px"></div><span class="spacing-row__val">128px</span></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Radios — curvas del río</h2><span class="ds-section__num">05.2</span></div>
+    <div class="radii">
+      <div class="radii__item" style="border-radius:4px"><span>radius-xs</span><b>4px</b></div>
+      <div class="radii__item" style="border-radius:6px"><span>radius-sm</span><b>6px</b></div>
+      <div class="radii__item" style="border-radius:10px"><span>radius-md</span><b>10px</b></div>
+      <div class="radii__item" style="border-radius:16px"><span>radius-lg</span><b>16px</b></div>
+      <div class="radii__item" style="border-radius:24px"><span>radius-xl</span><b>24px</b></div>
+      <div class="radii__item" style="border-radius:999px"><span>radius-pill</span><b>999px</b></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Sombras — niebla andina</h2><span class="ds-section__num">05.3</span></div>
+    <p class="ds-section__desc">Sombras de baja opacidad, multicapa, cálidas. Evitar sombras duras o saturadas.</p>
+    <div class="shadows">
+      <div class="shadow-card sh-xs"><span>xs</span><b>1 / 2</b></div>
+      <div class="shadow-card sh-sm"><span>sm</span><b>2 / 6</b></div>
+      <div class="shadow-card sh-md"><span>md</span><b>6 / 16</b></div>
+      <div class="shadow-card sh-lg"><span>lg</span><b>16 / 40</b></div>
+      <div class="shadow-card sh-xl"><span>xl</span><b>32 / 80</b></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Grilla 12 columnas</h2><span class="ds-section__num">05.4</span></div>
+    <p class="ds-section__desc">Gutter 8–24px según densidad. Max width 1240px (contenido estándar) / 880px (lectura).</p>
+    <div class="grid-demo">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="container-sizes" style="margin-top: var(--space-6)">
+      <div class="container-row"><b style="min-width:120px">container-narrow</b><div class="container-row__bar" style="flex:0 0 40%"></div><span class="muted">880px · lectura</span></div>
+      <div class="container-row"><b style="min-width:120px">container</b><div class="container-row__bar" style="flex:0 0 62%"></div><span class="muted">1240px · default</span></div>
+    </div>
+  </section>
+
+</div></main>
+
+<footer class="ds-footer">
+  <span><a href="04-typography.html">← Type</a></span>
+  <span>05 · Space</span>
+  <span><a href="06-components.html">Components →</a></span>
+</footer>
+</body></html>

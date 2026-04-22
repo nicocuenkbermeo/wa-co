@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Typography · wa.co Design System</title>
+<link rel="stylesheet" href="styles/base.css" />
+<link rel="icon" type="image/png" href="assets/favicon-paez.png" />
+<script src="styles/ds.js"></script>
+<style>
+  .type-hero {
+    padding: var(--space-16) var(--space-10);
+    background: var(--surface-alt);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    margin-bottom: var(--space-16);
+  }
+  .type-hero__aa {
+    font-family: var(--font-display);
+    font-size: clamp(180px, 26vw, 360px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin: 0;
+    font-weight: 400;
+  }
+  .type-hero__aa em {
+    font-style: italic;
+    color: var(--paez-700);
+  }
+  [data-theme="dark"] .type-hero__aa em { color: var(--paez-300); }
+  .type-hero__caption {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    letter-spacing: var(--tracking-mono);
+    margin-top: var(--space-6);
+  }
+
+  /* Font pairing cards */
+  .families { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); margin-bottom: var(--space-12); }
+  .family {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+  }
+  .family__head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: var(--space-6);
+  }
+  .family__name {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .family__role {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    letter-spacing: var(--tracking-mono);
+  }
+  .family__sample {
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .family__sample--serif { font-family: var(--font-display); font-style: italic; }
+  .family__sample--sans { font-family: var(--font-sans); font-weight: 500; }
+  .family__glyphs {
+    margin-top: var(--space-6);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border-subtle);
+    font-size: 20px;
+    color: var(--fg-muted);
+    letter-spacing: 0.02em;
+  }
+  .family__glyphs--serif { font-family: var(--font-display); }
+  .family__meta {
+    margin-top: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    letter-spacing: var(--tracking-mono);
+    display: flex; gap: var(--space-4); flex-wrap: wrap;
+  }
+
+  /* Scale */
+  .scale-row {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: var(--space-6);
+    align-items: baseline;
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .scale-row__tok {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    letter-spacing: var(--tracking-mono);
+  }
+  .scale-row__sample {
+    font-family: var(--font-sans);
+    line-height: 1.1;
+    color: var(--fg);
+  }
+  .scale-row__meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    letter-spacing: var(--tracking-mono);
+    white-space: nowrap;
+  }
+
+  /* Usage examples */
+  .usage-examples { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  .usage-ex {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    min-height: 280px;
+    display: flex; flex-direction: column;
+  }
+  .usage-ex__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    letter-spacing: var(--tracking-mono);
+    margin-bottom: var(--space-4);
+  }
+  .usage-ex--editorial h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--space-4);
+    font-weight: 400;
+  }
+  .usage-ex--editorial h3 em { font-style: italic; color: var(--paez-700); }
+  [data-theme="dark"] .usage-ex--editorial h3 em { color: var(--paez-300); }
+  .usage-ex--editorial p {
+    color: var(--fg-muted); line-height: var(--lh-relaxed); margin: 0;
+  }
+  .usage-ex--ui h4 {
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fg-subtle);
+    margin: 0 0 var(--space-2);
+    font-weight: 500;
+  }
+  .usage-ex--ui .big {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-3);
+  }
+  .usage-ex--ui p { color: var(--fg-muted); font-size: var(--text-sm); margin: 0; line-height: var(--lh-relaxed); }
+  .usage-ex--data .row {
+    display: flex; justify-content: space-between; padding: 10px 0;
+    border-bottom: 1px dashed var(--border-subtle);
+    font-family: var(--font-mono); font-size: var(--text-sm);
+  }
+  .usage-ex--data .row b { font-weight: 500; }
+  .usage-ex--data .row span { color: var(--paez-700); }
+  [data-theme="dark"] .usage-ex--data .row span { color: var(--paez-300); }
+
+  .usage-ex--pull .pull {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-2xl);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0 0 var(--space-5);
+    position: relative;
+    padding-left: var(--space-4);
+  }
+  .usage-ex--pull .pull::before {
+    content: ""; position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 2px; background: var(--paez-500);
+  }
+  .usage-ex--pull .attr {
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    color: var(--fg-subtle); letter-spacing: var(--tracking-mono);
+  }
+
+  @media (max-width: 900px) {
+    .families, .usage-examples { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0" aria-hidden="true"><defs>
+  <symbol id="wa-lettermark" viewBox="0 0 320 140">
+    <path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116 M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</defs></svg>
+
+<nav class="ds-nav">
+  <a class="ds-nav__brand" href="index.html"><svg viewBox="0 0 320 140" style="color: var(--fg);"><use href="#wa-lettermark"/></svg><b>wa.co</b><span>/ design system</span></a>
+  <div class="ds-nav__links">
+    <a href="01-brand.html">Brand</a><a href="02-logo.html">Logo</a><a href="03-color.html">Color</a>
+    <a href="04-typography.html">Type</a><a href="05-spacing.html">Space</a><a href="06-components.html">Components</a>
+    <a href="07-iconography.html">Icons</a><a href="08-patterns.html">Patterns</a><a href="09-applications.html">Apps</a>
+  </div>
+  <div class="ds-nav__right">
+    <button class="theme-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span class="theme-toggle__label">Dark</span></button>
+  </div>
+</nav>
+
+<main class="ds-main">
+  <div class="ds-container">
+
+    <div class="ds-pageheader">
+      <div class="ds-pageheader__eyebrow">04 / Typography</div>
+      <h1>Humanista, <em>legible</em>, editorial.</h1>
+      <p class="ds-pageheader__lede">
+        Una sola familia sans para todo el sistema — <b style="color:var(--fg)">Instrument Sans</b> — acompañada de una serif editorial italic (<b style="color:var(--fg)">Instrument Serif</b>) reservada para titulares destacados y voz de marca. Monospace para datos y código.
+      </p>
+    </div>
+
+    <!-- HERO -->
+    <div class="type-hero">
+      <div class="type-hero__aa">A<em>a</em></div>
+      <div class="type-hero__caption">Instrument Sans · Instrument Serif italic · Google Fonts · OFL</div>
+    </div>
+
+    <!-- FAMILIES -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Las tres familias</h2>
+        <span class="ds-section__num">04.1</span>
+      </div>
+
+      <div class="families">
+        <div class="family">
+          <div class="family__head">
+            <span class="family__name">Instrument Serif</span>
+            <span class="family__role">display · editorial</span>
+          </div>
+          <div class="family__sample family__sample--serif">
+            Ríos que fluyen.
+          </div>
+          <div class="family__glyphs family__glyphs--serif">Aa Bb Ee Gg Rr Ss  · 0123456789 · ¿? ¡! &amp;</div>
+          <div class="family__meta">
+            <span>Italic · Regular</span>
+            <span>Uso: H1 · H2 · pull-quotes</span>
+            <span>Max: 120px</span>
+          </div>
+        </div>
+
+        <div class="family">
+          <div class="family__head">
+            <span class="family__name" style="font-family: var(--font-sans); font-style: normal; font-weight: 600;">Instrument Sans</span>
+            <span class="family__role">body · ui · todo lo demás</span>
+          </div>
+          <div class="family__sample family__sample--sans">
+            Automatiza con IA.
+          </div>
+          <div class="family__glyphs">Aa Bb Ee Gg Rr Ss · 0123456789 · ¿? ¡! &amp;</div>
+          <div class="family__meta">
+            <span>400 · 500 · 600 · 700</span>
+            <span>Uso: H3-H6, body, UI, labels</span>
+            <span>Min: 12px</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="family" style="grid-column: 1 / -1">
+        <div class="family__head">
+          <span class="family__name" style="font-family: var(--font-mono); font-style: normal; font-weight: 500;">JetBrains Mono</span>
+          <span class="family__role">mono · datos · eyebrows · código</span>
+        </div>
+        <div class="family__sample" style="font-family: var(--font-mono); font-size: 48px; letter-spacing: 0;">
+          wa.co/automatiza &gt; 24/7
+        </div>
+        <div class="family__glyphs" style="font-family: var(--font-mono); letter-spacing: var(--tracking-mono);">Aa Bb Ee Gg Rr Ss · 0123456789 · () {} [] &lt;/&gt; → ↳ ✓ ✕</div>
+      </div>
+    </section>
+
+    <!-- SCALE -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Escala tipográfica</h2>
+        <span class="ds-section__num">04.2</span>
+      </div>
+      <p class="ds-section__desc">Ratio ~1.25 (major third). Los pasos grandes usan Instrument Serif italic para la voz editorial; desde md hacia abajo, siempre Instrument Sans.</p>
+
+      <div>
+        <div class="scale-row">
+          <span class="scale-row__tok">display-xl</span>
+          <span class="scale-row__sample" style="font-family:var(--font-display); font-size:120px; font-style:italic; letter-spacing:-0.03em;">Fluir</span>
+          <span class="scale-row__meta">120 · 1.0 · -0.03em</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__tok">display-lg</span>
+          <span class="scale-row__sample" style="font-family:var(--font-display); font-size:88px; font-style:italic; letter-spacing:-0.025em;">Río Páez</span>
+          <span class="scale-row__meta">88 · 1.05 · -0.025em</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__tok">h1</span>
+          <span class="scale-row__sample" style="font-family:var(--font-display); font-size:64px; letter-spacing:-0.02em;">Automatización con <em style="color:var(--paez-700)">alma</em></span>
+          <span class="scale-row__meta">64 · 1.05 · -0.02em</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__tok">h2</span>
+          <span class="scale-row__sample" style="font-family:var(--font-display); font-size:48px; letter-spacing:-0.018em;">Servicios que fluyen</span>
+          <span class="scale-row__meta">48 · 1.1 · -0.018em</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__tok">h3</span>
+          <span class="scale-row__sample" style="font-size:36px; font-weight:600; letter-spacing:-0.015em;">Chatbots 24/7</span>
+          <span class="scale-row__meta">36 · 1.15 · -0.015em · 600</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__tok">h4</span>
+          <span class="scale-row__sample" style="font-size:28px; font-weight:600;">Agentes personalizados</span>
+          <span class="scale-row__meta">28 · 1.2 · 600</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__tok">h5</span>
+          <span class="scale-row__sample" style="font-size:22px; font-weight:600;">Consultoría de procesos</span>
+          <span class="scale-row__meta">22 · 1.3 · 600</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__tok">lead</span>
+          <span class="scale-row__sample" style="font-size:18px; color:var(--fg-muted);">Párrafo de introducción, subtítulos en hero.</span>
+          <span class="scale-row__meta">18 · 1.6</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__tok">body</span>
+          <span class="scale-row__sample" style="font-size:16px;">Texto de párrafo estándar. Tamaño base de lectura.</span>
+          <span class="scale-row__meta">16 · 1.45</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__tok">sm</span>
+          <span class="scale-row__sample" style="font-size:14px; color:var(--fg-muted);">Texto auxiliar, meta, descripciones pequeñas.</span>
+          <span class="scale-row__meta">14 · 1.5</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row__tok">xs</span>
+          <span class="scale-row__sample" style="font-size:12px; font-family:var(--font-mono); color:var(--fg-subtle); letter-spacing:var(--tracking-mono);">LABELS · EYEBROWS · STATUS</span>
+          <span class="scale-row__meta">12 · 1.45 · mono</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- USAGE -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Ejemplos de uso</h2>
+        <span class="ds-section__num">04.3</span>
+      </div>
+
+      <div class="usage-examples">
+        <div class="usage-ex usage-ex--editorial">
+          <span class="usage-ex__label">01 · Hero editorial</span>
+          <h3>El río <em>no se detiene</em>. Tu negocio tampoco debería.</h3>
+          <p>Chatbots y agentes de IA entrenados con el conocimiento de tu empresa. Atención 24/7, captura de leads, cotización automática.</p>
+        </div>
+
+        <div class="usage-ex usage-ex--ui">
+          <span class="usage-ex__label">02 · UI / Producto</span>
+          <h4>Mensajes procesados</h4>
+          <div class="big">12.480 <span style="color:var(--paez-700); font-size:18px; font-family:var(--font-mono); letter-spacing:0;">+18%</span></div>
+          <p>En los últimos 7 días, tu chatbot atendió 12.480 consultas sin intervención humana.</p>
+        </div>
+
+        <div class="usage-ex usage-ex--data">
+          <span class="usage-ex__label">03 · Datos · mono</span>
+          <div class="row"><b>Setup inicial</b><span>US$ 1.200</span></div>
+          <div class="row"><b>Mensualidad</b><span>US$ 180</span></div>
+          <div class="row"><b>Tiempo de implementación</b><span>10 días</span></div>
+          <div class="row" style="border:none"><b>Contacto</b><span>wa.co/empezar</span></div>
+        </div>
+
+        <div class="usage-ex usage-ex--pull">
+          <span class="usage-ex__label">04 · Pull quote</span>
+          <p class="pull">"En dos semanas dejamos de responder WhatsApp a medianoche. El bot cotiza solo."</p>
+          <span class="attr">— María F., TodoCamisas · Neiva</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="ds-footer">
+  <span><a href="03-color.html">← Color</a></span>
+  <span>04 · Typography</span>
+  <span><a href="05-spacing.html">Space →</a></span>
+</footer>
+
+</body>
+</html>

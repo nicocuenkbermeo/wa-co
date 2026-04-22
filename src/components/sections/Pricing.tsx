@@ -6,170 +6,139 @@ import { Check } from "lucide-react";
 interface Plan {
   name: string;
   tagline: string;
-  price: string;
+  setup: string;
+  mrr: string;
   features: string[];
   popular: boolean;
 }
 
 const plans: Plan[] = [
   {
-    name: "Plan B\u00e1sico",
-    tagline: "Ideal para empezar",
-    price: "$800 USD",
+    name: "Starter",
+    tagline: "PyME empezando a automatizar",
+    setup: "$600",
+    mrr: "$150",
     features: [
-      "Landing page",
-      "Dise\u00f1o responsive",
-      "SEO b\u00e1sico",
-      "1 revisi\u00f3n",
-      "Entrega en 5 d\u00edas",
+      "Chatbot WhatsApp con IA",
+      "Respuestas 24/7 preguntas frecuentes",
+      "Captura de leads a Google Sheets",
+      "Setup Evolution API + n8n",
+      "Entrega en 7 días",
     ],
     popular: false,
   },
   {
-    name: "Plan Profesional",
-    tagline: "Para crecer de verdad",
-    price: "$1,500 USD",
+    name: "Pro",
+    tagline: "Ventas + Agenda + IA completa",
+    setup: "$1,500",
+    mrr: "$300",
     features: [
-      "Sitio multi-p\u00e1gina (hasta 5)",
-      "Dise\u00f1o premium",
-      "SEO avanzado",
-      "Revisiones ilimitadas",
-      "Entrega en 10 d\u00edas",
-      "Soporte 30 d\u00edas",
+      "Todo lo de Starter",
+      "Cotización automática con reglas custom",
+      "Agendamiento automático (Calendar)",
+      "Integración CRM / Sheets avanzado",
+      "Dashboard de métricas en vivo",
+      "Soporte 90 días + ajustes mensuales",
+      "Entrega en 10 días",
     ],
     popular: true,
   },
   {
-    name: "Plan Empresa",
-    tagline: "Todo incluido",
-    price: "$3,000 USD",
+    name: "Bundle Total",
+    tagline: "Web + Chatbot + Automatización",
+    setup: "$3,500",
+    mrr: "$400",
     features: [
-      "Sitio completo + Blog",
-      "Chatbot WhatsApp IA",
-      "Automatizaci\u00f3n n8n",
-      "SEO + Analytics",
-      "Revisiones ilimitadas",
-      "Soporte 90 d\u00edas",
+      "Sitio multi-página premium",
+      "Chatbot WhatsApp Pro completo",
+      "Automatizaciones n8n custom",
+      "Dashboard unificado",
+      "Soporte prioritario",
+      "Revisiones ilimitadas 90 días",
+      "Entrega en 21 días",
     ],
     popular: false,
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
-    },
-  },
-};
-
 export default function Pricing() {
   return (
-    <section id="precios" className="py-24 md:py-32 px-6 md:px-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
+    <section id="precios" className="py-24 md:py-32 px-6 md:px-8 bg-[var(--bg-primary)]">
+      <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-16 max-w-3xl pb-6 border-b border-[var(--border-subtle)]"
         >
-          <p
-            className="text-sm uppercase tracking-widest mb-4"
-            style={{ color: "#D4A853" }}
-          >
-            PLANES
+          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-[var(--paez-300)] mb-4">
+            · Planes
           </p>
-          <h2
-            className="font-display text-4xl md:text-5xl font-bold leading-tight"
-            style={{ color: "#FAFAFA" }}
-          >
-            Inversi&oacute;n clara, sin sorpresas
+          <h2 className="font-display text-[clamp(34px,4.6vw,60px)] leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)]">
+            Setup + mensualidad.{" "}
+            <em className="italic text-[var(--paez-300)]">Sin sorpresas</em>.
           </h2>
+          <p className="mt-6 text-lg text-[var(--text-secondary)] leading-[1.6]">
+            Inversión inicial que cubre implementación y go-live. Mensualidad que incluye
+            mantenimiento, tokens de IA, ajustes y soporte. Precios en USD.
+          </p>
         </motion.div>
 
-        {/* Cards */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start"
-        >
-          {plans.map((plan) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
-              variants={cardVariants}
-              className={`rounded-2xl p-8 relative ${
-                plan.popular ? "md:-mt-4 md:mb-[-16px]" : ""
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              className={`relative rounded-2xl p-8 flex flex-col ${
+                plan.popular
+                  ? "bg-gradient-to-b from-[var(--paez-950)] to-[var(--bg-card)] border-2 border-[var(--paez-700)] lg:-mt-4"
+                  : "bg-[var(--bg-secondary)] border border-[var(--border)]"
               }`}
-              style={{
-                backgroundColor: "#161616",
-                border: plan.popular
-                  ? "2px solid #4A9D6E"
-                  : "1px solid #222222",
-              }}
             >
-              {/* Popular badge */}
               {plan.popular && (
-                <div
-                  className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-wider"
-                  style={{ backgroundColor: "#4A9D6E", color: "#FAFAFA" }}
-                >
-                  Popular
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full px-4 py-1 font-mono text-[10px] tracking-[0.14em] uppercase font-medium whitespace-nowrap paez-gradient-bg text-[var(--ink-950)]">
+                  Flagship
                 </div>
               )}
 
-              <p className="text-sm font-medium mb-1" style={{ color: "#A1A1A1" }}>
+              <p className="font-mono text-[11px] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-2">
                 {plan.tagline}
               </p>
-              <h3
-                className="text-xl font-semibold mb-5"
-                style={{ color: "#FAFAFA" }}
-              >
+              <h3 className="font-display text-3xl leading-tight text-[var(--text-primary)] mb-6">
                 {plan.name}
               </h3>
 
-              <div className="mb-6">
-                <span className="text-xs" style={{ color: "#A1A1A1" }}>
-                  Desde
-                </span>
-                <p
-                  className="font-display text-4xl font-bold"
-                  style={{ color: "#FAFAFA" }}
-                >
-                  {plan.price}
-                </p>
+              <div className="mb-6 pb-6 border-b border-[var(--border-subtle)]">
+                <div className="flex items-baseline gap-2">
+                  <span className="font-display text-5xl text-[var(--text-primary)] leading-none">
+                    {plan.setup}
+                  </span>
+                  <span className="font-mono text-[11px] tracking-[0.1em] uppercase text-[var(--text-muted)]">
+                    USD · setup
+                  </span>
+                </div>
+                <div className="flex items-baseline gap-2 mt-3">
+                  <span className="font-display text-2xl italic text-[var(--paez-300)] leading-none">
+                    + {plan.mrr}
+                  </span>
+                  <span className="font-mono text-[11px] tracking-[0.1em] uppercase text-[var(--text-muted)]">
+                    USD / mes
+                  </span>
+                </div>
               </div>
 
-              <div
-                className="h-px w-full mb-6"
-                style={{ backgroundColor: "#222222" }}
-              />
-
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8 grow">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
                     <Check
-                      className="w-4 h-4 mt-0.5 shrink-0"
-                      style={{ color: "#4A9D6E" }}
-                      strokeWidth={2.5}
+                      className="w-4 h-4 mt-0.5 shrink-0 text-[var(--paez-300)]"
+                      strokeWidth={2}
                     />
-                    <span className="text-sm" style={{ color: "#FAFAFA" }}>
+                    <span className="text-sm leading-[1.5] text-[var(--text-primary)]">
                       {feature}
                     </span>
                   </li>
@@ -178,31 +147,18 @@ export default function Pricing() {
 
               <a
                 href="#contacto"
-                className={`block w-full text-center rounded-lg py-3 text-sm font-semibold transition-all ${
+                className={`block w-full text-center rounded-full py-3.5 font-body text-sm font-medium transition-all ${
                   plan.popular
-                    ? "text-white shadow-lg"
-                    : "text-white"
+                    ? "bg-[var(--paez-800)] hover:bg-[var(--paez-700)] text-white shadow-[0_8px_24px_rgba(63,107,64,0.35)]"
+                    : "border border-[var(--border-strong)] text-[var(--text-primary)] hover:border-[var(--paez-400)] hover:text-[var(--paez-300)]"
                 }`}
-                style={
-                  plan.popular
-                    ? {
-                        backgroundColor: "#4A9D6E",
-                        boxShadow: "0 8px 24px rgba(74,157,110,0.25)",
-                      }
-                    : {
-                        border: "1px solid #222222",
-                        backgroundColor: "transparent",
-                        color: "#FAFAFA",
-                      }
-                }
               >
-                Empezar ahora
+                Empezar
               </a>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* CTA below */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -210,14 +166,13 @@ export default function Pricing() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-16 text-center"
         >
-          <p className="text-base" style={{ color: "#A1A1A1" }}>
-            &iquest;Necesitas algo personalizado?{" "}
+          <p className="text-[15px] text-[var(--text-secondary)]">
+            ¿Necesitas algo personalizado?{" "}
             <a
               href="#contacto"
-              className="font-semibold underline underline-offset-4 transition-colors hover:opacity-80"
-              style={{ color: "#D4A853" }}
+              className="font-medium italic font-display text-lg text-[var(--paez-300)] underline underline-offset-4 decoration-[var(--paez-700)] transition-colors hover:decoration-[var(--paez-300)]"
             >
-              Hablemos
+              Hablemos →
             </a>
           </p>
         </motion.div>

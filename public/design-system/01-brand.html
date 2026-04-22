@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Brand · wa.co Design System</title>
+<link rel="stylesheet" href="styles/base.css"/>
+<link rel="icon" type="image/png" href="assets/favicon-paez.png"/>
+<script src="styles/ds.js"></script>
+<style>
+  /* Manifesto hero */
+  .manifesto {
+    padding: var(--space-16) var(--space-12);
+    background: var(--ink-900); color: var(--paez-100);
+    border-radius: var(--radius-xl);
+    position: relative; overflow: hidden;
+    margin-bottom: var(--space-16);
+  }
+  .manifesto::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 80% 110%, color-mix(in oklab, #5f7a3c 50%, transparent), transparent 60%);
+    pointer-events: none;
+  }
+  .manifesto__river { position: absolute; inset: 0; pointer-events: none; opacity: 0.15; }
+  .manifesto__body { position: relative; z-index: 1; max-width: 60ch; }
+  .manifesto__eyebrow { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-mono); color: var(--paez-300); margin-bottom: var(--space-4); }
+  .manifesto__h {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(44px, 5.5vw, 72px); line-height: 1; letter-spacing: -0.025em;
+    margin: 0 0 var(--space-8);
+  }
+  .manifesto__h em { font-style: italic; color: var(--paez-300); }
+  .manifesto__p { font-size: 18px; line-height: 1.6; color: var(--paez-100); opacity: 0.85; margin: 0 0 var(--space-4); }
+  .manifesto__sig {
+    margin-top: var(--space-10); font-family: var(--font-mono); font-size: var(--text-xs);
+    color: var(--paez-300); letter-spacing: var(--tracking-mono);
+  }
+
+  /* Principles */
+  .principles { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+  .principle {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    position: relative; overflow: hidden;
+  }
+  .principle__num {
+    position: absolute; top: var(--space-5); right: var(--space-6);
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    color: var(--fg-subtle); letter-spacing: var(--tracking-mono);
+  }
+  .principle__h {
+    font-family: var(--font-display); font-weight: 400; font-style: italic;
+    font-size: var(--text-2xl); letter-spacing: -0.015em;
+    margin: 0 0 var(--space-3); line-height: 1.1;
+  }
+  .principle__h .brand { color: var(--paez-700); font-style: normal; }
+  [data-theme="dark"] .principle__h .brand { color: var(--paez-300); }
+  .principle__p { color: var(--fg-muted); font-size: var(--text-sm); line-height: var(--lh-relaxed); margin: 0; }
+  .principle__ex {
+    margin-top: var(--space-5); padding-top: var(--space-4);
+    border-top: 1px dashed var(--border-subtle);
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-subtle); letter-spacing: var(--tracking-mono);
+    line-height: 1.6;
+  }
+
+  /* Positioning */
+  .position {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);
+  }
+  .position__card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--space-8);
+  }
+  .position__label {
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    color: var(--fg-subtle); letter-spacing: var(--tracking-mono);
+    text-transform: uppercase; margin-bottom: var(--space-3);
+  }
+  .position__text {
+    font-family: var(--font-display); font-style: italic; font-weight: 400;
+    font-size: var(--text-xl); line-height: 1.3; letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .position__text em { color: var(--paez-700); font-style: normal; }
+  [data-theme="dark"] .position__text em { color: var(--paez-300); }
+
+  /* Audience */
+  .audience { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+  .audience__card {
+    background: var(--surface-alt); border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    border: 1px solid var(--border-subtle);
+  }
+  .audience__who {
+    font-family: var(--font-display); font-size: var(--text-xl);
+    font-weight: 400; letter-spacing: -0.01em; margin: 0 0 var(--space-2); line-height: 1.1;
+  }
+  .audience__role {
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    color: var(--fg-subtle); letter-spacing: var(--tracking-mono); margin-bottom: var(--space-4);
+  }
+  .audience__pain {
+    font-size: var(--text-sm); color: var(--fg-muted);
+    line-height: var(--lh-relaxed); margin: 0 0 var(--space-3);
+  }
+  .audience__pain b { color: var(--fg); font-weight: 500; }
+  .audience__quote {
+    font-family: var(--font-display); font-style: italic;
+    font-size: var(--text-base); color: var(--fg);
+    padding: var(--space-3) 0 0; border-top: 1px dashed var(--border-subtle);
+    margin: 0;
+  }
+
+  /* Origin / map */
+  .origin {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--space-10);
+    align-items: center;
+  }
+  .origin__text h3 { font-family: var(--font-display); font-weight: 400; font-size: var(--text-3xl); letter-spacing: -0.02em; line-height: 1.05; margin: 0 0 var(--space-4); }
+  .origin__text h3 em { font-style: italic; color: var(--paez-700); }
+  [data-theme="dark"] .origin__text h3 em { color: var(--paez-300); }
+  .origin__text p { color: var(--fg-muted); line-height: var(--lh-relaxed); margin: 0 0 var(--space-4); }
+  .origin__map {
+    aspect-ratio: 1;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    position: relative; overflow: hidden;
+  }
+  .origin__map svg { width: 100%; height: 100%; }
+  .origin__map-label {
+    position: absolute; bottom: var(--space-5); left: var(--space-5);
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    color: var(--fg-subtle); letter-spacing: var(--tracking-mono);
+    background: color-mix(in oklab, var(--surface) 85%, transparent);
+    padding: 6px 10px; border-radius: var(--radius-sm);
+    backdrop-filter: blur(6px);
+  }
+
+  @media (max-width: 900px) { .principles, .position, .audience, .origin { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<svg style="position:absolute;width:0;height:0"><defs>
+  <symbol id="wa-lettermark" viewBox="0 0 320 140"><path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116 M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<nav class="ds-nav">
+  <a class="ds-nav__brand" href="index.html"><svg viewBox="0 0 320 140" style="color:var(--fg)"><use href="#wa-lettermark"/></svg><b>wa.co</b><span>/ design system</span></a>
+  <div class="ds-nav__links">
+    <a href="01-brand.html">Brand</a><a href="02-logo.html">Logo</a><a href="03-color.html">Color</a>
+    <a href="04-typography.html">Type</a><a href="05-spacing.html">Space</a><a href="06-components.html">Components</a>
+    <a href="07-iconography.html">Icons</a><a href="08-patterns.html">Patterns</a><a href="09-applications.html">Apps</a>
+  </div>
+  <div class="ds-nav__right">
+    <button class="theme-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span class="theme-toggle__label">Dark</span></button>
+  </div>
+</nav>
+
+<main class="ds-main"><div class="ds-container">
+
+  <div class="ds-pageheader">
+    <div class="ds-pageheader__eyebrow">01 / Brand</div>
+    <h1>Una empresa que viene del <em>valle</em>.</h1>
+    <p class="ds-pageheader__lede">wa.co nace en Neiva, en el cruce del Magdalena y el Páez, para llevar automatización e inteligencia artificial a las empresas del Huila — y desde ahí, al mundo. Este es el marco de marca.</p>
+  </div>
+
+  <!-- MANIFESTO -->
+  <div class="manifesto">
+    <svg class="manifesto__river" viewBox="0 0 1200 600" preserveAspectRatio="none">
+      <g fill="none" stroke="#f5efc4" stroke-width="1.4">
+        <path d="M -40 200 C 300 150, 700 250, 1040 200 S 1240 220, 1240 220"/>
+        <path d="M -40 280 C 300 230, 700 330, 1040 280 S 1240 300, 1240 300"/>
+        <path d="M -40 360 C 300 310, 700 410, 1040 360 S 1240 380, 1240 380"/>
+        <path d="M -40 440 C 300 390, 700 490, 1040 440 S 1240 460, 1240 460"/>
+      </g>
+    </svg>
+    <div class="manifesto__body">
+      <div class="manifesto__eyebrow">[ manifiesto · v1 · noviembre 2025 ]</div>
+      <h2 class="manifesto__h">El río <em>no se detiene</em>.<br/>Tu trabajo <em>tampoco</em> debería.</h2>
+      <p class="manifesto__p">Creemos que la tecnología no tiene por qué llegar solo a las capitales. Que una PyME del Huila merece las mismas herramientas que una startup de Bogotá o Silicon Valley.</p>
+      <p class="manifesto__p">Construimos bots, agentes y automatizaciones que trabajan de noche para que tú puedas dormir. Que cotizan mientras almuerzas. Que capturan clientes mientras ves a tus hijos.</p>
+      <p class="manifesto__p">No somos una agencia que vende "transformación digital". Somos tus vecinos, con código, haciendo que tu negocio fluya — como el Páez baja del macizo.</p>
+      <div class="manifesto__sig">— daniel · fundador · wa.co · Neiva, Huila</div>
+    </div>
+  </div>
+
+  <!-- PRINCIPLES -->
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Seis principios</h2><span class="ds-section__num">01.1</span></div>
+    <div class="principles">
+      <div class="principle">
+        <span class="principle__num">01</span>
+        <h3 class="principle__h">Fluir, no <span class="brand">empujar</span>.</h3>
+        <p class="principle__p">La automatización se siente natural, no forzada. Si el cliente nota que habla con un bot torpe, fallamos.</p>
+        <div class="principle__ex">→ bots con voz humana · UI sin fricción · nunca "press 1 for support"</div>
+      </div>
+      <div class="principle">
+        <span class="principle__num">02</span>
+        <h3 class="principle__h">Local primero, <span class="brand">global siempre</span>.</h3>
+        <p class="principle__p">Diseñamos para Neiva, Pitalito y Garzón. Si funciona en el valle, escala en cualquier parte.</p>
+        <div class="principle__ex">→ español colombiano natural · casos locales visibles · precio en pesos</div>
+      </div>
+      <div class="principle">
+        <span class="principle__num">03</span>
+        <h3 class="principle__h">Un proceso <span class="brand">a la vez</span>.</h3>
+        <p class="principle__p">No prometemos revolucionar tu empresa en una semana. Empezamos con un cuello de botella, lo solucionamos, y seguimos.</p>
+        <div class="principle__ex">→ contratos pequeños · sprints de 10 días · iteración honesta</div>
+      </div>
+      <div class="principle">
+        <span class="principle__num">04</span>
+        <h3 class="principle__h">Código que <span class="brand">se explica solo</span>.</h3>
+        <p class="principle__p">El cliente puede mirar dentro de su automatización. Nada de cajas negras, nada de "confía en nosotros".</p>
+        <div class="principle__ex">→ n8n visible · flujos documentados · propiedad del cliente</div>
+      </div>
+      <div class="principle">
+        <span class="principle__num">05</span>
+        <h3 class="principle__h">Multiplicar, no <span class="brand">reemplazar</span>.</h3>
+        <p class="principle__p">La IA no despide a nadie. Convierte al vendedor en vendedor-de-tiempo, al asistente en orquestador.</p>
+        <div class="principle__ex">→ mensaje de marca: "tu equipo, ×3"</div>
+      </div>
+      <div class="principle">
+        <span class="principle__num">06</span>
+        <h3 class="principle__h">Del río al <span class="brand">océano</span>.</h3>
+        <p class="principle__p">Nacimos pequeños, pero miramos lejos. Lo que construimos en Neiva puede servir en Lima, Ciudad de México o Lagos.</p>
+        <div class="principle__ex">→ producto pensado desde día uno como exportable</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSITIONING -->
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Posicionamiento</h2><span class="ds-section__num">01.2</span></div>
+    <div class="position">
+      <div class="position__card">
+        <div class="position__label">Frase de posicionamiento</div>
+        <p class="position__text">Para las PyMES colombianas que están <em>cansadas</em> de responder WhatsApp a medianoche, wa.co es la empresa que <em>automatiza un proceso a la vez</em> — con bots, agentes de IA y flujos que funcionan mientras ellos descansan.</p>
+      </div>
+      <div class="position__card">
+        <div class="position__label">Tagline oficial</div>
+        <p class="position__text" style="font-size: var(--text-2xl)">"Automatización <em>con alma</em>."</p>
+        <div class="principle__ex" style="margin-top: var(--space-6)">
+          Alternativos aprobados:<br/>
+          → "El río no se detiene."<br/>
+          → "Hecho en Neiva. Entregado al mundo."<br/>
+          → "Tu negocio fluye solo."
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Audiencias</h2><span class="ds-section__num">01.3</span></div>
+    <div class="audience">
+      <div class="audience__card">
+        <h3 class="audience__who">María</h3>
+        <div class="audience__role">38 · dueña de tienda · Neiva</div>
+        <p class="audience__pain">Vende ropa por WhatsApp. Responde <b>hasta 200 mensajes al día</b>, muchos repetidos. No duerme bien.</p>
+        <p class="audience__quote">"Si el bot cotiza solo, yo puedo volver a ver crecer a mis hijos."</p>
+      </div>
+      <div class="audience__card">
+        <h3 class="audience__who">Javier</h3>
+        <div class="audience__role">45 · gerente · PyME Huila</div>
+        <p class="audience__pain">Empresa familiar de 40 empleados. Opera en <b>Excel + WhatsApp</b>. Sabe que necesita ordenarse pero "eso es para empresas grandes".</p>
+        <p class="audience__quote">"Quiero que el próximo pedido se procese solo, no discutir con el hijo otra vez."</p>
+      </div>
+      <div class="audience__card">
+        <h3 class="audience__who">Laura</h3>
+        <div class="audience__role">29 · emprendedora digital</div>
+        <p class="audience__pain">Vende cursos online. <b>Leads perdidos</b> por no responder a tiempo. Ha probado otros bots — son robóticos, no venden.</p>
+        <p class="audience__quote">"Quiero un bot que suene como yo, no como un call center."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORIGIN -->
+  <section class="ds-section">
+    <div class="ds-section__head"><h2 class="ds-section__title">Origen — del valle</h2><span class="ds-section__num">01.4</span></div>
+    <div class="origin">
+      <div class="origin__text">
+        <h3>Neiva, donde se juntan el <em>Magdalena</em> y el <em>Páez</em>.</h3>
+        <p>wa.co nace en el Huila — tierra de café, achira, rapé y ríos. Región de ingenieros y agricultores que saben que todo trabajo digno toma tiempo pero debe rendir.</p>
+        <p>Tomamos del río Páez el nombre de la paleta principal: el verde-amarillo que baja del macizo colombiano, cambia de tono con la luz, nunca se detiene. Esa es la metáfora central de la marca.</p>
+        <p>Del valle tomamos el ocre de las tierras cultivables, el naranja del guaco en octubre, y la firmeza de los caminos que unen los pueblos. Todo eso está codificado en el sistema.</p>
+      </div>
+      <div class="origin__map">
+        <svg viewBox="0 0 400 400">
+          <!-- abstract map: contour lines + two rivers meeting -->
+          <g fill="none" stroke="#b8b6a6" stroke-width="0.8" opacity="0.4">
+            <path d="M 40 100 Q 150 80, 260 120 T 380 100"/>
+            <path d="M 20 160 Q 150 140, 280 180 T 400 170"/>
+            <path d="M 60 240 Q 180 220, 300 260 T 390 250"/>
+            <path d="M 40 320 Q 160 300, 280 340 T 400 330"/>
+          </g>
+          <!-- Magdalena (vertical) -->
+          <path d="M 180 20 C 170 100, 210 160, 200 220 C 190 280, 220 340, 210 400" fill="none" stroke="url(#grad-paez)" stroke-width="4" stroke-linecap="round"/>
+          <!-- Páez (horizontal meeting) -->
+          <path d="M 20 260 C 80 250, 140 280, 200 260 C 240 245, 260 265, 300 255" fill="none" stroke="#e66a2e" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+          <!-- Neiva marker -->
+          <g transform="translate(205 225)">
+            <circle r="18" fill="none" stroke="#14130f" stroke-width="1.2" opacity="0.4"/>
+            <circle r="10" fill="none" stroke="#14130f" stroke-width="1.2" opacity="0.6"/>
+            <circle r="4" fill="#14130f"/>
+          </g>
+          <text x="225" y="229" font-family="monospace" font-size="10" fill="#14130f" letter-spacing="0.1em">NEIVA</text>
+          <text x="120" y="14" font-family="monospace" font-size="9" fill="#6c6a5d" letter-spacing="0.1em">— norte · Magdalena →</text>
+          <text x="10" y="255" font-family="monospace" font-size="9" fill="#6c6a5d" letter-spacing="0.1em">— macizo · Páez →</text>
+          <defs>
+            <linearGradient id="grad-paez" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#e2c728"/><stop offset="100%" stop-color="#5f8a52"/></linearGradient>
+          </defs>
+        </svg>
+        <div class="origin__map-label">2°56′N · 75°17′W · Neiva, Huila</div>
+      </div>
+    </div>
+  </section>
+
+</div></main>
+
+<footer class="ds-footer">
+  <span><a href="index.html">← Inicio</a></span>
+  <span>01 · Brand</span>
+  <span><a href="02-logo.html">Logo →</a></span>
+</footer>
+</body></html>

@@ -1,94 +1,117 @@
-import Image from "next/image";
+import Lettermark from "@/components/shared/Lettermark";
 
 const WA_LINK =
-  "https://wa.me/573163836881?text=Hola,%20quiero%20cotizar%20un%20proyecto";
+  "https://wa.me/573163836881?text=Hola,%20quiero%20hablar%20con%20wa.co";
 
 const servicios = [
-  "Diseño Web",
-  "Chatbots IA",
-  "Automatización",
-  "Apps Web",
-  "SEO",
+  { label: "Chatbots WhatsApp", href: "#servicios" },
+  { label: "Automatizaciones n8n", href: "#servicios" },
+  { label: "Agentes IA", href: "#servicios" },
+  { label: "Dashboards", href: "#servicios" },
+  { label: "Consultoría", href: "#servicios" },
 ];
 
 const empresa = [
-  { label: "Nosotros", href: "#nosotros" },
-  { label: "Portafolio", href: "#portafolio" },
-  { label: "Blog", href: "#blog" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Proceso", href: "#proceso" },
+  { label: "Casos", href: "#portafolio" },
+  { label: "Precios", href: "#precios" },
+  { label: "FAQ", href: "#faq" },
+];
+
+const recursos = [
+  { label: "Design System", href: "/design-system/index.html" },
+  { label: "Manifiesto", href: "/design-system/01-brand.html" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#080808] border-t border-[#222222]">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        {/* ── Top grid ── */}
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Column 1 — Brand */}
-          <div>
-            <div className="flex items-center gap-2">
-              <Image
-                src="/logo.png"
-                alt="WA.CO logo"
-                width={36}
-                height={36}
-                className="rounded"
-              />
-              <span className="text-lg font-bold text-[#FAFAFA]">.CO</span>
+    <footer className="bg-[var(--ink-950)] border-t border-[var(--border-subtle)] relative">
+      {/* River divider (gradient stripe) */}
+      <div className="h-[2px] w-full paez-gradient-bg opacity-60" />
+
+      <div className="mx-auto max-w-7xl px-6 py-20">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
+          {/* Brand */}
+          <div className="md:col-span-1">
+            <div className="flex items-center gap-3 mb-5">
+              <Lettermark height={28} />
+              <span className="font-mono text-xs tracking-[0.14em] uppercase text-[var(--text-primary)]">
+                wa.co <span className="text-[var(--text-faint)]">/ agency</span>
+              </span>
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-[#A1A1A1]">
-              Agencia de diseño web y automatización con IA. Hechos en Colombia.
+            <p className="font-display text-xl italic leading-[1.3] text-[var(--paez-300)] max-w-[22ch]">
+              Automatización con alma.
+            </p>
+            <p className="mt-4 text-sm leading-[1.6] text-[var(--text-secondary)]">
+              Agencia de IA enraizada en el Huila. Raíces locales, tecnología global.
             </p>
           </div>
 
-          {/* Column 2 — Servicios */}
+          {/* Servicios */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#FAFAFA]">
-              Servicios
+            <h3 className="font-mono text-[11px] tracking-[0.14em] uppercase text-[var(--text-faint)] mb-5">
+              · Servicios
             </h3>
-            <ul className="mt-4 space-y-2">
+            <ul className="space-y-2.5">
               {servicios.map((s) => (
-                <li key={s}>
+                <li key={s.label}>
                   <a
-                    href="#servicios"
-                    className="text-sm text-[#A1A1A1] transition-colors hover:text-[#FAFAFA]"
+                    href={s.href}
+                    className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--paez-300)]"
                   >
-                    {s}
+                    {s.label}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3 — Empresa */}
+          {/* Empresa */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#FAFAFA]">
-              Empresa
+            <h3 className="font-mono text-[11px] tracking-[0.14em] uppercase text-[var(--text-faint)] mb-5">
+              · Navegar
             </h3>
-            <ul className="mt-4 space-y-2">
+            <ul className="space-y-2.5">
               {empresa.map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="text-sm text-[#A1A1A1] transition-colors hover:text-[#FAFAFA]"
+                    className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--paez-300)]"
                   >
                     {item.label}
                   </a>
                 </li>
               ))}
             </ul>
+
+            <h3 className="font-mono text-[11px] tracking-[0.14em] uppercase text-[var(--text-faint)] mt-8 mb-5">
+              · Recursos
+            </h3>
+            <ul className="space-y-2.5">
+              {recursos.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--paez-300)]"
+                  >
+                    {item.label} ↗
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Column 4 — Contacto */}
+          {/* Contacto */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#FAFAFA]">
-              Contacto
+            <h3 className="font-mono text-[11px] tracking-[0.14em] uppercase text-[var(--text-faint)] mb-5">
+              · Contacto
             </h3>
-            <ul className="mt-4 space-y-2 text-sm text-[#A1A1A1]">
+            <ul className="space-y-3 text-sm text-[var(--text-secondary)]">
               <li>
                 <a
                   href="mailto:hola@wa.co"
-                  className="transition-colors hover:text-[#FAFAFA]"
+                  className="font-display italic text-lg text-[var(--paez-300)] hover:text-[var(--paez-200)] transition-colors"
                 >
                   hola@wa.co
                 </a>
@@ -98,23 +121,24 @@ export default function Footer() {
                   href={WA_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors hover:text-[#FAFAFA]"
+                  className="transition-colors hover:text-[var(--paez-300)]"
                 >
                   +57 316 383 6881
                 </a>
               </li>
-              <li>Colombia</li>
+              <li className="font-mono text-[11px] tracking-[0.1em] uppercase text-[var(--text-faint)] pt-2">
+                Neiva · Huila · Colombia
+              </li>
             </ul>
           </div>
         </div>
 
-        {/* ── Bottom bar ── */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[#222222] pt-8 sm:flex-row">
-          <p className="text-xs text-[#A1A1A1]">
-            &copy; 2026 WA.CO. Todos los derechos reservados.
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-[var(--border-subtle)] pt-8 sm:flex-row sm:items-center">
+          <p className="font-mono text-[11px] tracking-[0.1em] text-[var(--text-faint)]">
+            © 2026 wa.co agency · Todos los derechos reservados
           </p>
-          <p className="text-xs text-[#A1A1A1]">
-            Hecho con amor en Colombia
+          <p className="font-mono text-[11px] tracking-[0.1em] text-[var(--text-faint)]">
+            Hecho desde el Huila, para el mundo.
           </p>
         </div>
       </div>

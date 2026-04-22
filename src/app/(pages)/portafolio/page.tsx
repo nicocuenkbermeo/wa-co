@@ -10,46 +10,46 @@ export const metadata: Metadata = {
 
 const projects = [
   {
-    title: "TodoCamisas",
-    category: "E-commerce",
+    title: "Cotizador WhatsApp B2B",
+    category: "Chatbot IA · Dotación empresarial",
     description:
-      "Tienda online de dotaciones empresariales con catálogo interactivo, cotizador automático y chatbot WhatsApp integrado.",
-    result: "+300% en consultas mensuales",
+      "Cliente B2B de dotación corporativa en Colombia. Bot IA detecta intención de cotizar, calcula precio final con reglas custom y responde en <10 segundos. Trazabilidad completa en Sheets.",
+    result: "−80% tiempo manual · respuesta 24/7",
     gradient: "from-[#4A9D6E] to-[#2D6B4A]",
-    tags: ["Next.js", "WhatsApp Bot", "E-commerce"],
+    tags: ["n8n", "GPT-4o-mini", "WhatsApp API"],
   },
   {
-    title: "Almería US",
-    category: "Portal Inmobiliario",
+    title: "Portal Inmobiliario LATAM",
+    category: "Real Estate Internacional",
     description:
-      "Portal inmobiliario internacional con búsqueda avanzada de propiedades, sistema de favoritos y contacto directo con agentes.",
-    result: "Presencia digital internacional desde cero",
+      "Portal multi-ciudad con búsqueda avanzada, sistema de favoritos, captura de leads y ruteo automático a agentes por zona geográfica.",
+    result: "Presencia digital desde cero · pipeline leads automatizado",
     gradient: "from-[#D4A853] to-[#A17D3A]",
-    tags: ["React", "API REST", "SEO"],
+    tags: ["Next.js", "API REST", "SEO"],
   },
   {
-    title: "A Lo Profundo",
-    category: "Plataforma Deportiva",
+    title: "Plataforma Pronósticos Deportivos",
+    category: "SaaS · Data real-time",
     description:
-      "Plataforma de análisis y estadísticas de béisbol con datos en tiempo real, rankings y comunidad de fanáticos.",
-    result: "+500 usuarios activos",
+      "Plataforma con ingest de data MLB en tiempo real, algoritmo de picks y pipeline automático: pick → script IA → imagen → listo para TikTok.",
+    result: "Contenido end-to-end sin humano",
     gradient: "from-[#3B82F6] to-[#1D4ED8]",
-    tags: ["Next.js", "Data", "Comunidad"],
+    tags: ["Next.js", "Prisma", "Data Pipeline"],
   },
   {
-    title: "Chatbot TodoCamisas",
+    title: "Asistente Ventas WhatsApp",
     category: "Automatización IA",
     description:
-      "Asistente virtual para WhatsApp Business con GPT que responde consultas, genera cotizaciones y notifica al equipo de ventas.",
-    result: "Atención automática 24/7",
+      "Asistente virtual con GPT que pre-califica leads, responde consultas frecuentes, agenda citas en calendario y notifica al equipo comercial solo cuando hay lead caliente.",
+    result: "Atención automática 24/7 · filtrado inteligente",
     gradient: "from-[#25D366] to-[#128C3E]",
     tags: ["WhatsApp API", "GPT-4", "n8n"],
   },
   {
-    title: "Sistema de Cotizaciones",
-    category: "Automatización",
+    title: "Sistema de Cotizaciones Custom",
+    category: "Automatización · Backend",
     description:
-      "Flujo automatizado en n8n que detecta pedidos especiales, notifica al equipo, registra en Google Sheets y envía precios al cliente.",
+      "Flujo n8n que detecta pedidos especiales, aplica lógica de pricing por volumen/personalización, registra en Google Sheets y notifica al cliente con cotización formateada.",
     result: "Tiempo de respuesta reducido 80%",
     gradient: "from-[#8B5CF6] to-[#6D28D9]",
     tags: ["n8n", "Google Sheets", "WhatsApp"],
@@ -58,10 +58,10 @@ const projects = [
     title: "Próximo proyecto",
     category: "¿El tuyo?",
     description:
-      "Tu negocio merece una presencia digital que realmente funcione. Cuéntanos tu idea y la hacemos realidad.",
+      "Tu negocio merece una presencia digital que funcione sin que tú estés pegado al celular. Contanos tu caso y armamos el setup.",
     result: "Resultados que importan",
     gradient: "from-[#6B6B6B] to-[#333333]",
-    tags: ["Tu idea", "Nuestro equipo"],
+    tags: ["Tu idea", "Stack wa.co"],
     isCta: true,
   },
 ];

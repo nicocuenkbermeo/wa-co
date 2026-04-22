@@ -1,0 +1,98 @@
+<!--
+  WA.CO lettermark — recreation vectorial del logo "wa" fluvial.
+  Forma continua, trazo grueso orgánico, gradiente Páez (sol → selva).
+  Uso:
+    <svg class="wa-logo" viewBox="0 0 320 140">
+      <use href="#wa-lettermark"></use>
+    </svg>
+-->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <!-- Gradient Páez: sol → selva -->
+    <linearGradient id="grad-paez" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%"  stop-color="#e2c728"/>
+      <stop offset="35%" stop-color="#c8bd36"/>
+      <stop offset="65%" stop-color="#93a64a"/>
+      <stop offset="100%" stop-color="#5f8a52"/>
+    </linearGradient>
+    <linearGradient id="grad-paez-soft" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%"  stop-color="#ecde86"/>
+      <stop offset="50%" stop-color="#c8cf7a"/>
+      <stop offset="100%" stop-color="#8fb082"/>
+    </linearGradient>
+    <linearGradient id="grad-tierra" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%"  stop-color="#d4b47a"/>
+      <stop offset="100%" stop-color="#6b4a2c"/>
+    </linearGradient>
+
+    <!--
+      Lettermark "wa" fluvial.
+      Construido en grid 320x140.
+      La 'w' es un río ondulado (4 valles suaves); la 'a' es un óvalo con cola.
+    -->
+    <symbol id="wa-lettermark" viewBox="0 0 320 140">
+      <!-- W: trayectoria fluvial de trazo grueso redondeado -->
+      <path
+        d="
+          M 14 42
+          C 14 26, 38 18, 52 30
+          C 62 40, 66 58, 72 78
+          C 78 98, 88 116, 100 116
+          C 112 116, 122 100, 128 82
+          C 134 62, 138 42, 152 30
+          C 166 18, 188 24, 192 42
+          C 196 62, 200 82, 208 100
+          C 214 114, 224 122, 236 116
+        "
+        fill="none" stroke="currentColor" stroke-width="26"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- A: óvalo + cola -->
+      <path
+        d="
+          M 286 64
+          C 286 44, 270 32, 252 32
+          C 234 32, 220 46, 220 66
+          C 220 86, 234 100, 252 100
+          C 270 100, 286 88, 286 68
+          M 286 46 L 286 116
+        "
+        fill="none" stroke="currentColor" stroke-width="26"
+        stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Simplified mark for tiny sizes (favicon feel) -->
+    <symbol id="wa-lettermark-solid" viewBox="0 0 320 140">
+      <path
+        d="
+          M 14 42
+          C 14 26, 38 18, 52 30
+          C 62 40, 66 58, 72 78
+          C 78 98, 88 116, 100 116
+          C 112 116, 122 100, 128 82
+          C 134 62, 138 42, 152 30
+          C 166 18, 188 24, 192 42
+          C 196 62, 200 82, 208 100
+          C 214 114, 224 122, 236 116
+        "
+        fill="none" stroke="currentColor" stroke-width="30"
+        stroke-linecap="round" stroke-linejoin="round"/>
+      <path
+        d="
+          M 286 64
+          C 286 44, 270 32, 252 32
+          C 234 32, 220 46, 220 66
+          C 220 86, 234 100, 252 100
+          C 270 100, 286 88, 286 68
+          M 286 46 L 286 116
+        "
+        fill="none" stroke="currentColor" stroke-width="30"
+        stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Tiny drop (para animación de formación) -->
+    <symbol id="wa-drop" viewBox="0 0 24 32">
+      <path d="M12 2 C 6 12, 2 20, 2 24 A 10 10 0 0 0 22 24 C 22 20, 18 12, 12 2 Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

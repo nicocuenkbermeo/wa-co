@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Color · wa.co Design System</title>
+<link rel="stylesheet" href="styles/base.css" />
+<link rel="icon" type="image/png" href="assets/favicon-paez.png" />
+<script src="styles/ds.js"></script>
+<style>
+  /* Palette hero */
+  .palette-hero {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-10);
+    align-items: stretch;
+    padding: var(--space-10);
+    background: var(--surface-alt);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-12);
+  }
+  .palette-hero__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    margin: 0 0 var(--space-4);
+  }
+  .palette-hero__title em { font-style: italic; color: var(--paez-700); }
+  [data-theme="dark"] .palette-hero__title em { color: var(--paez-300); }
+  .palette-hero__body p {
+    color: var(--fg-muted);
+    line-height: var(--lh-relaxed);
+    margin: 0 0 var(--space-3);
+  }
+  .palette-hero__swatches {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    min-height: 240px;
+  }
+  .palette-hero__swatch {
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: rgba(0,0,0,0.7);
+    letter-spacing: var(--tracking-mono);
+  }
+  .palette-hero__swatch b { font-weight: 600; display: block; }
+
+  /* Scales */
+  .scale {
+    margin-bottom: var(--space-16);
+  }
+  .scale__head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: var(--space-4);
+    gap: var(--space-6);
+  }
+  .scale__title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .scale__desc {
+    color: var(--fg-muted);
+    font-size: var(--text-sm);
+    max-width: 48ch;
+    margin: 0;
+  }
+  .scale__strip {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+  }
+  .scale__strip--10 { grid-template-columns: repeat(10, 1fr); }
+  .scale__strip--9 { grid-template-columns: repeat(9, 1fr); }
+  .scale__strip--7 { grid-template-columns: repeat(7, 1fr); }
+  .scale__strip--6 { grid-template-columns: repeat(6, 1fr); }
+  .swatch {
+    aspect-ratio: 1 / 1.1;
+    padding: 10px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: var(--tracking-mono);
+  }
+  .swatch__tok { opacity: 0.7; }
+  .swatch__hex { font-weight: 500; }
+  .swatch--dark { color: rgba(255,255,255,0.85); }
+  .swatch--light { color: rgba(20,19,15,0.75); }
+
+  /* Semantic tokens table */
+  .tokens {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-1);
+  }
+  .token {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    gap: var(--space-4);
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-mono);
+  }
+  .token__chip {
+    width: 40px; height: 40px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+  }
+  .token__name { color: var(--fg); font-weight: 500; }
+  .token__usage { color: var(--fg-subtle); font-size: 10px; margin-top: 2px; }
+  .token__val { color: var(--fg-subtle); }
+
+  /* Gradient showcase */
+  .gradients { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+  .gradient {
+    aspect-ratio: 16/9;
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-5);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    color: rgba(255,255,255,0.95);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-mono);
+  }
+  .gradient--paez { background: linear-gradient(95deg, #e2c728 0%, #c8bd36 35%, #93a64a 65%, #5f8a52 100%); color: rgba(20,19,15,0.85); }
+  .gradient--tierra { background: linear-gradient(95deg, #d4b47a 0%, #a87a42 50%, #6b4a2c 100%); }
+  .gradient--atardecer { background: linear-gradient(95deg, #e2c728 0%, #e66a2e 100%); color: rgba(20,19,15,0.85); }
+  .gradient b { font-weight: 600; display: block; font-size: var(--text-sm); margin-bottom: 4px; }
+
+  /* Accessibility matrix */
+  .a11y {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+  }
+  .a11y__cell {
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    min-height: 120px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .a11y__cell--on-cream { background: var(--ink-0); border: 1px solid var(--border); }
+  .a11y__cell--on-selva { background: var(--paez-800); color: var(--paez-50); }
+  .a11y__cell--on-sol { background: var(--paez-400); color: var(--ink-900); }
+  .a11y__cell--on-ink { background: var(--ink-900); color: var(--paez-100); }
+  .a11y__cell h4 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: var(--text-lg); letter-spacing: -0.01em; }
+  .a11y__ratio {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--tracking-mono);
+    opacity: 0.7;
+    display: flex; justify-content: space-between;
+  }
+  .a11y__ratio .pass { color: inherit; font-weight: 600; }
+
+  /* Mode compare */
+  .mode-compare {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);
+  }
+  .mode-compare__panel {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .mode-compare__panel--light { background: #fdfcf7; color: #14130f; }
+  .mode-compare__panel--dark { background: #0a0a08; color: #f7f5ed; }
+  .mode-compare__panel .label {
+    padding: var(--space-3) var(--space-5);
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    letter-spacing: var(--tracking-mono);
+    border-bottom: 1px solid color-mix(in oklab, currentColor 15%, transparent);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .mode-compare__panel .body { padding: var(--space-8); }
+  .mode-compare__panel h5 { margin: 0 0 var(--space-3); font-family: var(--font-display); font-weight: 400; font-size: var(--text-2xl); letter-spacing: -0.015em; line-height: 1.1; }
+  .mode-compare__panel p { opacity: 0.7; line-height: var(--lh-relaxed); font-size: var(--text-sm); margin: 0 0 var(--space-5); }
+  .mode-compare__panel .btn {
+    display: inline-flex; align-items: center; padding: 8px 16px; border-radius: 999px;
+    font-size: var(--text-sm); font-weight: 500;
+  }
+  .mode-compare__panel--light .btn { background: #3f6b40; color: #fdfcf7; }
+  .mode-compare__panel--dark .btn { background: #e0c94a; color: #14130f; }
+
+  @media (max-width: 900px) {
+    .palette-hero, .gradients, .a11y, .mode-compare, .tokens { grid-template-columns: 1fr; }
+    .scale__strip { grid-template-columns: repeat(6, 1fr) !important; }
+  }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0" aria-hidden="true">
+  <defs>
+    <linearGradient id="grad-paez" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#e2c728"/><stop offset="35%" stop-color="#c8bd36"/>
+      <stop offset="65%" stop-color="#93a64a"/><stop offset="100%" stop-color="#5f8a52"/>
+    </linearGradient>
+    <symbol id="wa-lettermark" viewBox="0 0 320 140">
+      <path d="M 14 42 C 14 26, 38 18, 52 30 C 62 40, 66 58, 72 78 C 78 98, 88 116, 100 116 C 112 116, 122 100, 128 82 C 134 62, 138 42, 152 30 C 166 18, 188 24, 192 42 C 196 62, 200 82, 208 100 C 214 114, 224 122, 236 116 M 286 64 C 286 44, 270 32, 252 32 C 234 32, 220 46, 220 66 C 220 86, 234 100, 252 100 C 270 100, 286 88, 286 68 M 286 46 L 286 116"
+            fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="ds-nav">
+  <a class="ds-nav__brand" href="index.html"><svg viewBox="0 0 320 140" style="color: var(--fg);"><use href="#wa-lettermark"/></svg><b>wa.co</b><span>/ design system</span></a>
+  <div class="ds-nav__links">
+    <a href="01-brand.html">Brand</a><a href="02-logo.html">Logo</a><a href="03-color.html">Color</a>
+    <a href="04-typography.html">Type</a><a href="05-spacing.html">Space</a><a href="06-components.html">Components</a>
+    <a href="07-iconography.html">Icons</a><a href="08-patterns.html">Patterns</a><a href="09-applications.html">Apps</a>
+  </div>
+  <div class="ds-nav__right">
+    <button class="theme-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span class="theme-toggle__label">Dark</span></button>
+  </div>
+</nav>
+
+<main class="ds-main">
+  <div class="ds-container">
+
+    <div class="ds-pageheader">
+      <div class="ds-pageheader__eyebrow">03 / Color</div>
+      <h1>Del sol del <em>Huila</em> al verde de la <em>selva</em>.</h1>
+      <p class="ds-pageheader__lede">
+        La paleta Páez es la firma — amarillo sol y verde selva en un mismo gradiente. Tierra es la voz secundaria cálida,
+        Guayaba el acento vivo, y Agua el apoyo neutral. Todo calibrado para light y dark.
+      </p>
+    </div>
+
+    <!-- PALETTE HERO -->
+    <div class="palette-hero">
+      <div class="palette-hero__body">
+        <h2 class="palette-hero__title">Páez — <em>la firma</em></h2>
+        <p>Nombre tomado del río Páez, que nace en el Macizo y cruza el Huila de este a oeste.</p>
+        <p>La paleta va de <b style="color:var(--fg)">sol</b> (luz, energía, amanecer) a <b style="color:var(--fg)">selva</b> (profundidad, reposo, estructura). Úsala para acentuar estados activos, gradientes de marca y el lettermark.</p>
+      </div>
+      <div class="palette-hero__swatches">
+        <div class="palette-hero__swatch swatch--light" style="background:#f5efc4"><b>paez-100</b><span>#F5EFC4</span></div>
+        <div class="palette-hero__swatch swatch--light" style="background:#e0c94a"><b>paez-300</b><span>#E0C94A</span></div>
+        <div class="palette-hero__swatch swatch--light" style="background:#d4b628"><b>paez-400</b><span>#D4B628</span></div>
+        <div class="palette-hero__swatch swatch--light" style="background:#8a8a36; color:rgba(255,255,255,.9)"><b>paez-600</b><span>#8A8A36</span></div>
+        <div class="palette-hero__swatch swatch--dark" style="background:#3f6b40"><b>paez-800</b><span>#3F6B40</span></div>
+        <div class="palette-hero__swatch swatch--dark" style="background:#2b4a2e"><b>paez-900</b><span>#2B4A2E</span></div>
+      </div>
+    </div>
+
+    <!-- SCALES -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Escalas completas</h2>
+        <span class="ds-section__num">03.1</span>
+      </div>
+
+      <div class="scale">
+        <div class="scale__head">
+          <h3 class="scale__title">Páez <span class="muted" style="font-family:var(--font-mono); font-size: 12px">· principal</span></h3>
+          <p class="scale__desc">11 pasos · del sol al macizo</p>
+        </div>
+        <div class="scale__strip">
+          <div class="swatch swatch--light" style="background:#fbf8e8"><span class="swatch__tok">50</span><span class="swatch__hex">#FBF8E8</span></div>
+          <div class="swatch swatch--light" style="background:#f5efc4"><span class="swatch__tok">100</span><span class="swatch__hex">#F5EFC4</span></div>
+          <div class="swatch swatch--light" style="background:#ecde86"><span class="swatch__tok">200</span><span class="swatch__hex">#ECDE86</span></div>
+          <div class="swatch swatch--light" style="background:#e0c94a"><span class="swatch__tok">300</span><span class="swatch__hex">#E0C94A</span></div>
+          <div class="swatch swatch--light" style="background:#d4b628"><span class="swatch__tok">400</span><span class="swatch__hex">#D4B628</span></div>
+          <div class="swatch swatch--dark" style="background:#b8a02a"><span class="swatch__tok">500</span><span class="swatch__hex">#B8A02A</span></div>
+          <div class="swatch swatch--dark" style="background:#8a8a36"><span class="swatch__tok">600</span><span class="swatch__hex">#8A8A36</span></div>
+          <div class="swatch swatch--dark" style="background:#5f7a3c"><span class="swatch__tok">700</span><span class="swatch__hex">#5F7A3C</span></div>
+          <div class="swatch swatch--dark" style="background:#3f6b40"><span class="swatch__tok">800</span><span class="swatch__hex">#3F6B40</span></div>
+          <div class="swatch swatch--dark" style="background:#2b4a2e"><span class="swatch__tok">900</span><span class="swatch__hex">#2B4A2E</span></div>
+          <div class="swatch swatch--dark" style="background:#172a1a"><span class="swatch__tok">950</span><span class="swatch__hex">#172A1A</span></div>
+        </div>
+      </div>
+
+      <div class="scale">
+        <div class="scale__head">
+          <h3 class="scale__title">Tierra <span class="muted" style="font-family:var(--font-mono); font-size: 12px">· secundaria · cálida</span></h3>
+          <p class="scale__desc">Ocres del valle — Magdalena + Suaza</p>
+        </div>
+        <div class="scale__strip scale__strip--9">
+          <div class="swatch swatch--light" style="background:#faf6ef"><span class="swatch__tok">50</span><span class="swatch__hex">#FAF6EF</span></div>
+          <div class="swatch swatch--light" style="background:#f2e8d4"><span class="swatch__tok">100</span><span class="swatch__hex">#F2E8D4</span></div>
+          <div class="swatch swatch--light" style="background:#e5d1a8"><span class="swatch__tok">200</span><span class="swatch__hex">#E5D1A8</span></div>
+          <div class="swatch swatch--light" style="background:#d4b47a"><span class="swatch__tok">300</span><span class="swatch__hex">#D4B47A</span></div>
+          <div class="swatch swatch--light" style="background:#c29659"><span class="swatch__tok">400</span><span class="swatch__hex">#C29659</span></div>
+          <div class="swatch swatch--dark" style="background:#a87a42"><span class="swatch__tok">500</span><span class="swatch__hex">#A87A42</span></div>
+          <div class="swatch swatch--dark" style="background:#8a6035"><span class="swatch__tok">600</span><span class="swatch__hex">#8A6035</span></div>
+          <div class="swatch swatch--dark" style="background:#6b4a2c"><span class="swatch__tok">700</span><span class="swatch__hex">#6B4A2C</span></div>
+          <div class="swatch swatch--dark" style="background:#4a3521"><span class="swatch__tok">800</span><span class="swatch__hex">#4A3521</span></div>
+        </div>
+      </div>
+
+      <div class="scale">
+        <div class="scale__head">
+          <h3 class="scale__title">Guayaba <span class="muted" style="font-family:var(--font-mono); font-size: 12px">· acento</span></h3>
+          <p class="scale__desc">Naranja del guaco — úsala con moderación para CTAs y alertas cálidas</p>
+        </div>
+        <div class="scale__strip scale__strip--7">
+          <div class="swatch swatch--light" style="background:#fef1ea"><span class="swatch__tok">50</span><span class="swatch__hex">#FEF1EA</span></div>
+          <div class="swatch swatch--light" style="background:#fcd9c5"><span class="swatch__tok">100</span><span class="swatch__hex">#FCD9C5</span></div>
+          <div class="swatch swatch--light" style="background:#f8b287"><span class="swatch__tok">200</span><span class="swatch__hex">#F8B287</span></div>
+          <div class="swatch swatch--light" style="background:#f08a52"><span class="swatch__tok">300</span><span class="swatch__hex">#F08A52</span></div>
+          <div class="swatch swatch--dark" style="background:#e66a2e"><span class="swatch__tok">400</span><span class="swatch__hex">#E66A2E</span></div>
+          <div class="swatch swatch--dark" style="background:#c4511f"><span class="swatch__tok">500</span><span class="swatch__hex">#C4511F</span></div>
+          <div class="swatch swatch--dark" style="background:#9a3d18"><span class="swatch__tok">600</span><span class="swatch__hex">#9A3D18</span></div>
+        </div>
+      </div>
+
+      <div class="scale">
+        <div class="scale__head">
+          <h3 class="scale__title">Agua <span class="muted" style="font-family:var(--font-mono); font-size: 12px">· soporte · info</span></h3>
+          <p class="scale__desc">Azules del Magdalena para estados informativos</p>
+        </div>
+        <div class="scale__strip scale__strip--6">
+          <div class="swatch swatch--light" style="background:#edf5f4"><span class="swatch__tok">50</span><span class="swatch__hex">#EDF5F4</span></div>
+          <div class="swatch swatch--light" style="background:#cde3e1"><span class="swatch__tok">100</span><span class="swatch__hex">#CDE3E1</span></div>
+          <div class="swatch swatch--light" style="background:#9cc4c1"><span class="swatch__tok">200</span><span class="swatch__hex">#9CC4C1</span></div>
+          <div class="swatch swatch--dark" style="background:#6ba099"><span class="swatch__tok">300</span><span class="swatch__hex">#6BA099</span></div>
+          <div class="swatch swatch--dark" style="background:#4a837c"><span class="swatch__tok">400</span><span class="swatch__hex">#4A837C</span></div>
+          <div class="swatch swatch--dark" style="background:#346863"><span class="swatch__tok">500</span><span class="swatch__hex">#346863</span></div>
+        </div>
+      </div>
+
+      <div class="scale">
+        <div class="scale__head">
+          <h3 class="scale__title">Ink <span class="muted" style="font-family:var(--font-mono); font-size: 12px">· neutros warm</span></h3>
+          <p class="scale__desc">Grises con temperatura verdosa sutil — nunca neutros fríos</p>
+        </div>
+        <div class="scale__strip">
+          <div class="swatch swatch--light" style="background:#fdfcf7"><span class="swatch__tok">0</span><span class="swatch__hex">#FDFCF7</span></div>
+          <div class="swatch swatch--light" style="background:#f7f5ed"><span class="swatch__tok">50</span><span class="swatch__hex">#F7F5ED</span></div>
+          <div class="swatch swatch--light" style="background:#ecebe1"><span class="swatch__tok">100</span><span class="swatch__hex">#ECEBE1</span></div>
+          <div class="swatch swatch--light" style="background:#d9d7c9"><span class="swatch__tok">200</span><span class="swatch__hex">#D9D7C9</span></div>
+          <div class="swatch swatch--light" style="background:#b8b6a6"><span class="swatch__tok">300</span><span class="swatch__hex">#B8B6A6</span></div>
+          <div class="swatch swatch--dark" style="background:#8f8d7e"><span class="swatch__tok">400</span><span class="swatch__hex">#8F8D7E</span></div>
+          <div class="swatch swatch--dark" style="background:#6c6a5d"><span class="swatch__tok">500</span><span class="swatch__hex">#6C6A5D</span></div>
+          <div class="swatch swatch--dark" style="background:#4d4c42"><span class="swatch__tok">600</span><span class="swatch__hex">#4D4C42</span></div>
+          <div class="swatch swatch--dark" style="background:#36352e"><span class="swatch__tok">700</span><span class="swatch__hex">#36352E</span></div>
+          <div class="swatch swatch--dark" style="background:#23221d"><span class="swatch__tok">800</span><span class="swatch__hex">#23221D</span></div>
+          <div class="swatch swatch--dark" style="background:#14130f"><span class="swatch__tok">900</span><span class="swatch__hex">#14130F</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRADIENTS -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Gradientes de marca</h2>
+        <span class="ds-section__num">03.2</span>
+      </div>
+      <p class="ds-section__desc">El gradiente Páez es el único gradiente aprobado para el lettermark. Los otros son para headers, fondos de diapositiva o estados destacados.</p>
+      <div class="gradients">
+        <div class="gradient gradient--paez"><b>Páez — agua · selva</b>#E2C728 → #5F8A52</div>
+        <div class="gradient gradient--tierra"><b>Tierra — valle</b>#D4B47A → #6B4A2C</div>
+        <div class="gradient gradient--atardecer"><b>Atardecer — sol · guaco</b>#E2C728 → #E66A2E</div>
+      </div>
+    </section>
+
+    <!-- SEMANTIC TOKENS -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Tokens semánticos</h2>
+        <span class="ds-section__num">03.3</span>
+      </div>
+      <p class="ds-section__desc">Nunca referencies colores crudos en componentes — usa los tokens semánticos para que light/dark "just work".</p>
+      <div class="tokens">
+        <div class="token"><span class="token__chip" style="background:#fdfcf7"></span><div><div class="token__name">--bg</div><div class="token__usage">Fondo principal de la página</div></div><span class="token__val">ink-0</span></div>
+        <div class="token"><span class="token__chip" style="background:#ffffff"></span><div><div class="token__name">--surface</div><div class="token__usage">Cards, modales, elementos elevados</div></div><span class="token__val">white</span></div>
+        <div class="token"><span class="token__chip" style="background:#14130f"></span><div><div class="token__name">--fg</div><div class="token__usage">Texto principal</div></div><span class="token__val">ink-900</span></div>
+        <div class="token"><span class="token__chip" style="background:#4d4c42"></span><div><div class="token__name">--fg-muted</div><div class="token__usage">Texto secundario, descripciones</div></div><span class="token__val">ink-600</span></div>
+        <div class="token"><span class="token__chip" style="background:#3f6b40"></span><div><div class="token__name">--brand</div><div class="token__usage">Color principal de marca (verde)</div></div><span class="token__val">paez-800</span></div>
+        <div class="token"><span class="token__chip" style="background:#d4b628"></span><div><div class="token__name">--brand-alt</div><div class="token__usage">Acento amarillo del gradiente</div></div><span class="token__val">paez-400</span></div>
+        <div class="token"><span class="token__chip" style="background:#e66a2e"></span><div><div class="token__name">--accent</div><div class="token__usage">CTAs secundarios · énfasis</div></div><span class="token__val">guayaba-400</span></div>
+        <div class="token"><span class="token__chip" style="background:#4a837c"></span><div><div class="token__name">--info</div><div class="token__usage">Estados informativos</div></div><span class="token__val">agua-400</span></div>
+        <div class="token"><span class="token__chip" style="background:#5f7a3c"></span><div><div class="token__name">--success</div><div class="token__usage">Estados de éxito</div></div><span class="token__val">paez-700</span></div>
+        <div class="token"><span class="token__chip" style="background:#d4b628"></span><div><div class="token__name">--warning</div><div class="token__usage">Advertencias suaves</div></div><span class="token__val">paez-400</span></div>
+        <div class="token"><span class="token__chip" style="background:#c4511f"></span><div><div class="token__name">--danger</div><div class="token__usage">Errores, acciones destructivas</div></div><span class="token__val">guayaba-500</span></div>
+        <div class="token"><span class="token__chip" style="background:#d9d7c9"></span><div><div class="token__name">--border</div><div class="token__usage">Bordes por defecto</div></div><span class="token__val">ink-200</span></div>
+      </div>
+    </section>
+
+    <!-- A11Y -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Combinaciones accesibles</h2>
+        <span class="ds-section__num">03.4</span>
+      </div>
+      <p class="ds-section__desc">Combinaciones validadas para WCAG AA en texto regular (≥ 4.5:1) o AAA donde es posible.</p>
+      <div class="a11y">
+        <div class="a11y__cell a11y__cell--on-cream" style="color:#14130f">
+          <h4>Texto sobre papel</h4>
+          <div class="a11y__ratio"><span>ink-900 / ink-0</span><span class="pass">18.1:1 AAA</span></div>
+        </div>
+        <div class="a11y__cell a11y__cell--on-selva">
+          <h4>Claro sobre selva</h4>
+          <div class="a11y__ratio"><span>paez-50 / paez-800</span><span class="pass">9.4:1 AAA</span></div>
+        </div>
+        <div class="a11y__cell a11y__cell--on-sol">
+          <h4>Ink sobre sol</h4>
+          <div class="a11y__ratio"><span>ink-900 / paez-400</span><span class="pass">11.2:1 AAA</span></div>
+        </div>
+        <div class="a11y__cell a11y__cell--on-ink">
+          <h4>Sol sobre ink</h4>
+          <div class="a11y__ratio"><span>paez-100 / ink-900</span><span class="pass">15.3:1 AAA</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODE COMPARE -->
+    <section class="ds-section">
+      <div class="ds-section__head">
+        <h2 class="ds-section__title">Light & Dark</h2>
+        <span class="ds-section__num">03.5</span>
+      </div>
+      <p class="ds-section__desc">El sistema está calibrado para ambos modos: en claro, el brand es verde selva sobre papel cálido; en oscuro, el amarillo se vuelve el tono vivo dominante.</p>
+      <div class="mode-compare">
+        <div class="mode-compare__panel mode-compare__panel--light">
+          <div class="label"><span>Light mode</span><span style="opacity:.5">papel · día</span></div>
+          <div class="body">
+            <h5>Automatización con alma, para empresas del Huila.</h5>
+            <p>Chatbots en WhatsApp, agentes IA entrenados, consultoría de procesos. Trabajo que fluye solo, 24/7.</p>
+            <span class="btn">Empezar →</span>
+          </div>
+        </div>
+        <div class="mode-compare__panel mode-compare__panel--dark">
+          <div class="label"><span>Dark mode</span><span style="opacity:.5">noche · profundo</span></div>
+          <div class="body">
+            <h5>Automatización con alma, para empresas del Huila.</h5>
+            <p>Chatbots en WhatsApp, agentes IA entrenados, consultoría de procesos. Trabajo que fluye solo, 24/7.</p>
+            <span class="btn">Empezar →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="ds-footer">
+  <span><a href="02-logo.html">← Logo</a></span>
+  <span>03 · Color</span>
+  <span><a href="04-typography.html">Typography →</a></span>
+</footer>
+
+</body>
+</html>
