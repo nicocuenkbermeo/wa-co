@@ -153,7 +153,7 @@ export default function Proceso() {
 
         <div className="relative mx-auto w-full max-w-[1400px] px-5 pb-10 md:px-10">
           <div className="flex items-center gap-4">
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em]" style={{ color: `${T.ink}66` }}>
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em]" style={{ color: `${T.ink}99` }}>
               Scroll horizontal
             </span>
             <div className="relative h-[2px] flex-1 overflow-hidden" style={{ background: `${T.ink}1a` }}>
@@ -167,7 +167,7 @@ export default function Proceso() {
                   key={s.code}
                   aria-hidden
                   className="font-mono text-[10px]"
-                  style={{ color: `${T.ink}55` }}
+                  style={{ color: `${T.ink}99` }}
                 >
                   {s.code}
                 </span>

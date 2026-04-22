@@ -222,7 +222,7 @@ function CaseCard({ data, onOpen }: { data: Case; onOpen: () => void }) {
           >
             {data.name}
           </motion.h3>
-          <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.22em]" style={{ color: `${T.cream}88` }}>
+          <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.22em]" style={{ color: `${T.cream}aa` }}>
             {data.tag}
           </div>
         </div>
@@ -250,7 +250,7 @@ function CaseCard({ data, onOpen }: { data: Case; onOpen: () => void }) {
           <span>→ {data.result}</span>
           <span
             className="rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.22em] transition-all group-hover:bg-[#FFEFBF] group-hover:text-[#0a0a08]"
-            style={{ border: `1px solid ${T.cream}44`, color: `${T.cream}88` }}
+            style={{ border: `1px solid ${T.cream}44`, color: `${T.cream}aa` }}
           >
             Ver caso
           </span>

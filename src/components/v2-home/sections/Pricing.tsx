@@ -202,7 +202,7 @@ function PlanCard({ plan, currency }: { plan: Plan; currency: "USD" | "COP" }) {
           </span>
           <span
             className="text-[10px] uppercase tracking-[0.22em]"
-            style={{ color: isHi ? `${T.cream}88` : `${T.ink}66` }}
+            style={{ color: isHi ? `${T.cream}aa` : `${T.ink}99` }}
           >
             {plan.tag}
           </span>

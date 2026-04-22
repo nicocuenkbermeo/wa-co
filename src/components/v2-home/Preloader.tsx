@@ -102,7 +102,7 @@ export default function Preloader() {
 
             <motion.div
               className="font-mono text-[10px] uppercase tracking-[0.32em]"
-              style={{ color: `${T.ink}66` }}
+              style={{ color: `${T.ink}99` }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}

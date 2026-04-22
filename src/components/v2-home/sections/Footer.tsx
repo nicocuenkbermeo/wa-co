@@ -95,7 +95,7 @@ export default function Footer() {
 
         <div
           className="mt-14 flex flex-col justify-between gap-3 pt-6 font-mono text-[11px] sm:flex-row sm:items-center"
-          style={{ borderTop: `1px solid ${T.ink}14`, color: `${T.ink}66` }}
+          style={{ borderTop: `1px solid ${T.ink}14`, color: `${T.ink}99` }}
         >
           <span>© 2026 — wa.co agency · agency-wa.co</span>
           <span>hecho en neiva · corre en todas partes</span>

@@ -6,6 +6,10 @@ import {
   Unbounded,
   Fraunces,
 } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import JsonLd from "@/components/v2-home/lib/JsonLd";
+import MetaPixel from "@/components/v2-home/lib/MetaPixel";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -92,7 +96,11 @@ export default function RootLayout({
       className={`${instrumentSans.variable} ${playfairDisplay.variable} ${jetbrainsMono.variable} ${unbounded.variable} ${fraunces.variable} antialiased`}
     >
       <body className="min-h-screen bg-background text-foreground">
+        <JsonLd />
+        <MetaPixel />
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -95,7 +95,7 @@ export default function Testimonios() {
             ))}
             <div className="shrink-0" aria-hidden style={{ width: 1 }} />
           </div>
-          <div className="mt-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.28em]" style={{ color: `${T.ink}55` }}>
+          <div className="mt-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.28em]" style={{ color: `${T.ink}99` }}>
             <span>Desliza →</span>
             <span className="h-[1px] flex-1" style={{ background: `${T.ink}22` }} aria-hidden />
             <span>{TESTIMONIOS.length} voces</span>
@@ -160,7 +160,7 @@ function PolaroidCard({ quote, author, role, rotation, pin }: Testimonio) {
             {role}
           </div>
         </div>
-        <div className="font-mono text-[10px] tracking-[0.18em]" style={{ color: `${T.ink}55` }}>
+        <div className="font-mono text-[10px] tracking-[0.18em]" style={{ color: `${T.ink}99` }}>
           verificado
         </div>
       </div>

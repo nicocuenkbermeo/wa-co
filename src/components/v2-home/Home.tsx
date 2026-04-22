@@ -4,6 +4,7 @@ import MarqueeTicker from "./sections/MarqueeTicker";
 import Cifras from "./sections/Cifras";
 import Capacidades from "./sections/Capacidades";
 import WordmarkMonumental from "./sections/WordmarkMonumental";
+import Variaciones from "./sections/Variaciones";
 import Proceso from "./sections/Proceso";
 import Casos from "./sections/Casos";
 import Testimonios from "./sections/Testimonios";
@@ -41,6 +42,7 @@ export default function Home() {
         <Cifras />
         <Capacidades />
         <WordmarkMonumental />
+        <Variaciones />
         <Proceso />
         <Casos />
         <Testimonios />

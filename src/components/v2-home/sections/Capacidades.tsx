@@ -148,7 +148,7 @@ function CapacityCard({ code, title, detail, region, accent, wide, dark }: Capac
             </span>
             <span
               className="text-[10px] uppercase tracking-[0.22em]"
-              style={{ color: dark ? `${T.cream}88` : `${T.ink}66` }}
+              style={{ color: dark ? `${T.cream}aa` : `${T.ink}99` }}
             >
               {region}
             </span>

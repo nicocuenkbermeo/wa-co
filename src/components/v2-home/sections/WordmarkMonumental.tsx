@@ -26,7 +26,7 @@ export default function WordmarkMonumental() {
             · Identidad
           </span>
           <span className="h-[1px] flex-1" style={{ background: `${T.ink}22` }} aria-hidden />
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em]" style={{ color: `${T.ink}66` }}>
+          <span className="font-mono text-[10px] uppercase tracking-[0.22em]" style={{ color: `${T.ink}99` }}>
             Lettermark · wa
           </span>
         </div>
