@@ -1,6 +1,6 @@
 "use client";
 
-import Wordmark from "../icons/Wordmark";
+import AnimatedLettermark from "../icons/AnimatedLettermark";
 import HuilaMap from "../icons/HuilaMap";
 import Reveal from "../lib/Reveal";
 import { T, EMAIL } from "../tokens";
@@ -30,7 +30,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-24">
         <div className="grid gap-10 md:grid-cols-12">
           <Reveal className="md:col-span-5">
-            <Wordmark size={48} />
+            <AnimatedLettermark height={56} label={true} drawOnMount={false} />
             <p
               className="mt-6 text-[14px] leading-[1.6]"
               style={{ color: `${T.ink}aa`, fontFamily: "var(--font-fraunces)", fontStyle: "italic" }}

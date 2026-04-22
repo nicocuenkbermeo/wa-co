@@ -1,20 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import MagneticButton from "../lib/MagneticButton";
 import SplitText from "../lib/SplitText";
+import AnimatedLettermark from "../icons/AnimatedLettermark";
+import { Heliconia, MonsteraLeaf, Anturio, CoffeeBranch } from "../icons/Botanicals";
 import { T, WHATSAPP_LINK } from "../tokens";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden" style={{ background: T.cream }}>
+      {/* fondo — sol respirando + capas botánicas */}
+      <HeroBackdrop />
+
       <div className="relative mx-auto max-w-[1400px] px-5 pb-24 pt-36 md:px-10 md:pb-40 md:pt-44">
-        <HeroIllustration />
+        {/* Logo animado protagonista */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mb-10"
+        >
+          <AnimatedLettermark height={78} label={false} tone="dark" />
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
           className="relative mb-8 flex items-center gap-3"
         >
           <span className="inline-block h-[1px] w-10" style={{ background: T.ink, opacity: 0.4 }} />
@@ -22,7 +36,7 @@ export default function Hero() {
             className="font-mono text-[11px] uppercase tracking-[0.3em]"
             style={{ color: `${T.ink}aa` }}
           >
-            Agencia IA · Huila · LATAM
+            Agencia IA · Nace en el Huila · Corre en LATAM
           </span>
         </motion.div>
 
@@ -62,7 +76,7 @@ export default function Hero() {
               textWrap: "pretty",
             }}
           >
-            Construimos chatbots, agentes IA y flujos que trabajan por ti.
+            Construimos chatbots, agentes IA y flujos n8n que trabajan por ti.
             Desde el <em className="italic">Huila</em>, para PyMEs de Colombia y LATAM
             que quieren que su negocio corra — de día, de noche, siempre.
           </motion.p>
@@ -94,14 +108,62 @@ export default function Hero() {
             </MagneticButton>
           </motion.div>
         </div>
+
+        {/* strip editorial inferior con foto real */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.95, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mt-20 grid items-center gap-8 md:mt-28 md:grid-cols-[1fr_auto_1fr]"
+        >
+          <div className="font-mono text-[11px] uppercase tracking-[0.3em]" style={{ color: `${T.ink}88` }}>
+            · Río Magdalena ·
+            <br />
+            Nace en el Macizo Colombiano
+          </div>
+          <div
+            className="relative overflow-hidden"
+            style={{
+              width: "min(560px, 100%)",
+              height: 260,
+              borderRadius: 6,
+              border: `1.5px solid ${T.ink}22`,
+            }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1558443957-d6a905fb6364?w=1200&q=80&auto=format&fit=crop"
+              alt="Montañas del Huila"
+              fill
+              sizes="(max-width: 768px) 100vw, 560px"
+              style={{ objectFit: "cover", filter: "saturate(0.9) contrast(1.02)" }}
+              priority
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background: `linear-gradient(180deg, transparent 40%, ${T.cream}44 100%)`,
+              }}
+            />
+          </div>
+          <div
+            className="font-mono text-[11px] uppercase tracking-[0.3em] md:text-right"
+            style={{ color: `${T.ink}88` }}
+          >
+            · fluye 24/7 ·
+            <br />
+            como tus automatizaciones
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function HeroIllustration() {
+function HeroBackdrop() {
   return (
     <>
+      {/* sol */}
       <motion.div
         aria-hidden
         className="absolute rounded-full"
@@ -116,20 +178,21 @@ function HeroIllustration() {
           background: `radial-gradient(circle at 35% 35%, ${T.yellow} 0%, ${T.orange} 70%, ${T.fire} 100%)`,
           zIndex: 0,
           animation: "sun-breathe 9s ease-in-out infinite",
-          boxShadow: `0 0 80px ${T.yellow}55`,
+          boxShadow: `0 0 120px ${T.yellow}55`,
         }}
       />
 
+      {/* río cyan trazado */}
       <svg
         aria-hidden
         className="pointer-events-none absolute"
-        style={{ left: "-5%", bottom: "-10%", width: "110%", height: "70%", zIndex: 0, opacity: 0.92 }}
+        style={{ left: "-5%", bottom: "-10%", width: "110%", height: "70%", zIndex: 0, opacity: 0.85 }}
         viewBox="0 0 1400 600"
         preserveAspectRatio="none"
       >
         <motion.path
           initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 0.55 }}
+          animate={{ pathLength: 1, opacity: 0.5 }}
           transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
           d="M 0 400 C 200 300, 300 500, 500 420 C 700 340, 800 540, 1000 460 C 1200 380, 1300 500, 1400 440"
           stroke={T.cyan}
@@ -150,64 +213,19 @@ function HeroIllustration() {
         />
       </svg>
 
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute hidden md:block"
-        style={{ left: "2%", bottom: "6%", width: 180, height: 180, zIndex: 0 }}
-        viewBox="0 0 200 200"
-      >
-        <path
-          d="M40 180 Q 60 120, 100 100 Q 140 80, 170 30"
-          stroke={T.selva}
-          strokeWidth="3"
-          fill="none"
-          strokeLinecap="round"
-        />
-        {[
-          { cx: 60, cy: 150, fill: T.fire, r: 14 },
-          { cx: 90, cy: 120, fill: T.pitaya, r: 11 },
-          { cx: 120, cy: 95, fill: T.orange, r: 16 },
-          { cx: 145, cy: 60, fill: T.yellow, r: 13 },
-        ].map((c, i) => (
-          <motion.g
-            key={i}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.9 + i * 0.1, ease: "backOut" }}
-            style={{ transformOrigin: `${c.cx}px ${c.cy}px` }}
-          >
-            <circle cx={c.cx} cy={c.cy} r={c.r} fill={c.fill} />
-            <circle cx={c.cx} cy={c.cy} r={c.r * 0.4} fill={T.ink} opacity="0.2" />
-          </motion.g>
-        ))}
-      </svg>
-
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute hidden lg:block"
-        style={{ right: "3%", top: "34%", width: 220, height: 220, zIndex: 0, opacity: 0.9 }}
-        viewBox="0 0 200 200"
-      >
-        <motion.path
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
-          d="M 20 100 Q 50 40, 100 100 T 180 100"
-          stroke={T.fire}
-          strokeWidth="14"
-          fill="none"
-          strokeLinecap="round"
-          opacity="0.82"
-        />
-        <path
-          d="M 20 100 Q 50 40, 100 100 T 180 100"
-          stroke={T.ink}
-          strokeWidth="2"
-          fill="none"
-          strokeLinecap="round"
-          strokeDasharray="4 8"
-        />
-      </svg>
+      {/* plantas laterales */}
+      <div className="pointer-events-none absolute hidden md:block" style={{ left: "-2%", bottom: "2%", zIndex: 0 }}>
+        <Heliconia size={260} />
+      </div>
+      <div className="pointer-events-none absolute hidden lg:block" style={{ left: "-3%", top: "28%", zIndex: 0, opacity: 0.9 }}>
+        <MonsteraLeaf size={240} rotate={-28} />
+      </div>
+      <div className="pointer-events-none absolute hidden md:block" style={{ right: "-2%", bottom: "-4%", zIndex: 0 }}>
+        <CoffeeBranch size={320} />
+      </div>
+      <div className="pointer-events-none absolute hidden lg:block" style={{ right: "6%", top: "18%", zIndex: 0 }}>
+        <Anturio size={140} />
+      </div>
 
       <style>{`
         @keyframes sun-breathe {

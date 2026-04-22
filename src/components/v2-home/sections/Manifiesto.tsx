@@ -2,6 +2,7 @@
 
 import Reveal from "../lib/Reveal";
 import SplitText from "../lib/SplitText";
+import { MonsteraLeaf, VineNervure } from "../icons/Botanicals";
 import { T } from "../tokens";
 
 const PRINCIPLES = [
@@ -30,7 +31,17 @@ const PRINCIPLES = [
 export default function Manifiesto() {
   return (
     <section id="proyecto" className="relative overflow-hidden py-24 md:py-32" style={{ background: T.creamDeep }}>
-      <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+      <div className="pointer-events-none absolute -right-20 top-0 hidden md:block" style={{ zIndex: 0, opacity: 0.6 }}>
+        <MonsteraLeaf size={320} rotate={40} />
+      </div>
+      <div className="pointer-events-none absolute -left-16 bottom-6 hidden md:block" style={{ zIndex: 0, opacity: 0.7 }}>
+        <MonsteraLeaf size={260} rotate={-24} flipX />
+      </div>
+      <div className="pointer-events-none absolute bottom-20 left-[42%] hidden lg:block" style={{ zIndex: 0, opacity: 0.6 }}>
+        <VineNervure width={420} />
+      </div>
+
+      <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="mb-20 grid gap-8 md:grid-cols-12">
           <Reveal className="md:col-span-4">
             <p className="mb-4 text-[11px] uppercase tracking-[0.3em]" style={{ color: T.fire, fontWeight: 500 }}>

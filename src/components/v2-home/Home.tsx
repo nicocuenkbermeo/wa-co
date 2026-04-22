@@ -7,6 +7,7 @@ import WordmarkMonumental from "./sections/WordmarkMonumental";
 import Variaciones from "./sections/Variaciones";
 import Proceso from "./sections/Proceso";
 import Casos from "./sections/Casos";
+import GaleriaHuila from "./sections/GaleriaHuila";
 import Testimonios from "./sections/Testimonios";
 import Pricing from "./sections/Pricing";
 import Manifiesto from "./sections/Manifiesto";
@@ -47,6 +48,7 @@ export default function Home() {
         <Variaciones />
         <Proceso />
         <Casos />
+        <GaleriaHuila />
         <Testimonios />
         <Pricing />
         <Manifiesto />

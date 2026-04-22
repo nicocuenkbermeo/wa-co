@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import SplitText from "../lib/SplitText";
 import MagneticButton from "../lib/MagneticButton";
+import AnimatedLettermark from "../icons/AnimatedLettermark";
+import { PalmaDeCera, Heliconia, Anturio } from "../icons/Botanicals";
 import { T, WHATSAPP_LINK, CALENDLY_LINK } from "../tokens";
 
 export default function CtaFinal() {
@@ -12,6 +14,16 @@ export default function CtaFinal() {
       className="relative overflow-hidden py-32 md:py-48"
       style={{ background: T.yellow }}
     >
+      <div className="pointer-events-none absolute -left-10 bottom-0 hidden md:block" style={{ zIndex: 0, opacity: 0.9 }}>
+        <PalmaDeCera size={260} color={T.selva} />
+      </div>
+      <div className="pointer-events-none absolute right-8 bottom-10 hidden lg:block" style={{ zIndex: 0 }}>
+        <Heliconia size={180} color={T.fire} accent={T.orange} leaf={T.selva} flipX />
+      </div>
+      <div className="pointer-events-none absolute left-[32%] top-20 hidden lg:block" style={{ zIndex: 0 }}>
+        <Anturio size={110} />
+      </div>
+
       <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
         <OrbitalRings />
 
@@ -77,6 +89,22 @@ export default function CtaFinal() {
           >
             Agendar 20 min
           </MagneticButton>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="relative mt-20 flex items-end gap-6 border-t pt-8 md:mt-28"
+          style={{ borderColor: `${T.ink}22` }}
+        >
+          <AnimatedLettermark height={64} tone="dark" label={false} drawOnMount={false} />
+          <div className="font-mono text-[11px] uppercase tracking-[0.28em]" style={{ color: `${T.ink}aa` }}>
+            agency-wa.co
+            <br />
+            las letras salen del agua.
+          </div>
         </motion.div>
       </div>
     </section>

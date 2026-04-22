@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Wordmark from "../icons/Wordmark";
+import AnimatedLettermark from "../icons/AnimatedLettermark";
 import MagneticButton from "../lib/MagneticButton";
 import { T, WHATSAPP_LINK } from "../tokens";
 
@@ -40,7 +40,7 @@ export default function Navbar() {
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 md:px-10" style={{ paddingTop: scrolled ? 14 : 20, paddingBottom: scrolled ? 14 : 20, transition: "padding 300ms ease" }}>
         <Link href="/" className="flex items-center" aria-label="Inicio wa.co">
-          <Wordmark size={scrolled ? 34 : 40} />
+          <AnimatedLettermark height={scrolled ? 30 : 38} label={true} drawOnMount={false} breathe={true} />
         </Link>
 
         <div className="hidden items-center gap-10 md:flex">
