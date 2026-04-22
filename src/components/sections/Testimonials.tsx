@@ -5,24 +5,24 @@ import { motion } from "framer-motion";
 const testimonials = [
   {
     quote:
-      "Responde cotizaciones en menos de 10 segundos a cualquier hora. La dueña recuperó 3 horas al día y dejó de vivir pegada al WhatsApp.",
-    client: "Dotación empresarial B2B",
+      "Responde cotizaciones en menos de diez segundos a cualquier hora. Recuperé tres horas al día y dejé de vivir pegada al WhatsApp.",
+    client: "Dueña — Dotación empresarial B2B",
     location: "Huila · Colombia",
     metric: "−80%",
     metricLabel: "tiempo manual",
   },
   {
     quote:
-      "Pipeline de leads automatizado desde cero. Formulario → CRM → seguimiento sin intervención humana. Los leads no se pierden más.",
-    client: "Real estate LATAM",
+      "Pipeline de leads automatizado desde cero. Formulario, CRM, seguimiento. Los leads dejaron de perderse en correos sin responder.",
+    client: "CEO — Real Estate LATAM",
     location: "Internacional",
     metric: "100%",
     metricLabel: "trazabilidad",
   },
   {
     quote:
-      "Contenido de TikTok automatizado de punta a punta — data real-time → script IA → imagen → listo para publicar.",
-    client: "SaaS pronósticos deportivos",
+      "Contenido de TikTok automatizado de punta a punta. Data real-time, script IA, imagen, publicación. Volví a pensar en estrategia.",
+    client: "Fundador — SaaS deportivo",
     location: "LATAM",
     metric: "E2E",
     metricLabel: "pipeline",
@@ -38,91 +38,116 @@ const industries = [
   "Asesorías legales",
   "Restaurantes",
   "Inmobiliarias",
+  "Agencias de viajes",
+  "Academias",
 ];
 
 export default function Testimonials() {
   return (
-    <section id="testimonios" className="py-24 md:py-32 px-6 md:px-8 bg-[var(--bg-secondary)] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative">
+    <section
+      id="testimonios"
+      className="relative py-32 md:py-48 bg-[var(--paez-950)] overflow-hidden"
+    >
+      <div className="mx-auto max-w-7xl px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl mb-16 pb-6 border-b border-[var(--border-subtle)]"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-20 md:mb-28"
         >
-          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-[var(--paez-300)] mb-4">
-            · Resultados
-          </p>
-          <h2 className="font-display text-[clamp(34px,4.6vw,60px)] leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)]">
-            Métricas reales, <em className="italic text-[var(--paez-300)]">no promesas</em>.
+          <div className="flex items-center gap-6 mb-10">
+            <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-[var(--paez-300)]">
+              05 — Testimonios
+            </span>
+            <span className="flex-1 h-px bg-[var(--paez-800)]/40" />
+          </div>
+
+          <h2
+            className="font-display font-normal text-[var(--text-primary)] leading-[0.95] tracking-[-0.025em] max-w-[18ch]"
+            style={{ fontSize: "clamp(44px, 6.5vw, 110px)", textWrap: "balance" }}
+          >
+            Métricas reales,
+            <br />
+            <em className="italic text-[var(--paez-300)]">no promesas</em>.
           </h2>
-          <p className="mt-6 text-lg text-[var(--text-secondary)] leading-[1.6]">
-            Casos en producción. Identidades bajo NDA, métricas y stack verificables.
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="space-y-20 md:space-y-28">
           {testimonials.map((t, i) => (
-            <motion.div
+            <motion.figure
               key={t.client}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="relative rounded-2xl p-8 bg-[var(--bg-primary)] border border-[var(--border)] transition-colors hover:border-[var(--paez-700)]/50"
+              transition={{
+                duration: 0.9,
+                delay: i * 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="grid md:grid-cols-[auto_1fr] gap-10 md:gap-20 items-start border-t border-[var(--paez-800)]/40 pt-12"
             >
-              {/* Big quote glyph */}
-              <span className="font-display text-7xl leading-none italic text-[var(--paez-800)]/40 absolute top-4 right-6 select-none">
-                &ldquo;
-              </span>
-
-              {/* Metric chip */}
-              <div className="flex items-baseline gap-2 mb-6">
-                <span className="font-display text-4xl italic text-[var(--paez-300)] leading-none">
+              <div className="md:sticky md:top-32">
+                <span
+                  className="font-display italic text-[var(--paez-300)] leading-none block tracking-[-0.02em]"
+                  style={{ fontSize: "clamp(72px, 10vw, 160px)" }}
+                >
                   {t.metric}
                 </span>
-                <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-[var(--text-muted)]">
+                <p className="mt-3 font-mono text-[11px] tracking-[0.2em] uppercase text-[var(--text-faint)]">
                   {t.metricLabel}
-                </span>
-              </div>
-
-              <p className="text-[15px] leading-[1.65] text-[var(--text-primary)] mb-6">
-                {t.quote}
-              </p>
-
-              <div className="pt-4 border-t border-[var(--border-subtle)]">
-                <p className="text-sm text-[var(--text-primary)] font-medium">{t.client}</p>
-                <p className="font-mono text-[11px] tracking-[0.1em] text-[var(--text-faint)] mt-1">
-                  {t.location}
                 </p>
               </div>
-            </motion.div>
+
+              <div>
+                <span
+                  className="font-display italic text-[var(--paez-400)]/30 leading-none block"
+                  style={{ fontSize: "clamp(72px, 8vw, 140px)" }}
+                  aria-hidden
+                >
+                  &ldquo;
+                </span>
+                <blockquote
+                  className="font-display font-normal italic text-[var(--text-primary)] leading-[1.15] tracking-[-0.01em] mt-[-30px]"
+                  style={{ fontSize: "clamp(26px, 3vw, 44px)", textWrap: "balance" }}
+                >
+                  {t.quote}
+                </blockquote>
+                <figcaption className="mt-10 flex items-center gap-4 flex-wrap">
+                  <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-[var(--paez-300)]">
+                    {t.client}
+                  </span>
+                  <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-[var(--text-faint)]">
+                    — {t.location}
+                  </span>
+                </figcaption>
+              </div>
+            </motion.figure>
           ))}
         </div>
 
-        {/* Marquee */}
+        {/* Marquee de industrias */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-20 overflow-hidden"
+          transition={{ duration: 1, delay: 0.3 }}
+          className="mt-32 md:mt-40 overflow-hidden"
         >
-          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-center mb-6 text-[var(--text-muted)]">
+          <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-center mb-10 text-[var(--text-faint)]">
             · Industrias donde replicamos el modelo ·
           </p>
           <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-32 z-10 bg-gradient-to-r from-[var(--bg-secondary)] to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-32 z-10 bg-gradient-to-l from-[var(--bg-secondary)] to-transparent" />
-
-            <div className="marquee-track flex gap-3">
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-32 z-10 bg-gradient-to-r from-[var(--paez-950)] to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-32 z-10 bg-gradient-to-l from-[var(--paez-950)] to-transparent" />
+            <div className="marquee-track flex gap-14">
               {[...industries, ...industries].map((name, i) => (
                 <span
                   key={`${name}-${i}`}
-                  className="shrink-0 rounded-full px-5 py-2 text-sm font-medium whitespace-nowrap bg-[var(--bg-primary)] border border-[var(--border)] text-[var(--text-secondary)]"
+                  className="shrink-0 font-display italic text-3xl md:text-5xl text-[var(--text-secondary)] whitespace-nowrap"
                 >
                   {name}
+                  <span className="text-[var(--paez-400)] ml-14">·</span>
                 </span>
               ))}
             </div>
@@ -136,7 +161,7 @@ export default function Testimonials() {
           100% { transform: translateX(-50%); }
         }
         .marquee-track {
-          animation: marqueeScroll 25s linear infinite;
+          animation: marqueeScroll 40s linear infinite;
           width: max-content;
         }
       `}</style>

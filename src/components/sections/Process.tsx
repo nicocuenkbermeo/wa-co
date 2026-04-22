@@ -1,99 +1,144 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, Wrench, Zap, TrendingUp } from "lucide-react";
 
 const steps = [
   {
-    number: "01",
+    num: "i.",
     title: "Diagnóstico",
-    desc: "Mapeamos tus procesos repetitivos y encontramos dónde la IA da más ROI.",
-    icon: Search,
+    verb: "Escuchar",
+    body: "Mapeamos tus procesos repetitivos. Identificamos dónde la IA da más ROI. Escribimos un plan antes de tocar código.",
+    deliver: "Roadmap + estimado",
+    duration: "3 días",
   },
   {
-    number: "02",
+    num: "ii.",
     title: "Construcción",
-    desc: "Armamos el flujo — chatbot, agente o automatización — conectado a tus herramientas.",
-    icon: Wrench,
+    verb: "Construir",
+    body: "Armamos el flujo conectado a tus herramientas. Pruebas en staging, tú ves el progreso en vivo en n8n y Sheets.",
+    deliver: "Sistema funcional",
+    duration: "5–10 días",
   },
   {
-    number: "03",
+    num: "iii.",
     title: "Lanzamiento",
-    desc: "Pruebas, ajustes y puesta en producción. Tu equipo lo usa desde el día 1.",
-    icon: Zap,
+    verb: "Encender",
+    body: "Puesta en producción. Capacitación a tu equipo. Primeros usuarios reales pasan por el sistema y calibramos juntos.",
+    deliver: "Go-live supervisado",
+    duration: "2 días",
   },
   {
-    number: "04",
-    title: "Mejora continua",
-    desc: "Mensualmente optimizamos con datos reales. El sistema aprende y corre mejor.",
-    icon: TrendingUp,
+    num: "iv.",
+    title: "Corriente",
+    verb: "Cuidar",
+    body: "Mes a mes optimizamos con datos reales. El sistema aprende. Tu negocio gana consistencia. Nosotros cuidamos el cauce.",
+    deliver: "Mejora continua",
+    duration: "Mensual",
   },
 ];
 
 export default function Process() {
   return (
-    <section id="proceso" className="relative py-24 md:py-32 bg-[var(--bg-secondary)]">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section
+      id="proceso"
+      className="relative py-32 md:py-48 bg-[var(--paez-950)] overflow-hidden"
+    >
+      {/* Vertical river SVG */}
+      <svg
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 bottom-0 -translate-x-1/2 h-full w-[600px] opacity-[0.12] hidden lg:block"
+        viewBox="0 0 600 1200"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <path
+          d="M 300 0 C 200 200, 400 400, 300 600 S 200 1000, 300 1200"
+          fill="none"
+          stroke="var(--paez-300)"
+          strokeWidth="1"
+          strokeDasharray="2 6"
+        />
+      </svg>
+
+      <div className="mx-auto max-w-7xl px-6 md:px-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-20 md:mb-28"
         >
-          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-[var(--paez-300)] mb-4">
-            · Proceso
-          </p>
-          <h2 className="font-display text-[clamp(34px,4.6vw,60px)] leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)]">
-            De idea a <em className="italic text-[var(--paez-300)]">sistema corriendo</em>
-            <br />en 4 pasos.
+          <div className="flex items-center gap-6 mb-10">
+            <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-[var(--paez-300)]">
+              03 — Proceso
+            </span>
+            <span className="flex-1 h-px bg-[var(--paez-800)]/40" />
+          </div>
+
+          <h2
+            className="font-display font-normal text-[var(--text-primary)] leading-[0.95] tracking-[-0.025em] max-w-[18ch]"
+            style={{ fontSize: "clamp(44px, 6.5vw, 110px)", textWrap: "balance" }}
+          >
+            Como un <em className="italic text-[var(--paez-300)]">río</em>:
+            <br />
+            empieza pequeño,
+            <br />
+            toma <em className="italic paez-gradient-text">forma</em>.
           </h2>
-          <p className="mt-6 text-lg text-[var(--text-secondary)] leading-[1.6] max-w-2xl">
-            Trabajamos como un río: empezamos pequeño, tomamos forma, y crecemos con tu negocio.
-          </p>
         </motion.div>
 
-        <div className="relative mt-20">
-          {/* Connecting line */}
-          <div className="absolute left-6 top-0 hidden h-full w-px md:left-0 md:top-[46px] md:block md:h-px md:w-full bg-gradient-to-r from-transparent via-[var(--paez-700)]/40 to-transparent" />
-          <div className="absolute left-6 top-0 block h-full w-px md:hidden bg-[var(--border)]" />
+        <div className="grid md:grid-cols-2 gap-x-16 gap-y-20 md:gap-y-28">
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{
+                duration: 0.8,
+                delay: i * 0.12,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className={`relative ${
+                i % 2 === 1 ? "md:mt-24" : ""
+              }`}
+            >
+              <div className="flex items-start gap-6 md:gap-10">
+                <span className="font-display text-6xl md:text-8xl italic text-[var(--paez-400)] leading-none shrink-0 pt-1">
+                  {step.num}
+                </span>
+                <div className="min-w-0 pt-2">
+                  <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-[var(--paez-300)]">
+                    {step.verb}
+                  </span>
+                  <h3
+                    className="font-display font-normal mt-2 text-[var(--text-primary)] leading-[0.98] tracking-[-0.02em]"
+                    style={{ fontSize: "clamp(36px, 4.2vw, 64px)" }}
+                  >
+                    {step.title}
+                  </h3>
+                </div>
+              </div>
 
-          <div className="relative grid gap-8 md:grid-cols-4 md:gap-6">
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative pl-16 md:pl-0"
-                >
-                  {/* Dot */}
-                  <div className="absolute left-[18px] top-6 z-10 h-3 w-3 rounded-full paez-gradient-bg md:left-1/2 md:-translate-x-1/2 md:top-[40px]" />
+              <p className="mt-8 md:ml-24 max-w-[40ch] text-[16px] leading-[1.65] text-[var(--text-secondary)]">
+                {step.body}
+              </p>
 
-                  <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-primary)] p-6 md:mt-[80px] hover:border-[var(--paez-700)]/50 transition-colors">
-                    <span className="font-display text-4xl leading-none text-[var(--paez-300)] italic">
-                      {step.number}
-                    </span>
-
-                    <div className="mt-5 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paez-800)]/20 border border-[var(--paez-700)]/30">
-                      <Icon className="h-4 w-4 text-[var(--paez-300)]" strokeWidth={1.6} />
-                    </div>
-
-                    <h3 className="mt-5 font-display text-xl leading-tight text-[var(--text-primary)]">
-                      {step.title}
-                    </h3>
-
-                    <p className="mt-2 text-sm leading-[1.6] text-[var(--text-secondary)]">
-                      {step.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+              <div className="mt-6 md:ml-24 flex gap-8 pt-5 border-t border-[var(--paez-800)]/40">
+                <div>
+                  <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-faint)]">
+                    Entregable
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--text-primary)]">{step.deliver}</p>
+                </div>
+                <div>
+                  <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-faint)]">
+                    Duración
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--text-primary)]">{step.duration}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

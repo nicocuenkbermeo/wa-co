@@ -1,26 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
 
-interface Plan {
-  name: string;
-  tagline: string;
-  setup: string;
-  mrr: string;
-  features: string[];
-  popular: boolean;
-}
-
-const plans: Plan[] = [
+const plans = [
   {
+    num: "·i",
     name: "Starter",
     tagline: "PyME empezando a automatizar",
-    setup: "$600",
-    mrr: "$150",
+    setup: "600",
+    mrr: "150",
     features: [
-      "Chatbot WhatsApp con IA",
-      "Respuestas 24/7 preguntas frecuentes",
+      "Chatbot de WhatsApp con IA",
+      "Respuestas 24/7 a preguntas frecuentes",
       "Captura de leads a Google Sheets",
       "Setup Evolution API + n8n",
       "Entrega en 7 días",
@@ -28,10 +19,11 @@ const plans: Plan[] = [
     popular: false,
   },
   {
+    num: "·ii",
     name: "Pro",
-    tagline: "Ventas + Agenda + IA completa",
-    setup: "$1,500",
-    mrr: "$300",
+    tagline: "Ventas + agenda + IA completa",
+    setup: "1,500",
+    mrr: "300",
     features: [
       "Todo lo de Starter",
       "Cotización automática con reglas custom",
@@ -44,13 +36,14 @@ const plans: Plan[] = [
     popular: true,
   },
   {
-    name: "Bundle Total",
-    tagline: "Web + Chatbot + Automatización",
-    setup: "$3,500",
-    mrr: "$400",
+    num: "·iii",
+    name: "Bundle",
+    tagline: "Web + chatbot + automatización",
+    setup: "3,500",
+    mrr: "400",
     features: [
       "Sitio multi-página premium",
-      "Chatbot WhatsApp Pro completo",
+      "Chatbot Pro completo",
       "Automatizaciones n8n custom",
       "Dashboard unificado",
       "Soporte prioritario",
@@ -63,119 +56,152 @@ const plans: Plan[] = [
 
 export default function Pricing() {
   return (
-    <section id="precios" className="py-24 md:py-32 px-6 md:px-8 bg-[var(--bg-primary)]">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="precios"
+      className="relative py-32 md:py-48 bg-[var(--ink-950)] overflow-hidden"
+    >
+      <div className="mx-auto max-w-7xl px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16 max-w-3xl pb-6 border-b border-[var(--border-subtle)]"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-20 md:mb-28"
         >
-          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-[var(--paez-300)] mb-4">
-            · Planes
-          </p>
-          <h2 className="font-display text-[clamp(34px,4.6vw,60px)] leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)]">
-            Setup + mensualidad.{" "}
-            <em className="italic text-[var(--paez-300)]">Sin sorpresas</em>.
+          <div className="flex items-center gap-6 mb-10">
+            <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-[var(--paez-300)]">
+              06 — Inversión
+            </span>
+            <span className="flex-1 h-px bg-[var(--border-subtle)]" />
+          </div>
+
+          <h2
+            className="font-display font-normal text-[var(--text-primary)] leading-[0.95] tracking-[-0.025em] max-w-[20ch]"
+            style={{ fontSize: "clamp(44px, 6.5vw, 110px)", textWrap: "balance" }}
+          >
+            Setup <em className="italic text-[var(--paez-300)]">+</em> mensualidad.
+            <br />
+            <em className="italic text-[var(--paez-300)]">Sin</em> sorpresas.
           </h2>
-          <p className="mt-6 text-lg text-[var(--text-secondary)] leading-[1.6]">
-            Inversión inicial que cubre implementación y go-live. Mensualidad que incluye
-            mantenimiento, tokens de IA, ajustes y soporte. Precios en USD.
+          <p className="mt-8 max-w-[56ch] text-[16px] leading-[1.65] text-[var(--text-secondary)]">
+            Inversión inicial que cubre implementación y go-live. Mensualidad
+            que incluye mantenimiento, tokens de IA, ajustes y soporte. Precios
+            en USD.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <div className="border-t border-[var(--border-subtle)]">
           {plans.map((plan, i) => (
             <motion.div
-              key={plan.name}
+              key={plan.num}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className={`relative rounded-2xl p-8 flex flex-col ${
-                plan.popular
-                  ? "bg-gradient-to-b from-[var(--paez-950)] to-[var(--bg-card)] border-2 border-[var(--paez-700)] lg:-mt-4"
-                  : "bg-[var(--bg-secondary)] border border-[var(--border)]"
+              transition={{
+                duration: 0.8,
+                delay: i * 0.12,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className={`relative grid md:grid-cols-[80px_1fr_auto] gap-8 md:gap-12 items-start py-12 md:py-16 border-b border-[var(--border-subtle)] ${
+                plan.popular ? "bg-[var(--paez-950)]/50" : ""
               }`}
             >
               {plan.popular && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full px-4 py-1 font-mono text-[10px] tracking-[0.14em] uppercase font-medium whitespace-nowrap paez-gradient-bg text-[var(--ink-950)]">
-                  Flagship
-                </div>
+                <span className="absolute top-5 right-6 font-mono text-[10px] tracking-[0.22em] uppercase font-medium text-[var(--ink-950)] bg-[var(--paez-300)] px-3 py-1 rounded-full">
+                  · Flagship
+                </span>
               )}
 
-              <p className="font-mono text-[11px] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-2">
-                {plan.tagline}
-              </p>
-              <h3 className="font-display text-3xl leading-tight text-[var(--text-primary)] mb-6">
-                {plan.name}
-              </h3>
-
-              <div className="mb-6 pb-6 border-b border-[var(--border-subtle)]">
-                <div className="flex items-baseline gap-2">
-                  <span className="font-display text-5xl text-[var(--text-primary)] leading-none">
-                    {plan.setup}
-                  </span>
-                  <span className="font-mono text-[11px] tracking-[0.1em] uppercase text-[var(--text-muted)]">
-                    USD · setup
-                  </span>
-                </div>
-                <div className="flex items-baseline gap-2 mt-3">
-                  <span className="font-display text-2xl italic text-[var(--paez-300)] leading-none">
-                    + {plan.mrr}
-                  </span>
-                  <span className="font-mono text-[11px] tracking-[0.1em] uppercase text-[var(--text-muted)]">
-                    USD / mes
-                  </span>
-                </div>
+              <div>
+                <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-[var(--paez-400)]">
+                  {plan.num}
+                </span>
               </div>
 
-              <ul className="space-y-3 mb-8 grow">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
-                    <Check
-                      className="w-4 h-4 mt-0.5 shrink-0 text-[var(--paez-300)]"
-                      strokeWidth={2}
-                    />
-                    <span className="text-sm leading-[1.5] text-[var(--text-primary)]">
-                      {feature}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <div className="min-w-0">
+                <h3
+                  className="font-display font-normal text-[var(--text-primary)] leading-[0.95] tracking-[-0.02em]"
+                  style={{ fontSize: "clamp(44px, 5.5vw, 88px)" }}
+                >
+                  {plan.name}
+                </h3>
+                <p className="mt-3 font-mono text-[11px] tracking-[0.18em] uppercase text-[var(--text-muted)]">
+                  {plan.tagline}
+                </p>
 
-              <a
-                href="#contacto"
-                className={`block w-full text-center rounded-full py-3.5 font-body text-sm font-medium transition-all ${
-                  plan.popular
-                    ? "bg-[var(--paez-800)] hover:bg-[var(--paez-700)] text-white shadow-[0_8px_24px_rgba(63,107,64,0.35)]"
-                    : "border border-[var(--border-strong)] text-[var(--text-primary)] hover:border-[var(--paez-400)] hover:text-[var(--paez-300)]"
-                }`}
-              >
-                Empezar
-              </a>
+                <ul className="mt-8 space-y-2.5 max-w-[50ch]">
+                  {plan.features.map((f) => (
+                    <li
+                      key={f}
+                      className="flex items-start gap-3 text-[15px] leading-[1.55] text-[var(--text-secondary)]"
+                    >
+                      <span className="font-mono text-[11px] text-[var(--paez-400)] mt-1.5 shrink-0">
+                        +
+                      </span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="md:text-right md:min-w-[220px]">
+                <div className="flex md:justify-end items-baseline gap-1.5">
+                  <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-[var(--text-faint)]">
+                    USD
+                  </span>
+                  <span
+                    className="font-display font-normal text-[var(--text-primary)] leading-none tracking-[-0.02em]"
+                    style={{ fontSize: "clamp(48px, 6vw, 96px)" }}
+                  >
+                    {plan.setup}
+                  </span>
+                </div>
+                <p className="mt-2 font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-faint)]">
+                  setup único
+                </p>
+
+                <div className="mt-5 flex md:justify-end items-baseline gap-1.5">
+                  <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-faint)]">
+                    +
+                  </span>
+                  <span
+                    className="font-display italic text-[var(--paez-300)] leading-none tracking-[-0.01em]"
+                    style={{ fontSize: "clamp(24px, 3vw, 44px)" }}
+                  >
+                    {plan.mrr}
+                  </span>
+                  <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-faint)]">
+                    / mes
+                  </span>
+                </div>
+
+                <a
+                  href="#contacto"
+                  className="mt-8 inline-flex md:float-right items-center gap-3 rounded-full pl-5 pr-4 py-3 font-mono text-[10px] tracking-[0.22em] uppercase font-medium transition-all border border-[var(--border-strong)] text-[var(--text-primary)] hover:border-[var(--paez-300)] hover:text-[var(--paez-300)]"
+                >
+                  Empezar
+                  <span className="inline-block w-5 h-px bg-current" />
+                </a>
+              </div>
             </motion.div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 text-center"
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-16 text-center text-[15px] text-[var(--text-secondary)]"
         >
-          <p className="text-[15px] text-[var(--text-secondary)]">
-            ¿Necesitas algo personalizado?{" "}
-            <a
-              href="#contacto"
-              className="font-medium italic font-display text-lg text-[var(--paez-300)] underline underline-offset-4 decoration-[var(--paez-700)] transition-colors hover:decoration-[var(--paez-300)]"
-            >
-              Hablemos →
-            </a>
-          </p>
-        </motion.div>
+          ¿Necesitas algo personalizado?{" "}
+          <a
+            href="#contacto"
+            className="font-display italic text-xl text-[var(--paez-300)] underline underline-offset-[6px] decoration-[var(--paez-800)] transition-colors hover:decoration-[var(--paez-300)] ml-1"
+          >
+            hablemos →
+          </a>
+        </motion.p>
       </div>
     </section>
   );
