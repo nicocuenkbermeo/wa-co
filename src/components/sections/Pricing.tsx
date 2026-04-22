@@ -1,16 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 
 const plans = [
   {
-    num: "·i",
     name: "Starter",
     tagline: "PyME empezando a automatizar",
     setup: "600",
     mrr: "150",
     features: [
-      "Chatbot de WhatsApp con IA",
+      "Chatbot WhatsApp con IA",
       "Respuestas 24/7 a preguntas frecuentes",
       "Captura de leads a Google Sheets",
       "Setup Evolution API + n8n",
@@ -19,7 +19,6 @@ const plans = [
     popular: false,
   },
   {
-    num: "·ii",
     name: "Pro",
     tagline: "Ventas + agenda + IA completa",
     setup: "1,500",
@@ -36,7 +35,6 @@ const plans = [
     popular: true,
   },
   {
-    num: "·iii",
     name: "Bundle",
     tagline: "Web + chatbot + automatización",
     setup: "3,500",
@@ -56,133 +54,119 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section
-      id="precios"
-      className="relative py-32 md:py-48 bg-[var(--ink-950)] overflow-hidden"
-    >
+    <section id="precios" className="relative py-24 md:py-40 bg-[var(--bg-primary)]">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-20 md:mb-28"
+          transition={{ duration: 0.8 }}
+          className="mb-16 md:mb-20 max-w-3xl"
         >
-          <div className="flex items-center gap-6 mb-10">
-            <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-[var(--paez-300)]">
-              06 — Inversión
-            </span>
-            <span className="flex-1 h-px bg-[var(--border-subtle)]" />
-          </div>
-
+          <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-[var(--paez-800)] mb-6">
+            — Inversión
+          </p>
           <h2
-            className="font-display font-normal text-[var(--text-primary)] leading-[0.95] tracking-[-0.025em] max-w-[20ch]"
-            style={{ fontSize: "clamp(44px, 6.5vw, 110px)", textWrap: "balance" }}
+            className="font-display font-normal text-[var(--text-primary)] leading-[1.05] tracking-[-0.02em]"
+            style={{ fontSize: "clamp(36px, 5.2vw, 80px)", textWrap: "balance" }}
           >
-            Setup <em className="italic text-[var(--paez-300)]">+</em> mensualidad.
+            Setup + mensualidad.
             <br />
-            <em className="italic text-[var(--paez-300)]">Sin</em> sorpresas.
+            <em className="italic text-[var(--paez-800)]">Sin</em> sorpresas.
           </h2>
-          <p className="mt-8 max-w-[56ch] text-[16px] leading-[1.65] text-[var(--text-secondary)]">
+          <p className="mt-6 text-[16px] leading-[1.65] text-[var(--text-secondary)] max-w-[54ch]">
             Inversión inicial que cubre implementación y go-live. Mensualidad
             que incluye mantenimiento, tokens de IA, ajustes y soporte. Precios
             en USD.
           </p>
         </motion.div>
 
-        <div className="border-t border-[var(--border-subtle)]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-start">
           {plans.map((plan, i) => (
             <motion.div
-              key={plan.num}
-              initial={{ opacity: 0, y: 30 }}
+              key={plan.name}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true, margin: "-60px" }}
               transition={{
                 duration: 0.8,
-                delay: i * 0.12,
+                delay: i * 0.1,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className={`relative grid md:grid-cols-[80px_1fr_auto] gap-8 md:gap-12 items-start py-12 md:py-16 border-b border-[var(--border-subtle)] ${
-                plan.popular ? "bg-[var(--paez-950)]/50" : ""
+              className={`relative rounded-3xl p-8 md:p-10 flex flex-col ${
+                plan.popular
+                  ? "bg-[var(--paez-950)] text-[#fdfcf7] md:-mt-6 md:pb-12"
+                  : "bg-[var(--bg-secondary)] border border-[var(--border-subtle)]"
               }`}
             >
               {plan.popular && (
-                <span className="absolute top-5 right-6 font-mono text-[10px] tracking-[0.22em] uppercase font-medium text-[var(--ink-950)] bg-[var(--paez-300)] px-3 py-1 rounded-full">
-                  · Flagship
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-[0.22em] uppercase font-medium whitespace-nowrap bg-[var(--paez-400)] text-[var(--paez-950)] px-4 py-1.5 rounded-full">
+                  Flagship
                 </span>
               )}
 
-              <div>
-                <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-[var(--paez-400)]">
-                  {plan.num}
-                </span>
-              </div>
+              <p className={`font-mono text-[11px] tracking-[0.22em] uppercase mb-4 ${plan.popular ? "text-[var(--paez-300)]" : "text-[var(--paez-800)]"}`}>
+                {plan.tagline}
+              </p>
+              <h3
+                className={`font-display font-normal leading-[0.95] tracking-[-0.02em] ${plan.popular ? "text-[#fdfcf7]" : "text-[var(--text-primary)]"}`}
+                style={{ fontSize: "clamp(40px, 5vw, 72px)" }}
+              >
+                {plan.name}
+              </h3>
 
-              <div className="min-w-0">
-                <h3
-                  className="font-display font-normal text-[var(--text-primary)] leading-[0.95] tracking-[-0.02em]"
-                  style={{ fontSize: "clamp(44px, 5.5vw, 88px)" }}
-                >
-                  {plan.name}
-                </h3>
-                <p className="mt-3 font-mono text-[11px] tracking-[0.18em] uppercase text-[var(--text-muted)]">
-                  {plan.tagline}
-                </p>
-
-                <ul className="mt-8 space-y-2.5 max-w-[50ch]">
-                  {plan.features.map((f) => (
-                    <li
-                      key={f}
-                      className="flex items-start gap-3 text-[15px] leading-[1.55] text-[var(--text-secondary)]"
-                    >
-                      <span className="font-mono text-[11px] text-[var(--paez-400)] mt-1.5 shrink-0">
-                        +
-                      </span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="md:text-right md:min-w-[220px]">
-                <div className="flex md:justify-end items-baseline gap-1.5">
-                  <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-[var(--text-faint)]">
+              <div className={`mt-8 pb-6 border-b ${plan.popular ? "border-[var(--paez-800)]" : "border-[var(--border-subtle)]"}`}>
+                <div className="flex items-baseline gap-2">
+                  <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-current opacity-60">
                     USD
                   </span>
                   <span
-                    className="font-display font-normal text-[var(--text-primary)] leading-none tracking-[-0.02em]"
-                    style={{ fontSize: "clamp(48px, 6vw, 96px)" }}
+                    className="font-display font-normal leading-none tracking-[-0.02em]"
+                    style={{ fontSize: "clamp(48px, 5vw, 72px)" }}
                   >
                     {plan.setup}
                   </span>
                 </div>
-                <p className="mt-2 font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-faint)]">
+                <p className="mt-1 font-mono text-[10px] tracking-[0.22em] uppercase text-current opacity-50">
                   setup único
                 </p>
 
-                <div className="mt-5 flex md:justify-end items-baseline gap-1.5">
-                  <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-faint)]">
+                <div className="mt-4 flex items-baseline gap-2">
+                  <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-current opacity-60">
                     +
                   </span>
                   <span
-                    className="font-display italic text-[var(--paez-300)] leading-none tracking-[-0.01em]"
-                    style={{ fontSize: "clamp(24px, 3vw, 44px)" }}
+                    className={`font-display italic leading-none ${plan.popular ? "text-[var(--paez-300)]" : "text-[var(--paez-800)]"}`}
+                    style={{ fontSize: "clamp(28px, 3vw, 42px)" }}
                   >
                     {plan.mrr}
                   </span>
-                  <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-faint)]">
+                  <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-current opacity-60">
                     / mes
                   </span>
                 </div>
-
-                <a
-                  href="#contacto"
-                  className="mt-8 inline-flex md:float-right items-center gap-3 rounded-full pl-5 pr-4 py-3 font-mono text-[10px] tracking-[0.22em] uppercase font-medium transition-all border border-[var(--border-strong)] text-[var(--text-primary)] hover:border-[var(--paez-300)] hover:text-[var(--paez-300)]"
-                >
-                  Empezar
-                  <span className="inline-block w-5 h-px bg-current" />
-                </a>
               </div>
+
+              <ul className="mt-6 space-y-3 grow">
+                {plan.features.map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-[14px] leading-[1.55]">
+                    <Check
+                      className={`w-4 h-4 mt-0.5 shrink-0 ${plan.popular ? "text-[var(--paez-300)]" : "text-[var(--paez-800)]"}`}
+                      strokeWidth={2.4}
+                    />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="#contacto"
+                className={`mt-10 btn-pill justify-center ${
+                  plan.popular ? "btn-primary" : "btn-secondary"
+                }`}
+              >
+                Empezar
+              </a>
             </motion.div>
           ))}
         </div>
@@ -194,10 +178,10 @@ export default function Pricing() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-16 text-center text-[15px] text-[var(--text-secondary)]"
         >
-          ¿Necesitas algo personalizado?{" "}
+          ¿Algo personalizado?{" "}
           <a
             href="#contacto"
-            className="font-display italic text-xl text-[var(--paez-300)] underline underline-offset-[6px] decoration-[var(--paez-800)] transition-colors hover:decoration-[var(--paez-300)] ml-1"
+            className="font-display italic text-xl text-[var(--paez-800)] underline underline-offset-[6px] decoration-[var(--paez-300)] transition-colors hover:decoration-[var(--paez-800)] ml-1"
           >
             hablemos →
           </a>

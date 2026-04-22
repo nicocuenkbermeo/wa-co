@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 /* ============================================================
-   WA.CO AGENCY — Design tokens (sincronizado con public/design-system)
-   Cartografía fluvial del Huila aplicada a IA
+   WA.CO AGENCY — Light warm aesthetic (inspiration: Visite Amazônia)
+   Paleta Páez/Tierra aplicada sobre fondo claro cálido.
    ============================================================ */
 
 :root {
@@ -20,16 +20,19 @@
   --paez-950: #172a1a;
 
   --paez-gradient: linear-gradient(95deg, #e2c728 0%, #c8bd36 35%, #93a64a 65%, #5f8a52 100%);
-  --paez-gradient-soft: linear-gradient(95deg, #ecde86 0%, #c8cf7a 50%, #8fb082 100%);
 
   /* TIERRA */
+  --tierra-50:  #faf6ef;
   --tierra-100: #f2e8d4;
+  --tierra-200: #e5d1a8;
   --tierra-300: #d4b47a;
   --tierra-400: #c29659;
   --tierra-500: #a87a42;
+  --tierra-600: #8a6035;
   --tierra-700: #6b4a2c;
+  --tierra-900: #2e2218;
 
-  /* GUAYABA (naranja del guaco) */
+  /* GUAYABA */
   --guayaba-200: #f8b287;
   --guayaba-300: #f08a52;
   --guayaba-400: #e66a2e;
@@ -53,42 +56,44 @@
   --ink-900: #14130f;
   --ink-950: #0a0a08;
 
-  /* ---------- SEMANTIC · dark-first (landing agency premium) ---------- */
-  --bg-primary:   var(--ink-950);
-  --bg-secondary: var(--ink-900);
-  --bg-card:      var(--ink-800);
-  --bg-elevated:  #1e1d18;
+  /* ---------- SEMANTIC · LIGHT-FIRST (warm cream) ---------- */
+  --bg-primary:   #FAF5EA;          /* crema cálido dominante */
+  --bg-secondary: #FFFFFF;           /* blanco para alternar */
+  --bg-cream:     #F5EFE2;          /* crema más profundo */
+  --bg-card:      #FFFDF7;
+  --bg-muted:     var(--ink-100);
 
-  --text-primary:   var(--ink-50);
-  --text-secondary: var(--ink-300);
-  --text-muted:     var(--ink-400);
-  --text-faint:     var(--ink-500);
+  --text-primary:   var(--ink-950);
+  --text-secondary: var(--ink-600);
+  --text-muted:     var(--ink-500);
+  --text-faint:     var(--ink-400);
+  --text-inverse:   #FFFDF7;
 
-  --border-subtle: #1e1d18;
-  --border:        #2a2923;
-  --border-strong: #3c3b32;
+  --border-subtle: rgba(20,19,15,0.08);
+  --border:        rgba(20,19,15,0.14);
+  --border-strong: rgba(20,19,15,0.28);
   --border-hover:  var(--border-strong);
 
-  --brand:      var(--paez-300);
-  --brand-deep: var(--paez-800);
-  --brand-sun:  var(--paez-400);
-  --accent:     var(--guayaba-300);
+  --brand:         var(--paez-800);          /* verde selva */
+  --brand-deep:    var(--paez-950);
+  --brand-sun:     var(--paez-400);          /* amarillo sol — nuestro "ámbar" */
+  --accent:        var(--guayaba-400);
 
-  /* Legacy aliases (compatibilidad) */
+  /* Legacy aliases */
   --accent-green:       var(--paez-800);
-  --accent-green-light: var(--paez-300);
+  --accent-green-light: var(--paez-700);
   --accent-gold:        var(--paez-400);
-  --accent-gold-light:  var(--paez-200);
+  --accent-gold-light:  var(--paez-300);
 
   /* TYPE */
-  --font-display: "Instrument Serif", "GT Sectra", Georgia, serif;
-  --font-body:    "Instrument Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono:    "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: var(--font-display-playfair, "Playfair Display"), Georgia, serif;
+  --font-body:    var(--font-body-instrument, "Instrument Sans"), "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    var(--font-mono-jetbrains, "JetBrains Mono"), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --lh-tight: 1.05;
   --lh-snug: 1.2;
-  --lh-normal: 1.45;
-  --lh-relaxed: 1.6;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.65;
 
   --tracking-tight: -0.02em;
   --tracking-mono:  0.02em;
@@ -103,22 +108,21 @@
   --color-foreground:  var(--text-primary);
   --color-card:        var(--bg-card);
   --color-surface:     var(--bg-secondary);
+  --color-cream:       var(--bg-cream);
   --color-border:      var(--border-subtle);
   --color-border-strong: var(--border-strong);
   --color-muted:       var(--text-muted);
   --color-secondary:   var(--text-secondary);
 
-  --color-accent:       var(--brand);
-  --color-accent-deep:  var(--brand-deep);
-  --color-accent-light: var(--paez-200);
-  --color-accent-sun:   var(--brand-sun);
-  --color-guayaba:      var(--accent);
+  --color-accent:       var(--paez-800);
+  --color-accent-deep:  var(--paez-950);
+  --color-accent-sun:   var(--paez-400);
+  --color-guayaba:      var(--guayaba-400);
 
-  /* Legacy aliases mantenidos para componentes existentes */
   --color-gold:       var(--paez-400);
   --color-gold-light: var(--paez-300);
 
-  --font-display: "Instrument Serif", Georgia, serif;
+  --font-display: "Playfair Display", Georgia, serif;
   --font-body:    "Instrument Sans", system-ui, sans-serif;
   --font-mono:    "JetBrains Mono", ui-monospace, monospace;
 }
@@ -141,30 +145,12 @@ body {
   min-height: 100vh;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-}
-
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+::-webkit-scrollbar-thumb { background: var(--ink-200); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-300); }
 
 ::selection { background: var(--paez-400); color: var(--ink-950); }
-
-@keyframes heroMesh {
-  0%   { filter: hue-rotate(0deg);   transform: scale(1) translate(0, 0); }
-  50%  {                             transform: scale(1.08) translate(2%, -1%); }
-  100% { filter: hue-rotate(12deg);  transform: scale(1) translate(-1%, 2%); }
-}
 
 @keyframes breathe {
   0%, 100% { transform: translateY(0) scale(1); }
@@ -186,7 +172,47 @@ body::before {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: shimmer 8s linear infinite;
+  animation: shimmer 10s linear infinite;
 }
 
 .paez-gradient-bg { background: var(--paez-gradient); }
+
+/* Pill button base */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.95rem 1.4rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 220ms var(--ease-out);
+}
+.btn-primary {
+  background: var(--paez-400);
+  color: var(--paez-950);
+}
+.btn-primary:hover {
+  background: var(--paez-300);
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  background: var(--paez-950);
+  color: var(--bg-card);
+}
+.btn-secondary:hover {
+  background: var(--paez-900);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+}
+.btn-ghost:hover {
+  border-color: var(--paez-800);
+  color: var(--paez-800);
+}

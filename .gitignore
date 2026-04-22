@@ -43,3 +43,7 @@ WA.CO Agency Desing System*.zip
 WA.CO Agency Desing System*/
 WA.CO Agency Desing System (1)/
 WA.CO Agency Desing System-handoff/
+
+# scraping refs (local only)
+.amazonia-ref/
+.firecrawl/

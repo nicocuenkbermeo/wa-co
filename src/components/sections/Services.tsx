@@ -1,49 +1,50 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const services = [
   {
-    num: "01",
-    title: "Chatbots de WhatsApp con IA",
-    tag: "Conversacional",
-    body: "Atención 24/7 que cotiza, responde, agenda y captura leads. Con la voz de tu marca, integrado directo a WhatsApp Business.",
-    stack: "OpenAI · n8n · Evolution API",
+    sigla: "CH",
+    title: "Chatbots WhatsApp",
+    body: "Atención 24/7 con IA que cotiza, responde y captura leads. Integrado a WhatsApp Business, con tu voz de marca.",
+    bg: "linear-gradient(135deg, #d4b628 0%, #b8a02a 100%)",
+    textColor: "#172a1a",
   },
   {
-    num: "02",
+    sigla: "n8",
     title: "Automatizaciones n8n",
-    tag: "Flujo",
-    body: "Conectamos WhatsApp, Gmail, Sheets, tu CRM y más. El trabajo repetitivo deja de existir — se hace solo, en background.",
-    stack: "n8n · Webhooks · APIs",
+    body: "Conectamos WhatsApp, Gmail, Sheets y tu CRM. El trabajo repetitivo se hace solo, en background.",
+    bg: "linear-gradient(135deg, #3f6b40 0%, #2b4a2e 100%)",
+    textColor: "#fdfcf7",
   },
   {
-    num: "03",
-    title: "Agentes IA personalizados",
-    tag: "Autónomo",
-    body: "Asistentes entrenados con el conocimiento de tu empresa. Ventas, soporte, operaciones — disponibles siempre, consistentes siempre.",
-    stack: "GPT-4o · Claude · RAG",
+    sigla: "AG",
+    title: "Agentes IA",
+    body: "Asistentes entrenados con tu conocimiento. Ventas, soporte, operaciones — consistentes, siempre disponibles.",
+    bg: "linear-gradient(135deg, #5f7a3c 0%, #3f6b40 100%)",
+    textColor: "#fdfcf7",
   },
   {
-    num: "04",
-    title: "Dashboards en tiempo real",
-    tag: "Visibilidad",
-    body: "Métricas reales en vivo para decidir con datos, no con intuición. Observabilidad end-to-end de cada flujo que corremos.",
-    stack: "Next.js · Supabase · Charts",
+    sigla: "DB",
+    title: "Dashboards",
+    body: "Métricas en vivo para decidir con datos. Observabilidad end-to-end de cada flujo que corremos.",
+    bg: "linear-gradient(135deg, #e66a2e 0%, #c4511f 100%)",
+    textColor: "#fdfcf7",
   },
   {
-    num: "05",
-    title: "Consultoría de IA",
-    tag: "Estrategia",
-    body: "Diagnóstico de procesos + roadmap de automatización. Identificamos dónde la IA da más ROI antes de construir nada.",
-    stack: "Workshop · Auditoría · Plan",
+    sigla: "CO",
+    title: "Consultoría IA",
+    body: "Diagnóstico + roadmap. Identificamos dónde la IA da más ROI antes de escribir una línea de código.",
+    bg: "linear-gradient(135deg, #f2e8d4 0%, #e5d1a8 100%)",
+    textColor: "#172a1a",
   },
   {
-    num: "06",
+    sigla: "DV",
     title: "Desarrollo a medida",
-    tag: "Custom",
-    body: "Apps Next.js, APIs, integraciones profundas. Cuando lo estándar no alcanza, construimos exactamente lo que tu negocio necesita.",
-    stack: "Next.js · TypeScript · Vercel",
+    body: "Apps Next.js, APIs, integraciones profundas. Cuando lo estándar no alcanza, construimos exactamente lo que necesitas.",
+    bg: "linear-gradient(135deg, #172a1a 0%, #0a0a08 100%)",
+    textColor: "#e0c94a",
   },
 ];
 
@@ -51,7 +52,7 @@ export default function Services() {
   return (
     <section
       id="servicios"
-      className="relative py-32 md:py-48 bg-[var(--ink-950)] overflow-hidden"
+      className="relative py-24 md:py-40 bg-[var(--bg-primary)]"
     >
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         {/* Editorial header */}
@@ -60,79 +61,83 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-20 md:mb-28 flex items-start justify-between gap-8 flex-wrap"
+          className="mb-16 md:mb-20 max-w-3xl"
         >
-          <div className="flex items-center gap-6 w-full">
-            <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-[var(--paez-300)]">
-              02 — Capacidades
-            </span>
-            <span className="flex-1 h-px bg-[var(--border-subtle)]" />
-            <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-[var(--text-faint)]">
-              06 / 06
-            </span>
-          </div>
-
+          <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-[var(--paez-800)] mb-6">
+            — Capacidades
+          </p>
           <h2
-            className="font-display font-normal text-[var(--text-primary)] leading-[0.95] tracking-[-0.025em] max-w-[18ch] mt-10"
-            style={{ fontSize: "clamp(44px, 6.5vw, 110px)", textWrap: "balance" }}
+            className="font-display font-normal text-[var(--text-primary)] leading-[1.05] tracking-[-0.02em]"
+            style={{ fontSize: "clamp(36px, 5.2vw, 80px)", textWrap: "balance" }}
           >
-            Seis formas de{" "}
-            <em className="italic text-[var(--paez-300)]">dejar</em>
-            <br />
-            que corra solo.
+            6 maneras de dejar que tu negocio{" "}
+            <em className="italic text-[var(--paez-800)]">corra solo</em>.
           </h2>
+          <p className="mt-6 text-[16px] md:text-[17px] leading-[1.65] text-[var(--text-secondary)] max-w-[58ch]">
+            Cada capacidad ya está probada en producción con clientes reales.
+            Combinables entre sí — el chatbot alimenta el dashboard, el agente
+            dispara la automatización.
+          </p>
         </motion.div>
 
-        {/* Editorial list — no cards, pure typography */}
-        <div className="border-t border-[var(--border-subtle)]">
-          {services.map((service, i) => (
+        {/* Grid 3x2 — like a map of states */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          {services.map((s, i) => (
             <motion.a
               href="#contacto"
-              key={service.num}
+              key={s.sigla}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{
                 duration: 0.7,
-                delay: i * 0.05,
+                delay: i * 0.08,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="group block border-b border-[var(--border-subtle)] py-10 md:py-14 transition-colors hover:bg-[var(--paez-950)]/30"
+              className="group relative block rounded-3xl overflow-hidden p-8 md:p-10 min-h-[320px] flex flex-col justify-between transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(20,19,15,0.14)]"
+              style={{
+                background: s.bg,
+                color: s.textColor,
+              }}
             >
-              <div className="grid grid-cols-[auto_1fr] md:grid-cols-[80px_1fr_auto] gap-6 md:gap-12 items-start">
-                <span className="font-mono text-[11px] md:text-[12px] tracking-[0.18em] uppercase text-[var(--paez-400)] pt-2">
-                  {service.num}
-                </span>
-
-                <div className="min-w-0">
-                  <div className="flex items-baseline gap-4 flex-wrap">
-                    <h3
-                      className="font-display font-normal text-[var(--text-primary)] leading-[0.98] tracking-[-0.02em] transition-colors group-hover:text-[var(--paez-200)]"
-                      style={{ fontSize: "clamp(32px, 4.4vw, 68px)" }}
-                    >
-                      {service.title}
-                    </h3>
-                    <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-faint)]">
-                      [{service.tag}]
-                    </span>
-                  </div>
-                  <p className="mt-5 max-w-[58ch] text-[15px] md:text-[16px] leading-[1.6] text-[var(--text-secondary)]">
-                    {service.body}
-                  </p>
-                  <p className="mt-4 font-mono text-[11px] tracking-[0.14em] uppercase text-[var(--text-faint)]">
-                    stack — {service.stack}
-                  </p>
-                </div>
-
-                <svg
-                  viewBox="0 0 24 24"
-                  className="hidden md:block shrink-0 w-6 h-6 mt-4 text-[var(--text-faint)] transition-all group-hover:text-[var(--paez-300)] group-hover:translate-x-1 group-hover:-translate-y-1"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
+              <div className="flex items-start justify-between">
+                <span
+                  className="font-display text-7xl italic leading-none opacity-80"
+                  style={{ color: s.textColor }}
                 >
-                  <path d="M5 19 L 19 5 M 19 5 L 8 5 M 19 5 L 19 16" />
-                </svg>
+                  {s.sigla}
+                </span>
+                <span
+                  className="font-mono text-[10px] tracking-[0.22em] uppercase opacity-60"
+                  style={{ color: s.textColor }}
+                >
+                  {String(i + 1).padStart(2, "0")} / 06
+                </span>
+              </div>
+
+              <div>
+                <h3
+                  className="font-display font-normal leading-[1.1] tracking-[-0.015em] mb-4"
+                  style={{
+                    fontSize: "clamp(24px, 2.6vw, 34px)",
+                    color: s.textColor,
+                  }}
+                >
+                  {s.title}
+                </h3>
+                <p
+                  className="text-[14px] md:text-[15px] leading-[1.6] opacity-85 max-w-[38ch]"
+                  style={{ color: s.textColor }}
+                >
+                  {s.body}
+                </p>
+                <span
+                  className="mt-6 inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.22em] uppercase transition-all group-hover:gap-3"
+                  style={{ color: s.textColor }}
+                >
+                  Saber más
+                  <span className="inline-block w-5 h-px bg-current transition-all group-hover:w-8" />
+                </span>
               </div>
             </motion.a>
           ))}
