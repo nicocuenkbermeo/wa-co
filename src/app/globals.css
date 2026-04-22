@@ -42,6 +42,18 @@
   --agua-300: #6ba099;
   --agua-400: #4a837c;
 
+  /* SELVA TROPICAL (paleta Visite Amazônia — usada en /v2) */
+  --selva-cream:   #FAF5EA;   /* crema base — ya en --bg-primary */
+  --selva-cream-2: #FFEFBF;   /* mantequilla más saturada (hero bg) */
+  --selva-green:   #0A330A;   /* verde selva profundo */
+  --selva-ink:     #0a0a08;   /* negro monumental */
+  --selva-yellow:  #FFE800;   /* amarillo sol puro */
+  --selva-orange:  #E19100;   /* naranja quemado */
+  --selva-fire:    #FF4000;   /* rojo fuego */
+  --selva-navy:    #150152;   /* azul ultramarino */
+  --selva-cyan:    #72E8FF;   /* cyan agua */
+  --selva-pink:    #E24B7A;   /* pitaya */
+
   /* NEUTROS warm grey verdoso */
   --ink-0:   #fdfcf7;
   --ink-50:  #f7f5ed;
@@ -134,6 +146,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 body {
@@ -143,6 +156,7 @@ body {
   font-size: 16px;
   line-height: var(--lh-normal);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar { width: 8px; }
