@@ -1,132 +1,153 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useSpring, type MotionValue } from "framer-motion";
-import { useEffect } from "react";
+import { motion } from "framer-motion";
 import MagneticButton from "../lib/MagneticButton";
-import SplitText from "../lib/SplitText";
 import AnimatedLettermark from "../icons/AnimatedLettermark";
-import { T, WHATSAPP_LINK } from "../tokens";
+import { T, SHADOW, WHATSAPP_LINK } from "../tokens";
+
+const KPIS = [
+  { kpi: "24/7", label: "Operando sin humanos" },
+  { kpi: "+400h", label: "Liberadas por año" },
+  { kpi: "$0", label: "Leads perdidos de madrugada" },
+  { kpi: "1", label: "Cerebro — muchos canales" },
+];
 
 export default function Hero() {
-  const mx = useMotionValue(0.5);
-  const my = useMotionValue(0.5);
-  const sx = useSpring(mx, { stiffness: 40, damping: 20 });
-  const sy = useSpring(my, { stiffness: 40, damping: 20 });
-
-  useEffect(() => {
-    const onMove = (e: PointerEvent) => {
-      mx.set(e.clientX / window.innerWidth);
-      my.set(e.clientY / window.innerHeight);
-    };
-    window.addEventListener("pointermove", onMove);
-    return () => window.removeEventListener("pointermove", onMove);
-  }, [mx, my]);
-
-  const orbX = useTransform(sx, [0, 1], ["-8%", "8%"]);
-  const orbY = useTransform(sy, [0, 1], ["-5%", "5%"]);
-
   return (
     <section
+      id="inicio"
       className="relative overflow-hidden"
-      style={{ background: T.obsidian, color: T.cream }}
+      style={{ background: T.paper, color: T.fg }}
     >
-      <FuturistBackdrop orbX={orbX} orbY={orbY} />
+      <PaperBackdrop />
 
-      <div className="relative mx-auto max-w-[1400px] px-5 pb-28 pt-36 md:px-10 md:pb-40 md:pt-48">
+      <div className="relative mx-auto max-w-[1240px] px-5 pb-24 pt-36 md:px-10 md:pb-32 md:pt-44">
+        {/* Lettermark + meta river row */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mb-10"
+          className="relative mb-10 flex items-end justify-between gap-6"
         >
-          <AnimatedLettermark height={78} label={false} tone="light" />
+          <AnimatedLettermark height={72} label={false} tone="dark" />
+          <div className="hidden md:flex items-center gap-3">
+            <RiverChip>Magdalena</RiverChip>
+            <RiverChip>Páez</RiverChip>
+            <RiverChip>Suaza</RiverChip>
+          </div>
         </motion.div>
 
+        {/* Eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="relative mb-10 flex items-center gap-3"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+          className="relative mb-8 flex items-center gap-3"
         >
           <span
-            className="inline-flex h-2 w-2 rounded-full"
-            style={{ background: T.aqua, boxShadow: `0 0 18px ${T.aqua}` }}
+            className="inline-flex h-[6px] w-[6px] rounded-full"
+            style={{ background: T.paez400, boxShadow: `0 0 0 4px ${T.paez400}33` }}
           />
           <span
-            className="font-mono text-[11px] uppercase tracking-[0.32em]"
-            style={{ color: `${T.ghost}` }}
+            className="font-mono uppercase"
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 11,
+              letterSpacing: "0.28em",
+              color: T.fgMuted,
+            }}
           >
-            Agencia IA · v2026 · operando 24/7
+            Agencia IA · Neiva — Huila · operando 24/7
           </span>
         </motion.div>
 
+        {/* Headline — DS rule: sans para texto principal, serif italic SOLO para el em destacado */}
         <h1
-          className="relative leading-[0.86] tracking-[-0.045em]"
+          className="relative leading-[0.95]"
           style={{
-            fontFamily: "var(--font-unbounded)",
-            fontWeight: 200,
-            fontSize: "clamp(44px, 10.5vw, 168px)",
-            color: T.cream,
+            fontFamily: "var(--font-body)",
+            fontWeight: 500,
+            fontSize: "clamp(44px, 9vw, 128px)",
+            letterSpacing: "-0.025em",
+            color: T.fg,
             textWrap: "balance",
           }}
         >
-          <SplitText text="construimos" as="span" stagger={0.035} />
-          <br />
           <motion.span
-            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            className="block"
+          >
+            Construimos
+          </motion.span>
+          <motion.em
+            initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="block"
             style={{
-              display: "inline-block",
-              fontFamily: "var(--font-fraunces)",
+              fontFamily: "var(--font-display)",
               fontStyle: "italic",
-              fontWeight: 300,
-              backgroundImage: `linear-gradient(110deg, ${T.aqua} 0%, ${T.violet} 45%, ${T.pitaya} 100%)`,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              fontWeight: 400,
+              color: T.paez700,
+              letterSpacing: "-0.03em",
             }}
           >
             inteligencia
+          </motion.em>
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="block"
+          >
+            que trabaja.
           </motion.span>
-          <br />
-          <SplitText text="que trabaja." as="span" stagger={0.035} delay={0.4} />
         </h1>
 
-        <div className="relative mt-16 grid gap-8 md:mt-24 md:grid-cols-12 md:gap-10">
+        {/* Lead + CTAs */}
+        <div className="relative mt-14 grid gap-10 md:mt-20 md:grid-cols-12">
           <motion.p
-            initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[19px] leading-[1.5] md:col-span-6 md:text-[22px]"
+            className="md:col-span-7"
             style={{
-              fontFamily: "var(--font-fraunces)",
+              fontFamily: "var(--font-body)",
               fontWeight: 400,
-              color: T.ghost,
+              fontSize: 19,
+              lineHeight: 1.5,
+              color: T.fgMuted,
+              maxWidth: "54ch",
               textWrap: "pretty",
             }}
           >
-            Agentes, chatbots y flujos <em className="italic" style={{ color: T.cream }}>n8n</em> que
-            hacen el trabajo silencioso —&nbsp;mientras tu equipo duerme.
-            Diseñado en el Huila. Desplegado en la nube. Corre para toda LATAM.
+            Agentes, chatbots y flujos <em style={{ fontFamily: "var(--font-display)", fontStyle: "italic", color: T.paez700 }}>n8n</em> que hacen el trabajo
+            silencioso — mientras tu equipo duerme. Diseñado en el Huila.
+            Desplegado en la nube. Corre para toda LATAM.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-start gap-3 md:col-span-6 md:items-end md:justify-end"
+            className="flex flex-col items-start gap-3 md:col-span-5 md:items-end md:justify-end"
           >
             <MagneticButton
               as="a"
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-8 py-4 text-[12px] font-medium uppercase tracking-[0.22em]"
+              className="inline-flex h-[52px] items-center gap-3 px-8 font-medium"
               style={{
-                background: T.cream,
-                color: T.obsidian,
-                boxShadow: `0 0 0 1px ${T.cream}, 0 20px 60px -20px ${T.aqua}66`,
+                borderRadius: 999,
+                background: T.paezGradient,
+                color: T.ink900,
+                fontSize: 14,
+                letterSpacing: "0",
+                boxShadow: SHADOW.md,
+                fontWeight: 600,
               }}
             >
               Agendar llamada
@@ -135,12 +156,14 @@ export default function Hero() {
             <MagneticButton
               as="a"
               href="#capacidades"
-              className="inline-flex items-center gap-3 rounded-full px-7 py-4 text-[12px] font-medium uppercase tracking-[0.22em]"
+              className="inline-flex h-[44px] items-center gap-3 px-6"
               style={{
-                background: "rgba(255,255,255,0.04)",
-                color: T.cream,
-                border: `1px solid ${T.ghost}33`,
-                backdropFilter: "blur(10px)",
+                borderRadius: 999,
+                background: "transparent",
+                color: T.fg,
+                fontSize: 14,
+                fontWeight: 500,
+                border: `1px solid ${T.borderStrong}`,
               }}
             >
               Ver capacidades
@@ -148,49 +171,54 @@ export default function Hero() {
           </motion.div>
         </div>
 
+        {/* KPIs */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.95, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mt-24 grid gap-5 md:mt-32 md:grid-cols-4"
+          transition={{ duration: 1, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mt-20 grid gap-4 md:mt-28 md:grid-cols-4"
         >
-          {[
-            { kpi: "24/7", label: "Operando sin humanos", tone: T.aqua },
-            { kpi: "+400h", label: "Liberadas por año", tone: T.violet },
-            { kpi: "$0", label: "Leads perdidos de madrugada", tone: T.pitaya },
-            { kpi: "1", label: "Cerebro — muchos canales", tone: T.yellow },
-          ].map((it) => (
+          {KPIS.map((it) => (
             <div
               key={it.label}
-              className="group relative overflow-hidden rounded-2xl p-6 transition-all duration-500 hover:-translate-y-1"
+              className="group relative overflow-hidden p-6 transition-all duration-500 hover:-translate-y-[2px]"
               style={{
-                background: "rgba(255,255,255,0.025)",
-                border: `1px solid ${T.ghost}1f`,
-                backdropFilter: "blur(14px)",
+                background: T.surface,
+                border: `1px solid ${T.border}`,
+                borderRadius: 16,
+                boxShadow: SHADOW.sm,
               }}
             >
               <div
                 aria-hidden
-                className="absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                style={{ background: `radial-gradient(400px 200px at top, ${it.tone}22, transparent 70%)` }}
+                className="absolute -top-10 -right-10 h-32 w-32 rounded-full opacity-[0.14] transition-opacity duration-500 group-hover:opacity-25"
+                style={{ background: T.paezGradient, filter: "blur(30px)" }}
               />
               <div
-                className="relative font-light"
-                style={{ fontFamily: "var(--font-unbounded)", fontSize: 44, letterSpacing: "-0.04em", color: T.cream }}
+                className="relative"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                  fontSize: 48,
+                  lineHeight: 1,
+                  letterSpacing: "-0.025em",
+                  color: T.fg,
+                }}
               >
                 {it.kpi}
               </div>
               <div
-                className="relative mt-2 font-mono text-[11px] uppercase tracking-[0.22em]"
-                style={{ color: T.ghost }}
+                className="relative mt-3 uppercase"
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 11,
+                  letterSpacing: "0.22em",
+                  color: T.fgMuted,
+                }}
               >
                 {it.label}
               </div>
-              <div
-                aria-hidden
-                className="absolute bottom-0 left-0 h-[2px] w-0 transition-all duration-700 group-hover:w-full"
-                style={{ background: `linear-gradient(90deg, ${it.tone}, transparent)` }}
-              />
             </div>
           ))}
         </motion.div>
@@ -199,83 +227,80 @@ export default function Hero() {
   );
 }
 
-function FuturistBackdrop({ orbX, orbY }: { orbX: MotionValue<string>; orbY: MotionValue<string> }) {
+function RiverChip({ children }: { children: React.ReactNode }) {
+  return (
+    <span
+      className="inline-flex items-center gap-2 rounded-full px-3 py-1"
+      style={{
+        border: `1px solid ${T.border}`,
+        background: T.surface,
+        fontFamily: "var(--font-mono)",
+        fontSize: 11,
+        color: T.fgMuted,
+        letterSpacing: "0.12em",
+      }}
+    >
+      <span
+        aria-hidden
+        className="h-[6px] w-[6px] rounded-full"
+        style={{ background: T.paez600 }}
+      />
+      {children}
+    </span>
+  );
+}
+
+// Fondo papel con patrón río (pat-rio del DS): radial glow paez + ondas SVG horizontales
+function PaperBackdrop() {
   return (
     <>
-      {/* grid sutil */}
+      {/* Glow radial suave Páez */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `radial-gradient(60% 55% at 80% 20%, ${T.paez200}55, transparent 60%), radial-gradient(55% 60% at 10% 80%, ${T.paez100}66, transparent 65%)`,
+        }}
+      />
+
+      {/* Grid mono 24px muy sutil — pat-grid del DS */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(201,203,212,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,203,212,0.04) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-          maskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%)",
+            "linear-gradient(rgba(20,19,15,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(20,19,15,0.035) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          maskImage:
+            "radial-gradient(ellipse 90% 70% at 50% 35%, black 40%, transparent 85%)",
         }}
       />
 
-      {/* orbe gradient gigante — sigue el cursor */}
-      <motion.div
+      {/* Ondas del río al fondo (pat-rio) */}
+      <svg
         aria-hidden
-        className="absolute"
-        style={{
-          top: "-20%",
-          left: "50%",
-          x: orbX,
-          y: orbY,
-          translateX: "-50%",
-          width: "min(1100px, 110vw)",
-          height: "min(1100px, 110vw)",
-          background: `radial-gradient(circle at 30% 35%, ${T.violet}bb 0%, ${T.aqua}88 25%, ${T.fire}44 55%, transparent 75%)`,
-          filter: "blur(40px)",
-          zIndex: 0,
-          mixBlendMode: "screen",
-        }}
-      />
-
-      {/* orbe secundario naranja/rojo */}
-      <motion.div
-        aria-hidden
-        className="absolute rounded-full"
-        initial={{ opacity: 0, scale: 0.7 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
-        style={{
-          bottom: "-35%",
-          right: "-10%",
-          width: "min(760px, 80vw)",
-          height: "min(760px, 80vw)",
-          background: `radial-gradient(circle at 40% 40%, ${T.fire}99 0%, ${T.pitaya}66 40%, transparent 75%)`,
-          filter: "blur(60px)",
-          zIndex: 0,
-          mixBlendMode: "screen",
-          animation: "orb-float 14s ease-in-out infinite",
-        }}
-      />
-
-      {/* scan line horizontal */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute left-0 right-0"
-        initial={{ top: "0%", opacity: 0 }}
-        animate={{ top: "100%", opacity: [0, 0.4, 0] }}
-        transition={{ duration: 8, ease: "linear", repeat: Infinity, delay: 1 }}
-        style={{
-          height: 1,
-          background: `linear-gradient(90deg, transparent, ${T.aqua}, transparent)`,
-          zIndex: 0,
-        }}
-      />
-
-      <style>{`
-        @keyframes orb-float {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(-4%, -6%) scale(1.08); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          [style*="orb-float"] { animation: none !important; }
-        }
-      `}</style>
+        className="pointer-events-none absolute inset-x-0 bottom-0 w-full"
+        viewBox="0 0 1200 200"
+        preserveAspectRatio="none"
+        style={{ height: 220, opacity: 0.35 }}
+      >
+        <defs>
+          <linearGradient id="river-grad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor={T.paez300} stopOpacity="0" />
+            <stop offset="0.5" stopColor={T.paez600} stopOpacity="0.5" />
+            <stop offset="1" stopColor={T.paez800} stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        {[0, 1, 2, 3, 4].map((i) => (
+          <path
+            key={i}
+            d={`M0 ${70 + i * 24} C 200 ${50 + i * 24}, 400 ${90 + i * 24}, 600 ${70 + i * 24} S 1000 ${50 + i * 24}, 1200 ${70 + i * 24}`}
+            stroke="url(#river-grad)"
+            strokeWidth={1.2}
+            fill="none"
+          />
+        ))}
+      </svg>
     </>
   );
 }

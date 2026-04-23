@@ -27,9 +27,9 @@ export default function Home() {
   return (
     <div
       style={{
-        background: T.obsidian,
-        color: T.cream,
-        fontFamily: "var(--font-unbounded), system-ui, sans-serif",
+        background: T.paper,
+        color: T.fg,
+        fontFamily: "var(--font-body), system-ui, sans-serif",
       }}
     >
       <Preloader />
@@ -43,7 +43,7 @@ export default function Home() {
         <Hero />
         <FuturistServices />
         <MarqueeTicker />
-        <RiverDivider from={T.obsidian} to={T.cream} />
+        <RiverDivider from={T.paper} to={T.paperSoft} />
         <Cifras />
         <Capacidades />
         <WordmarkMonumental />
@@ -54,7 +54,7 @@ export default function Home() {
         <Testimonios />
         <Pricing />
         <Manifiesto />
-        <RiverDivider from={T.cream} to={T.obsidian} />
+        <RiverDivider from={T.paperSoft} to={T.ink950} />
         <CtaFinal />
       </main>
 
