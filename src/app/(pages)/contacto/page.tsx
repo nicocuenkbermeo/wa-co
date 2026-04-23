@@ -1,11 +1,7 @@
-import { Metadata } from "next";
-import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Contacto — WA.CO",
-  description:
-    "Contáctanos para cotizar tu proyecto web o de automatización. Respuesta en menos de 24 horas.",
-};
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
+import { FormEvent } from "react";
 
 export default function ContactoPage() {
   return (
@@ -120,7 +116,26 @@ export default function ContactoPage() {
             >
               Envíanos un mensaje
             </h2>
-            <form className="space-y-5">
+            <form
+              className="space-y-5"
+              onSubmit={(e: FormEvent<HTMLFormElement>) => {
+                e.preventDefault();
+                const f = e.currentTarget;
+                const data = new FormData(f);
+                const name = (data.get("name") ?? "").toString();
+                const email = (data.get("email") ?? "").toString();
+                const phone = (data.get("phone") ?? "").toString();
+                const service = (data.get("service") ?? "").toString();
+                const message = (data.get("message") ?? "").toString();
+                const subject = encodeURIComponent(
+                  `Cotización wa.co — ${service || "proyecto"}`
+                );
+                const body = encodeURIComponent(
+                  `Nombre: ${name}\nCorreo: ${email}\nWhatsApp: ${phone}\nServicio: ${service}\n\nMensaje:\n${message}`
+                );
+                window.location.href = `mailto:hola@agency-wa.co?subject=${subject}&body=${body}`;
+              }}
+            >
               <div>
                 <label htmlFor="name" className="block text-sm text-[#A1A1A1] mb-2">
                   Nombre completo

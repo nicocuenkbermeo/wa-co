@@ -72,8 +72,12 @@ export default function Hero() {
         >
           <SplitText text="construimos" as="span" stagger={0.035} />
           <br />
-          <span
+          <motion.span
+            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
             style={{
+              display: "inline-block",
               fontFamily: "var(--font-fraunces)",
               fontStyle: "italic",
               fontWeight: 300,
@@ -83,10 +87,10 @@ export default function Hero() {
               backgroundClip: "text",
             }}
           >
-            <SplitText text="inteligencia" as="span" stagger={0.035} delay={0.15} />
-          </span>
+            inteligencia
+          </motion.span>
           <br />
-          <SplitText text="que trabaja." as="span" stagger={0.035} delay={0.3} />
+          <SplitText text="que trabaja." as="span" stagger={0.035} delay={0.4} />
         </h1>
 
         <div className="relative mt-16 grid gap-8 md:mt-24 md:grid-cols-12 md:gap-10">
@@ -267,6 +271,15 @@ function FuturistBackdrop({ orbX, orbY }: { orbX: MotionValue<string>; orbY: Mot
         @keyframes orb-float {
           0%, 100% { transform: translate(0, 0) scale(1); }
           50% { transform: translate(-4%, -6%) scale(1.08); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          [style*="orb-float"] { animation: none !important; }
+        }
+      `}</style>
+    </>
+  );
+}
+m: translate(-4%, -6%) scale(1.08); }
         }
         @media (prefers-reduced-motion: reduce) {
           [style*="orb-float"] { animation: none !important; }

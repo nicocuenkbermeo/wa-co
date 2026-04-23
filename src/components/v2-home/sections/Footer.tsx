@@ -14,14 +14,14 @@ const COL_NAV = [
 
 const COL_CONTACTO = [
   { label: EMAIL, href: `mailto:${EMAIL}` },
-  { label: "+57 · Neiva, Huila", href: "#" },
+  { label: "+57 · Neiva, Huila", href: "https://wa.me/573163836881" },
   { label: "WhatsApp →", href: "https://wa.me/573163836881" },
 ];
 
 const COL_LEGAL = [
-  { label: "Privacidad", href: "#" },
-  { label: "Términos", href: "#" },
-  { label: "Status", href: "#" },
+  { label: "Privacidad", href: "/privacidad" },
+  { label: "Términos", href: "/terminos" },
+  { label: "Status", href: "/status" },
 ];
 
 export default function Footer() {
