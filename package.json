@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "brand:pdf": "node scripts/generate-brand-pdfs.mjs",
+    "brand:thumbs": "node scripts/generate-brand-thumbnails.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -23,8 +25,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "archiver": "^7.0.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
+    "pdf-lib": "^1.17.1",
+    "puppeteer-core": "^24.42.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
