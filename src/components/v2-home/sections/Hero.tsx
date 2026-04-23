@@ -279,12 +279,3 @@ function FuturistBackdrop({ orbX, orbY }: { orbX: MotionValue<string>; orbY: Mot
     </>
   );
 }
-m: translate(-4%, -6%) scale(1.08); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          [style*="orb-float"] { animation: none !important; }
-        }
-      `}</style>
-    </>
-  );
-}

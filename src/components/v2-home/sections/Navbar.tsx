@@ -8,10 +8,11 @@ import MagneticButton from "../lib/MagneticButton";
 import { T, WHATSAPP_LINK } from "../tokens";
 
 const LINKS = [
-  { label: "Capacidades", href: "#capacidades" },
-  { label: "Casos", href: "#casos" },
-  { label: "Precios", href: "#pricing" },
-  { label: "Proyecto", href: "#proyecto" },
+  { label: "Capacidades", href: "/#capacidades" },
+  { label: "Casos", href: "/#casos" },
+  { label: "Precios", href: "/#pricing" },
+  { label: "Brand", href: "/brand" },
+  { label: "Proyecto", href: "/#proyecto" },
 ];
 
 export default function Navbar() {
